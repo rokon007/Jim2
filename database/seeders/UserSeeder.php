@@ -3,9 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -16,14 +13,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-         DB::table('users')->insert([
-           'username' => 'Super Admin',
+       DB::table('users')->insert([
+           'name' => 'Super Admin',
             'email' => 'rokon07@hotmail.com',
-            'password' => Hash::make('rokon007'),
+            'password' => Hash::make('rokon123'),
             'is_superuser' => '1',
-            'company_name' => 'Admin',
-            'contact' => '+8801717524792',
-            
-        ]);
+            ]);
     }
 }
