@@ -37,7 +37,7 @@
                               </td>
                               <td>
                                 <a href="#">
-                                  <p class="mb-2 md:ml-4">{{ $item->name }}</p>
+                                  <p class="mb-2 md:ml-4">{{ $item->ad }}</p>
                                   
                                 </a>
                               </td>

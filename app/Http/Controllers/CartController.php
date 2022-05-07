@@ -16,16 +16,20 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
+		
         \Cart::add([
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
             'quantity' => $request->quantity,
+			 'ad' => $request->ad,
             'attributes' => array(
                 'image' => $request->image,
             )
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
+		//session()->flash('bnm', $request->ad);
+		session()->put('bnm', $request->ad);
 
         return redirect()->route('cart.list');
     }

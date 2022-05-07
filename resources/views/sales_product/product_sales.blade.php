@@ -39,8 +39,8 @@
               </div>
             @endif
            
-                    <form class="form-horizontal" action="{{ url('admin/add_sale') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                    
+                        
                        
                       
                       <fieldset>
@@ -82,7 +82,7 @@
                                     <th style="width: 15%"> স্টক</th>
                                     <th style="width: 5%"> পরিমান</th>
                                     <th style="width: 15%"> মোট</th>
-                                    <th style="width: 15%" > OK</th>
+                                    <th style="width: 15%" > বিক্রয়</th>
                                    
                                   </tr>
                                 </tr>
@@ -98,7 +98,18 @@
                                   <td class="center" style="text-align: center" > {{ $item->product_quantity }} </td>
                                   <td style="text-align: center" >
                                  
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                      
+										
+										 <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" value="{{ $item->id }}" name="id">
+                        <input type="hidden" value="{{ $item->product_name }}" name="name">
+                        <input type="hidden" value="{{ $item->product_price }}" name="price">
+                        <input type="hidden" value="{{ $item->product_code }}"  name="image">
+                        <input type="hidden" value="1" name="quantity">
+						 <input type="hidden" value="admin/selas_pro/{{ $item->id }}" name="ad">
+                          <button type="submit" class="btn btn-warning"><i class="icon-shopping-cart">Add to Cart</i></button>
+                    </form>
                                        
                                       
                                   </td>           
@@ -113,7 +124,7 @@
                        
                       </fieldset>
         
-                    </form>   
+                    
         
                 </div>
 
