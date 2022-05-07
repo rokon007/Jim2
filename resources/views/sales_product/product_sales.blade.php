@@ -107,7 +107,7 @@
                         <input type="hidden" value="{{ $item->product_price }}" name="price">
                         <input type="hidden" value="{{ $item->product_code }}"  name="product_code">
                         <input type="hidden" value="1" name="quantity">
-						 <input type="hidden" value="admin/selas_pro/{{ $item->id }}" name="ad">
+						 <input type="hidden" value="admin/selas_pro/{{ $customer->id }}" name="ad">
                           <button type="submit" class="btn btn-warning"><i class="icon-shopping-cart">Add to Cart</i></button>
                     </form>
                                        
