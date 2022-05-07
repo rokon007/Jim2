@@ -12,38 +12,45 @@
                               <p class="text-green-800">{{ $message }}</p>
                           </div>
                       @endif
-                        <h3 class="text-3xl text-bold">Cart List</h3>
+                        <h3 class="text-3xl text-bold">বিক্রয় তালিকা</h3>
                       <div class="flex-1">
                         <table class="w-full text-sm lg:text-base" cellspacing="0">
                           <thead>
                             <tr class="h-12 uppercase">
-                              <th class="hidden md:table-cell"></th>
-                              <th class="text-left">Name</th>
+                              <th class="text-left">কোড নং</th>
+                              <th class="text-left">সামগ্রীর নাম</th>
                               <th class="pl-5 text-left lg:text-right lg:pl-0">
                                 <span class="lg:hidden" title="Quantity">Qtd</span>
-                                <span class="hidden lg:inline">Quantity</span>
+                                <span class="hidden lg:inline">পরিমান</span>
                               </th>
-                              <th class="hidden text-right md:table-cell"> price</th>
-                              <th class="hidden text-right md:table-cell"> Remove </th>
+                              <th class="hidden text-right md:table-cell"> মূল্য</th>
+                              <th class="hidden text-right md:table-cell"> রিমুভ </th>
                             </tr>
                           </thead>
                           <tbody>
                               @foreach ($cartItems as $item)
                             <tr>
-                              <td class="hidden pb-4 md:table-cell">
+           <!--                   <td class="hidden pb-4 md:table-cell">
                                 <a href="#">
                                   <img src="{{ $item->attributes->image }}" class="w-20 rounded" alt="Thumbnail">
                                 </a>
-                              </td>
-                              <td>
+                              </td> -->
+                             
+							   <td class="hidden pb-4 md:table-cell">
+							   <a href="#">
+                                  <p class="mb-2 md:ml-4">{{ $item->product_code }}</p>
+                                  
+                                </a>
+								</td>
+								 <td> 
                                 <a href="#">
-                                  <p class="mb-2 md:ml-4">{{ $item->ad }}</p>
+                                  <p class="mb-2 md:ml-4">{{ $item->name }}</p>
                                   
                                 </a>
                               </td>
                               <td class="justify-center mt-6 md:justify-end md:flex">
                                 <div class="h-10 w-28">
-                                  <div class="relative flex flex-row w-full h-8">
+                                  <div class="relative flex flex-row w-full h-10">
                                     
                                     <form action="{{ route('cart.update') }}" method="POST">
                                       @csrf
@@ -76,11 +83,17 @@
                         <div>
                          Total: ${{ Cart::getTotal() }}
                         </div>
-                        <div>
+                        <div class="flex justify-center my-6">
                           <form action="{{ route('cart.clear') }}" method="POST">
                             @csrf
                             <button class="px-6 py-2 text-red-800 bg-red-300">Remove All Cart</button>
                           </form>
+						  <span>
+						  <form action="{{ route('cart.clear') }}" method="POST">
+                            @csrf
+                            <button type="submit" name="checkout" style="float:right;" class="px-6 py-2 text-red-800 bg-red-100">Checkout</button>
+                          </form>
+						  </span>
                         </div>
 
 
