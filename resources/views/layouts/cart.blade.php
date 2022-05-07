@@ -38,7 +38,7 @@
                              
 							   <td class="hidden pb-4 md:table-cell">
 							   <a href="#">
-                                  <p class="mb-2 md:ml-4">{{$item->product_code}}</p>
+                                  <p class="mb-2 md:ml-4">{{$item->id}}</p>
                                   
                                 </a>
 								</td>
