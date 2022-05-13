@@ -1,14 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SalesController;
-use App\Http\Controllers\CustomerController;
-//use App\Http\Controllers\admin\CartController;
-use App\Http\Controllers\Admin\ProductsController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\ProductsSalesController;
-use App\Http\Controllers\CartController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\ProductController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,43 +19,108 @@ use App\Http\Controllers\CartController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/','FontendController@index');
+
 Auth::routes();
-Route::get('/dashboard',[DashboardController::class,'index']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
- //All Customer Start
-     Route::get('admin/customers',[CustomerController::class, 'create']);
-     Route::post('admin/add_customer',[CustomerController::class, 'store']);
-     Route::get('admin/all_customer',[CustomerController::class, 'index']);
-     Route::get('admin/edit_customer/{customer}',[CustomerController::class, 'edit']);
-     Route::put('admin/update_customer/{customer}',[CustomerController::class, 'update']);
- 
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('admin/home', 'AdminController@index');
+Route::get('/admin','Admin\LoginController@showLoginForm')->name('admin.login');
+Route::post('admin','Admin\LoginController@Login');
+Route::get('admin/logout','AdminController@Logout')->name('admin.logout');
+// =========================== Admin Route ===========================
+// category section
+Route::get('admin/categories','Admin\CategoryController@index')->name('admin.category');
+Route::post('admin/categories-store','Admin\CategoryController@StoreCat')->name('store.category');
+Route::get('admin/categories/edit/{cat_id}','Admin\CategoryController@Edit');
+Route::post('admin/categories-update','Admin\CategoryController@UpdateCat')->name('update.category');
+Route::get('admin/categories/delete/{cat_id}','Admin\CategoryController@Delete');
+Route::get('admin/categories/inactive/{cat_id}','Admin\CategoryController@Inactive');
+Route::get('admin/categories/active/{cat_id}','Admin\CategoryController@Active');
+// ====================== Brand ===============
+Route::get('admin/brand','Admin\BrandController@index')->name('admin.brand');
+Route::post('admin/brand-store','Admin\BrandController@Store')->name('store.brand');
+Route::get('admin/brand/edit/{brand_id}','Admin\BrandController@Edit');
+Route::post('admin/brand-update','Admin\BrandController@Update')->name('update.brand');
+Route::get('admin/brand/delete/{brand_id}','Admin\BrandController@Delete');
+Route::get('admin/brand/inactive/{brand_id}','Admin\BrandController@Inactive');
+Route::get('admin/brand/active/{brand_id}','Admin\BrandController@Active');
+// ============================= Products ============================
+Route::get('admin/products/add','Admin\ProductController@addProduct')->name('add-products');
+Route::post('admin/products/store','Admin\ProductController@storeProduct')->name('store-products');
+Route::get('admin/products/manage','Admin\ProductController@manageProduct')->name('manage-products');
+Route::get('admin/products/edit/{proudct_id}','Admin\ProductController@editProduct');
+Route::post('admin/products/update','Admin\ProductController@updateProduct')->name('update-products');
+Route::post('admin/products/image-update','Admin\ProductController@updateImage')->name('update-image');
+Route::get('admin/products/delete/{product_id}','Admin\ProductController@destroy');
+Route::get('admin/products/inactive/{product_id}','Admin\ProductController@Inactive');
+Route::get('admin/products/active/{product_id}','Admin\ProductController@Active');
+// ============================= Wholesale ============================
+//All Customer Start
+     Route::get('admin/customers','Admin\ProductController@create')->name('create-customers');
+	 Route::post('admin/add_customer','Admin\ProductController@store')->name('store-customers');
+	 Route::get('admin/all_customer','Admin\ProductController@index')->name('index-customers');
+	 Route::get('admin/edit_customer/{customer}','Admin\ProductController@edit')->name('edit-customers');
+	 Route::get('admin/update_customer/{customer}','Admin\ProductController@update')->name('update-customers');
+    //All Sele
+   Route::get('admin/product_sale/{id}','Admin\ProductController@cart_view')->name('cart_view-customers');
+   Route::get('admin/selas_pro/{id}','Admin\CouponController@cart_create')->name('cart_create-customers');
+    Route::get('admin/add_sale','Admin\ProductController@cart_store')->name('cart_store-customers');
+   
+  
+   Route::get('cart/cansel/{id}/{qty}/{product_code}','Admin\ProductController@cart_cansel')->name('cart_cansel');
       //All Customer End
+// ======================= cart =============================	
+Route::post('cart/wholeseal','Admin\ProductController@view_cart')->name('view-cart');
 
-       //All products Start
-    Route::get('admin/products',[ProductsController::class, 'create']);
-    Route::post('admin/products',[ProductsController::class, 'store']);
-    Route::get('admin/all_products',[ProductsController::class, 'index']);
-    Route::get('admin/product_status/{product}',[ProductsController::class, 'change_status']);
-    Route::get('admin/edit_products/{product}',[ProductsController::class, 'edit']);
-    Route::put('admin/update_products/{product}',[ProductsController::class, 'update']);
-    Route::get('admin/delete_products/{product}',[ProductsController::class, 'delete']);
-     //All products End
 
-     //All Sele
-    // Route::get('/sales/{sals}',[CartController::class, 'index']);
-    
-    
-    Route::get('admin/product_sale/{id}',[ProductsSalesController::class,'cart_view']);
+//All cart End  
+// ======================= coupon =============================
+Route::get('admin/coupon','Admin\CouponController@index')->name('admin.coupon');
+Route::post('admin/coupon-store','Admin\CouponController@Store')->name('store.coupon');
+Route::get('admin/coupon/edit/{coupon_id}','Admin\CouponController@couponEdit');
+Route::post('admin/coupon-update','Admin\CouponController@update')->name('update.coupon');
+Route::get('admin/coupon/delete/{coupon_id}','Admin\CouponController@couponDelete');
+Route::get('admin/coupon/inactive/{coupon_id}','Admin\CouponController@Inactive');
+Route::get('admin/coupon/active/{coupon_id}','Admin\CouponController@Active');
+//
+Route::get('admin/orders','Admin\CouponController@orderIndex')->name('admin.orders');
+Route::get('admin/orders/view/{id}','Admin\CouponController@viewOrder');
+// =========================== fontend routes ===================
+// ================= cart ============
+Route::post('add/to-cart/{prouct_id}','CartController@addToCart');
+Route::get('cart','CartController@cartPage');
+Route::get('cart/destroy/{cart_id}','CartController@destroy');
+Route::post('cart/quantity/update/{cart_id}','CartController@quantityUpdate');
+Route::post('coupon/apply','CartController@applyCoupon');
+Route::get('coupon/destroy','CartController@couponDestroy');
+// ================= wishlist ============
+Route::get('add/to-wishlist/{prouct_id}','WishlistController@addToWishlist');
+Route::get('wishlist','WishlistController@wishPage');
+Route::get('wishlist/destroy/{wishlist_id}','WishlistController@destroy');
 
-    Route::get('admin/selas_pro/{id}',[ProductsSalesController::class,'create']);
-    Route::post('admin/add_sale',[ProductsSalesController::class, 'store']);
-	
-	Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
-Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
-Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
-Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
-Route::get('/sales', [ProductsController::class, 'productList'])->name('products.list');
+//shop page rotues
+Route::get('shop','FontendController@shopPage')->name('shop.page');
+//categorywise product show
+Route::get('category/product-show/{id}','FontendController@catWiseProduct');
+
+// ============= product details ============
+Route::get('proudct/details/{product_id}','FontendController@productDetail');
+
+// checkout page
+Route::get('checkout','CheckoutController@index');
+Route::post('place/order','OrderController@storeOrder')->name('place-order');
+Route::get('order/success','OrderController@orderSuccess');
+
+//usr routes
+Route::get('user/order','UserController@order')->name('user.order');
+Route::get('user/order-view/{id}','UserController@orderView');
+
+
+
+
+

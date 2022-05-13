@@ -1,0 +1,89 @@
+@extends('admin.admin-master')
+@section('products') active show-sub @endsection
+@section('manage-products') active @endsection
+@section('admin_content')
+<div class="sl-mainpanel">
+    <nav class="breadcrumb sl-breadcrumb">
+      <a class="breadcrumb-item" href="index.html">Admin</a>
+      <span class="breadcrumb-item active">View Product</span>
+    </nav>
+
+    <div class="sl-pagebody">
+      <div class="row row-sm">
+        <div class="col-md-12">  
+         <?php
+        $message = Session::get('message');
+        if($message)
+        {
+			?>
+			 <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><?php  echo $message; ?></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+         
+		  <?php
+          Session::put('message',null);
+
+        }
+        ?>
+
+           
+              <div class="card pd-20 pd-sm-40">
+                <h6 class="card-body-title">View Product</h6>    
+                <div class="table-wrapper">
+                  <table id="datatable1" class="table display responsive nowrap">
+                    <thead>
+                      <tr>
+                        <th class="wd-15p">দোকানের নাম</th>
+                        <th class="wd-15p">প্রোঃ নাম</th>
+                        <th class="wd-15p">ঠিকানা</th>
+                        <th class="wd-15p">মোবাইল নং</th>
+                        <th class="wd-20p">মোট টাকা</th>
+                         <th class="wd-20p">মোট জমা</th>  
+                         <th class="wd-20p">মোট বাকি</th>  
+                         <th class="wd-20p">ছবি</th>  						
+                        <th class="wd-25p">প্রফাইল</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                   @foreach ($customers as $customer)
+                      <tr>
+					  <td>
+					   <a class="submenu" href="{{url('admin/selas_pro/'.$customer->id) }}">
+                 
+                  <span class="hidden-tablet" style="color: blue"> {{ $customer->shop_name }}</span></a>
+					  </td>
+					  <td>
+					  {{ $customer->customer_name}} 
+					  </td>
+					   <td>
+					  {{ $customer->customer_adderss}} 
+					  </td>
+					  <td> {{ $customer->customer_phone }} </td>
+              <td> {{ $customer->total_amount }}.00 </td>
+              <td> {{ $customer->total_paid }}.00 </td>
+              <td> {{ $customer->total_deu }}.00 </td>
+                        <td>
+                            <img src="{{ asset('upload/customer/'.$customer->image) }}" width="50px;" height="50px;" alt="">
+                        </td>
+                          <td>
+                <a class="btn btn-info" href="{{ url('admin/edit_customer/'.$customer->id) }}">
+                  <i class="halflings-icon white edit"></i>  
+                </a>
+              @csrf
+            </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div><!-- table-wrapper -->
+              </div><!-- card -->
+        </div>
+
+    </div>
+
+</div>
+@endsection
