@@ -56,19 +56,19 @@ class ProductController extends Controller
         $imag_one = $request->file('image_one');                
         $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
         //Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);   
-        $imag_one->save('fontend/img/product/upload/'.$name_gen); 		
+        $imag_one->move('fontend/img/product/upload/'.$name_gen); 		
         $img_url1 = 'fontend/img/product/upload/'.$name_gen;
 
         $imag_two = $request->file('image_two');                
         $name_gen = hexdec(uniqid()).'.'.$imag_two->getClientOriginalExtension();
         //Image::make($imag_two)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen); 
-         $imag_two->save('fontend/img/product/upload/'.$name_gen); 		
+         $imag_two->move('fontend/img/product/upload/'.$name_gen); 		
         $img_url2 = 'fontend/img/product/upload/'.$name_gen;
 
         $imag_three = $request->file('image_three');                
         $name_gen = hexdec(uniqid()).'.'.$imag_three->getClientOriginalExtension();
        // Image::make($imag_three)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);  
-          $imag_three->save('fontend/img/product/upload/'.$name_gen); 		   
+          $imag_three->move('fontend/img/product/upload/'.$name_gen); 		   
         $img_url3 = 'fontend/img/product/upload/'.$name_gen;
 
         Product::insert([
@@ -139,7 +139,7 @@ class ProductController extends Controller
             $imag_one = $request->file('image_one');                
              $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
             // Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen); 
-             $imag_one->save('fontend/img/product/upload/'.$name_gen); 				
+             $imag_one->move('fontend/img/product/upload/'.$name_gen); 				
              $img_url1 = 'fontend/img/product/upload/'.$name_gen;
  
              Product::findOrFail($product_id)->update([
@@ -150,7 +150,7 @@ class ProductController extends Controller
              $imag_one = $request->file('image_two');                
              $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
              //Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);  
-              $image_two->save('fontend/img/product/upload/'.$name_gen); 				 
+              $image_two->move('fontend/img/product/upload/'.$name_gen); 				 
              $img_url1 = 'fontend/img/product/upload/'.$name_gen;
  
              Product::findOrFail($product_id)->update([
@@ -167,7 +167,7 @@ class ProductController extends Controller
            $imag_one = $request->file('image_one');                
             $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
             //Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen); 
-			 $imag_one->save('fontend/img/product/upload/'.$name_gen); 
+			 $imag_one->move('fontend/img/product/upload/'.$name_gen); 
             $img_url1 = 'fontend/img/product/upload/'.$name_gen;
 
             Product::findOrFail($product_id)->update([
@@ -183,7 +183,7 @@ class ProductController extends Controller
             $imag_one = $request->file('image_two');                
              $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
              //Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen); 
-			  $image_two->save('fontend/img/product/upload/'.$name_gen);
+			  $image_two->move('fontend/img/product/upload/'.$name_gen);
              $img_url1 = 'fontend/img/product/upload/'.$name_gen;
  
              Product::findOrFail($product_id)->update([
@@ -199,7 +199,7 @@ class ProductController extends Controller
             $imag_one = $request->file('image_three');                
              $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
              //Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen); 
-			  $image_three->save('fontend/img/product/upload/'.$name_gen);
+			  $image_three->move('fontend/img/product/upload/'.$name_gen);
              $img_url1 = 'fontend/img/product/upload/'.$name_gen;
  
              Product::findOrFail($product_id)->update([
