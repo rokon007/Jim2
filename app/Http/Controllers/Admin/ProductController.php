@@ -368,21 +368,18 @@ class ProductController extends Controller
          $product->update();
 		 
 		 $cart_order= sales_order::where('invoice',$pass)->get(); 
-		// $query->select(DB::raw("SUM(amount_total) as paidsum"))->where('status', 'paid');
-		 $Total = DB::table('sales_orders')
-                ->select(DB::raw('SUM(amount) as total'))
-				->where('invoice', $pass)
-                -> get();
 		
-    // return redirect()->back()->with(compact('pass'))->with('view_cart','view_cart');
-	 
-		// return redirect()->back()->with('pass', $pass)->with('view_cart','view_cart');
+		// $Total = DB::table('sales_orders')
+          //      ->select(DB::raw('SUM(amount) as total'))
+			//	->where('invoice', $pass)
+           //     -> get();
+		$Total = DB::table('sales_orders')->where('invoice' , $pass)->sum('amount');
+		// -> get();
+    
 	 return redirect()->back()->with(['pass' => $pass,'Total' => $Total,'cart_order' => $cart_order, 'view_cart' => 'view_cart']);
 	 }
 	 
-		// return redirect()->back()->with('error_code', 5);
 		
-		//return $pass;
 		
     }
 	
