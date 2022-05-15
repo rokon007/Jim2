@@ -125,7 +125,7 @@ $(function() {
                
 			   <center>
 			   <div class="" >
-                            <img  src="{{ asset('upload/customer/1652247744.jpg') }}" width="156px" height="156px" alt="img">
+                            <img  src="{{ asset('upload/customer/'.$customer->image) }}" width="156px" height="156px" alt="img">
                           </div>
 				 </center>
 			   
@@ -277,10 +277,9 @@ $(function() {
                   <td>{{ $item->price }}</td>
                   <td>{{ $item->qty  }}</td>
 				  <td>{{ $item->amount }}</td>
-				  <td>				  
-				  <a class="btn btn-mini btn-warning" href="#">
-				  
-                 <i class="fa fa-close"></i>Cancel  
+				  <td>				  				 
+				<a class="btn btn-info" href="{{ url('cart/cansel/'.$item->id.'/'.$item->qty.'/'.$item->product_code) }}">
+                  <i class="fa fa-close"></i>Cancel  
                 </a>
 				  </td>
 				   </tr>

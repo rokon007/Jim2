@@ -401,10 +401,7 @@ class ProductController extends Controller
 		 
 		  $cart_order= sales_order::where('invoice',$pass)->get(); 
 		
-		 $Total = DB::table('sales_orders')
-                ->select(DB::raw('SUM(amount) as total'))
-				->where('invoice', $pass)
-                -> get();
+		 $Total = DB::table('sales_orders')->where('invoice' , $pass)->sum('amount');
 		 return redirect()->back()->with(['Total' => $Total,'cart_order' => $cart_order, 'view_cart' => 'view_cart']);		
     }
 	
