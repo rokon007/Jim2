@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title">
-                            <h2>Featured Product</h2>
+                            <h2>Featured Product </h2>
                         </div>
                         <div class="featured__controls">
                             <ul>
@@ -133,17 +133,24 @@
         </div>
         <!-- Banner End -->
 
-        <!-- Latest Product Section Begin -->
-        <section class="latest-product spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="latest-product__text">
-                            <h4>Latest Products</h4>
-                            <div class="latest-product__slider owl-carousel">
-                                @foreach ($lts_p as $product)
-                                <div class="latest-prdouct__slider__item">
-
+       
+		
+		
+		
+		
+		
+		
+		<!-- Latest Product Section Begin -->
+    <section class="latest-product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="latest-product__text">
+                        <h4>Latest Products</h4>
+                        <div class="latest-product__slider owl-carousel">
+						
+                            <div class="latest-prdouct__slider__item">
+							    @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
@@ -152,99 +159,114 @@
                                             <h6>{{ $product->product_name }}</h6>
                                             <span>${{ $product->price }}</span>
                                         </div>
-                                    </a>
-                                 @endforeach
-
-                                </div>
-                                <div class="latest-prdouct__slider__item">
+                                    </a> 
+								 @endforeach                                                                                           
+                            </div>
+							
+							
+                            <div class="latest-prdouct__slider__item">
                                 @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $product->image_one }}"  style="height: 40px; width:40px;"  alt="">
+                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->product_name }}</h6>
                                             <span>${{ $product->price }}</span>
                                         </div>
-                                    </a>
-                              @endforeach
-
-                                </div>
+                                    </a> 
+								 @endforeach                                                           
                             </div>
+							
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="latest-product__text">
-                            <h4>Top Rated Products</h4>
-                            <div class="latest-product__slider owl-carousel">
-                                <div class="latest-prdouct__slider__item">
-                                   @foreach ($lts_p as $product)
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="latest-product__text">
+                        <h4>Top Rated Products</h4>
+                        <div class="latest-product__slider owl-carousel">
+						
+                            <div class="latest-prdouct__slider__item">
+                               @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ asset($product->image_one) }}" style="height: 40px; width:40px;"  alt="">
+                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->product_name }}</h6>
                                             <span>${{ $product->price }}</span>
                                         </div>
-                                    </a>
-                                    @endforeach
-
-                                </div>
-                                <div class="latest-prdouct__slider__item">
-                                    @foreach ($lts_p as $product)
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{ asset($product->image_one) }}" style="height: 40px; width:40px;"  alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>{{ $product->product_name }}</h6>
-                                            <span>${{ $product->price }}</span>
-                                        </div>
-                                    </a>
-                                @endforeach
-
-                                </div>
+                                    </a> 
+								 @endforeach                                                          
                             </div>
+							
+                            <div class="latest-prdouct__slider__item">
+                                @foreach ($lts_p as $product)
+                                    <a href="#" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{ $product->product_name }}</h6>
+                                            <span>${{ $product->price }}</span>
+                                        </div>
+                                    </a> 
+								 @endforeach                                                          
+                            </div>
+							
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="latest-product__text">
-                            <h4>Review Products</h4>
-                            <div class="latest-product__slider owl-carousel">
-                                <div class="latest-prdouct__slider__item">
-                                    @foreach ($lts_p as $product)
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="latest-product__text">
+                        <h4>Review Products</h4>
+                        <div class="latest-product__slider owl-carousel">
+						
+						
+                            <div class="latest-prdouct__slider__item">
+                                @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ asset($product->image_one) }}" style="height: 40px; width:40px;"  alt="">
+                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->product_name }}</h6>
                                             <span>${{ $product->price }}</span>
                                         </div>
-                                    </a>
-                                    @endforeach
-                                </div>
-                                <div class="latest-prdouct__slider__item">
-                                    @foreach ($lts_p as $product)
+                                    </a> 
+								 @endforeach                                                             
+                            </div>
+							
+							
+                            <div class="latest-prdouct__slider__item">
+                               @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ asset($product->image_one) }}" style="height: 40px; width:40px;"  alt="">
+                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->product_name }}</h6>
-                                             <span>${{ $product->price }}</span>
+                                            <span>${{ $product->price }}</span>
                                         </div>
-                                    </a>
-                                    @endforeach
-                                </div>
+                                    </a> 
+								 @endforeach                                                       
                             </div>
+							
+							
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Latest Product Section End -->
+        </div>
+    </section>
+    <!-- Latest Product Section End -->
+		
+		
+		
+		
+		
+		
+		
 
         <!-- Blog Section Begin -->
         <section class="from-blog spad">
