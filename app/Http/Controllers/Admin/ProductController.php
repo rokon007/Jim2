@@ -373,9 +373,9 @@ class ProductController extends Controller
           //      ->select(DB::raw('SUM(amount) as total'))
 			//	->where('invoice', $pass)
            //     -> get();
-		//$Total = DB::table('sales_orders')->where('invoice' , $pass)->sum('amount');
+		 $Total = DB::table('sales_orders')->where('invoice' , $pass)->sum('amount');
 		// -> get();
-		$Total =sales_order::where('invoice',$pass)->sum('(cast(amount as double precision))');
+		//$Total =sales_order::where('invoice',$pass)->sum('(cast(amount as double precision))');
 		//$Total =sales_order::select(DB::raw('sum(cast(amount as double precision))'))->where('invoice', $pass)->get();
 		//$Total =sales_order::where('invoice', $pass)->select(DB::raw('sum(cast(amount as double precision))'))->get();
     

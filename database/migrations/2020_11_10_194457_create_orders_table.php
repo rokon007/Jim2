@@ -18,8 +18,10 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id');
             $table->string('invoice_no');
             $table->string('payment_type');
-            $table->string('total');
-            $table->string('subtotal');
+			$table->decimal('total', 10, 2);
+			$table->decimal('subtotal', 10, 2);
+           // $table->string('total');
+           // $table->string('subtotal');
             $table->integer('coupon_discount')->nullable();
             $table->timestamps();
         });

@@ -20,9 +20,12 @@ class CreateCustomerInfosTable extends Migration
             $table->string('customer_adderss');
             $table->string('customer_phone');
             $table->string('image');
-            $table->string('total_amount');
-            $table->string('total_paid');
-            $table->string('total_deu');
+			$table->decimal('total_amount', 10, 2);
+			$table->decimal('total_paid', 10, 2);
+			$table->decimal('total_deu', 10, 2);
+           // $table->string('total_amount');
+            //$table->string('total_paid');
+            //$table->string('total_deu');
             $table->string('created_by');
             $table->timestamps();
         });

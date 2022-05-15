@@ -19,11 +19,15 @@ class CreateSalesOrdersTable extends Migration
 			$table->integer('cid');
             $table->string('product_code');
             $table->string('product');
-            $table->string('price');			
-			$table->string('qty');
-            $table->string('discount')->nullable();
-            $table->string('amount');
-			$table->string('profit')->nullable();           
+			$table->decimal('price', 10, 2);
+            //$table->string('price');			
+			$table->bigInteger('qty');
+			$table->decimal('discount', 10, 2)->nullable();
+           // $table->string('discount')->nullable();
+		   $table->decimal('amount', 10, 2);
+           // $table->string('amount');
+		  $table->decimal('profit', 10, 2)->nullable();  
+			//$table->string('profit')->nullable();           
             $table->timestamps();
         });
     }
