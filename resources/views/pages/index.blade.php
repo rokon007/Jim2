@@ -153,7 +153,7 @@
 							    @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
+                                            <img src="{{ $product->image_one }}" style="height: 110px; width:110px;" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->product_name }}</h6>
@@ -168,7 +168,7 @@
                                 @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
+                                            <img src="{{ $product->image_one }}" style="height: 110px; width:110px;" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->product_name }}</h6>
@@ -190,7 +190,7 @@
                                @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
+                                            <img src="{{ $product->image_one }}" style="height: 110px; width:110px;" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->product_name }}</h6>
@@ -204,7 +204,7 @@
                                 @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
+                                            <img src="{{ $product->image_one }}" style="height: 110px; width:110px;" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->product_name }}</h6>
@@ -227,7 +227,7 @@
                                 @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
+                                            <img src="{{ $product->image_one }}" style="height: 110px; width:110px;" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->product_name }}</h6>
@@ -242,7 +242,7 @@
                                @foreach ($lts_p as $product)
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $product->image_one }}" style="height: 40px; width:40px;" alt="">
+                                            <img src="{{ $product->image_one }}" style="height: 110px; width:110px;" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->product_name }}</h6>
