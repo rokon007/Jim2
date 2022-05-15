@@ -359,7 +359,7 @@ class ProductController extends Controller
         $order->qty  =$request->qty;
         $order->discount =$request->qty;
 		 $order->amount =$request->price * $request->qty;
-        $order->profit ='qty';
+        $order->profit =0;
 		$order->save();
          
 		$new_quantity=$request->old_quantity-$request->qty;
