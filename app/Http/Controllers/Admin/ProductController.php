@@ -394,10 +394,8 @@ class ProductController extends Controller
 		$product1=$product->product;
 		$new_quantity=$cqty+$qty;
 
-		 $product_update = Product::where('product_code',$code);
-		 $product_update->product_quantity =$new_quantity;
-         $product_update->update();
-		
+		 
+		Product::where('product_code',$code)->update((['product_quantity'=>$new_quantity]));
 		 
 		 
 		 $sales_order = sales_order::find($id); 
