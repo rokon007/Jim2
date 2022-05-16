@@ -74,6 +74,7 @@ Route::get('admin/products/active/{product_id}','Admin\ProductController@Active'
   
    Route::get('cart/cansel/{id}/{code}/{qty}/{invoice}','Admin\ProductController@cart_cansel')->name('cart_cansel');
       //All Customer End
+	  Route::get('/jim','Admin\ProductController@view_login')->name('view_login');
 // ======================= cart =============================	
 Route::post('cart/wholeseal','Admin\ProductController@view_cart')->name('view-cart');
 
