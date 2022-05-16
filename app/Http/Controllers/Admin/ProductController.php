@@ -387,7 +387,7 @@ class ProductController extends Controller
     }
 	
 	
-	public function cart_cansel($id, $qty,$product_code)
+	public function cart_cansel($id, $qty,$invoice)
     {
         $product = Product::find($id);
 		$cqty=$product->product_quantity;
@@ -399,9 +399,9 @@ class ProductController extends Controller
 		 $sales_order = sales_order::find($id); 
 		 $sales_order->delete();
 		 
-		  $cart_order= sales_order::where('invoice',$pass)->get(); 
+		  $cart_order= sales_order::where('invoice',$invoice)->get(); 
 		
-		 $Total = DB::table('sales_orders')->where('invoice' , $pass)->sum('amount');
+		 $Total = DB::table('sales_orders')->where('invoice' , $invoice)->sum('amount');
 		 return redirect()->back()->with(['Total' => $Total,'cart_order' => $cart_order, 'view_cart' => 'view_cart']);		
     }
 	
