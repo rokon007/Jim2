@@ -389,12 +389,12 @@ class ProductController extends Controller
 	
 	public function cart_cansel($id, $qty,$invoice)
     {
-        $product = Product::find($id)->first();
+        $product = Product::where($id)->first();
 		$cqty=$product->product_quantity;
 		$product1=$product->product;
 		$new_quantity=$cqty+$qty;
 
-		 $product_update = Product::find($id);
+		 $product_update = Product::where($id);
 		 $product_update->product_quantity =$new_quantity;
          $product_update->update();
 		 return $product1;
