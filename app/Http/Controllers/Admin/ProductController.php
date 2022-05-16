@@ -394,6 +394,7 @@ class ProductController extends Controller
 		$new_quantity=$cqty+$qty;
 		 $product->product_quantity =$new_quantity;
          $product->update();
+		 return $new_quantity;
 		 
 		 
 		 $sales_order = sales_order::find($id); 
@@ -402,7 +403,7 @@ class ProductController extends Controller
 		  $cart_order= sales_order::where('invoice',$invoice)->get(); 
 		
 		 $Total = DB::table('sales_orders')->where('invoice' , $invoice)->sum('amount');
-		 return redirect()->back()->with(['Total' => $Total,'cart_order' => $cart_order, 'view_cart' => 'view_cart']);		
+		// return redirect()->back()->with(['Total' => $Total,'cart_order' => $cart_order, 'view_cart' => 'view_cart']);		
     }
 	
 	
