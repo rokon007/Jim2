@@ -391,10 +391,11 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 		$cqty=$product->product_quantity;
+		$product1=$product->product;
 		$new_quantity=$cqty+$qty;
 		 $product->product_quantity =$new_quantity;
          $product->update();
-		 return $new_quantity;
+		 return $new_quantity , $product1;
 		 
 		 
 		 $sales_order = sales_order::find($id); 
