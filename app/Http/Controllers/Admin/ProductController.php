@@ -407,10 +407,6 @@ class ProductController extends Controller
 		 return redirect()->back()->with(['Total' => $Total,'cart_order' => $cart_order, 'view_cart' => 'view_cart']);		
     }
 	
-	public function view_login()
-	{
-		
-		 return view('login');
-	}
+	
 	
 }

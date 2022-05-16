@@ -78,5 +78,11 @@ class CartController extends Controller
         }
 
     }
+	
+	public function view_login()
+	{
+		
+		 return view('login');
+	}
     
 }

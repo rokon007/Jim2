@@ -37,4 +37,6 @@ class FontendController extends Controller
         $categories = Category::where('status',1)->latest()->get();
         return view('pages.cat-product',compact('products','categories'));
     }
+	
+
 }
