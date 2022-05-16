@@ -72,7 +72,7 @@ Route::get('admin/products/active/{product_id}','Admin\ProductController@Active'
     Route::get('admin/add_sale','Admin\ProductController@cart_store')->name('cart_store-customers');
    
   
-   Route::get('cart/cansel/{id}/{qty}/{invoice}','Admin\ProductController@cart_cansel')->name('cart_cansel');
+   Route::get('cart/cansel/{id}/{code}/{qty}/{invoice}','Admin\ProductController@cart_cansel')->name('cart_cansel');
       //All Customer End
 // ======================= cart =============================	
 Route::post('cart/wholeseal','Admin\ProductController@view_cart')->name('view-cart');
