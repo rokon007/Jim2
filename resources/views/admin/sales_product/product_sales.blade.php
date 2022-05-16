@@ -164,12 +164,12 @@ $(function() {
                      <thead>
                                 <tr>
                                   <tr >
-                                    <th style="width: 10%">কোড নং</th>
+                                    <th style="width: 5%">কোড নং</th>
                                     <th style="width: 30%">সামগ্রীর নাম</th>
-                                    <th style="width: 15%"> মূল্য</th>
-                                    <th style="width: 15%"> স্টক</th>
+                                    <th style="width: 5%"> মূল্য</th>
+                                    <th style="width: 5%"> স্টক</th>
                                     <th style="width: 5%"> পরিমান</th>
-                                    <th style="width: 15%"> মোট</th>
+                                   
                                     <th style="width: 15%" > বিক্রয়</th>
                                    
                                   </tr>
@@ -184,8 +184,8 @@ $(function() {
                                   <td class="center" style="text-align: center" > {{ $item->product_name }} </td>
                                   <td class="center" style="text-align: center" > {{ $item->price }} </td>
                                   <td class="center" style="text-align: center" > {{ $item->product_quantity }} </td>
-                                  <td class="center" style="text-align: center" > <input style="text-align: center" width="5%" type="text" name="qty" id="qty1" value="1"></td>
-                                  <td class="center" style="text-align: center" > {{ $item->product_quantity }} </td>
+                                  <td class="center" style="text-align: center" > <input style="text-align: center" width="1%" type="number_format" name="qty" id="qty1" value="1"></td>
+                                
                                   <td style="text-align: center" >
                                  
                                       
