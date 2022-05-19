@@ -74,8 +74,10 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('create-customers') }}" class="nav-link @yield('add-products')">Add customer</a></li>
-          <li class="nav-item"><a href="{{ route('index-customers') }}" class="nav-link @yield('manage-products')">Manage customer</a></li>
+          <li class="nav-item1"><a href="{{ route('create-customers') }}" class="nav-link @yield('add-customer') ">Add customer</a></li>
+          <li class="nav-item1"><a href="{{ route('index-customers') }}" class="nav-link @yield('Manage-customer')">Manage customer</a></li>
+		   <li class="nav-item1"><a href="{{ route('view-orders') }}" class="nav-link @yield('View-Orders')">View Orders </a></li>
+		    <li class="nav-item1"><a href="{{ route('confirm-order') }}" class="nav-link @yield('Confirmed-order')">Confirmed order </a></li>
         </ul>
 
         <a href="{{ url('/') }}" target="_blank" class="sl-menu-link ">

@@ -73,12 +73,24 @@ Route::get('admin/products/active/{product_id}','Admin\ProductController@Active'
    
   
    Route::get('cart/cansel/{id}/{code}/{qty}/{invoice}','Admin\ProductController@cart_cansel')->name('cart_cansel');
+   //cart/save1
+   Route::get('cart/save1','Admin\ProductController@cart_save1')->name('cart_save1');
+   //
+    Route::put('cart/qty_update/{id}/{invoice}/{code}','Admin\ProductController@order_qty_update')->name('order-qtyupdate');
       //All Customer End
 	  Route::get('/jim','CartController@view_login')->name('view_login');
 // ======================= cart =============================	
 Route::post('cart/wholeseal','Admin\ProductController@view_cart')->name('view-cart');
-
-
+//view-orders
+ Route::get('admin/view-orders','Admin\ProductController@view_orders')->name('view-orders');
+ //view-confirm order
+ Route::get('admin/confirm-order','Admin\ProductController@view_confirmorder')->name('confirm-order');
+ //conferm/cart/
+ Route::get('conferm/cart/{invoice}','Admin\ProductController@conferm_cart')->name('conferm-cart');
+ //conferm/cart-view
+  Route::get('conferm/cart-view/{invoice}/{cid}','Admin\ProductController@conferm_cart_view')->name('conferm-cart-view');
+ //cart/comfermsave1/
+  Route::post('cart/comfermsave1','Admin\ProductController@comfermsave1')->name('order-comfermsave1');
 //All cart End  
 // ======================= coupon =============================
 Route::get('admin/coupon','Admin\CouponController@index')->name('admin.coupon');

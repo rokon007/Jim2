@@ -17,6 +17,9 @@ class CreateSalesOrdersTable extends Migration
             $table->id();			           
             $table->string('invoice');
 			$table->integer('cid');
+			$table->string('shop_name');
+			$table->string('customer_name');
+			$table->string('customer_phone');
             $table->string('product_code');
             $table->string('product');
 			$table->decimal('price', 10, 2);
@@ -27,7 +30,8 @@ class CreateSalesOrdersTable extends Migration
 		   $table->decimal('amount', 10, 2);
            // $table->string('amount');
 		  $table->decimal('profit', 10, 2)->nullable();  
-			//$table->string('profit')->nullable();           
+		   $table->string('created_by');
+		  $table->string('status')->nullable();           
             $table->timestamps();
         });
     }

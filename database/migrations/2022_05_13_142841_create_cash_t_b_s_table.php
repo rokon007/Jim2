@@ -16,7 +16,7 @@ class CreateCashTBSTable extends Migration
         Schema::create('cash_t_b_s', function (Blueprint $table) {
             $table->id();
 			$table->decimal('cash_in_amount', 10, 2)->nullable();
-			$table->decimal('cash_in_amount', 10, 2)->nullable();
+			$table->decimal('cash_out_amount', 10, 2)->nullable();
             $table->string('type')->nullable();		
 			$table->string('cash_describtion')->nullable();
             $table->string('date')->nullable();

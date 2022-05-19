@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentsTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-			$table->string('comment_subject');
-            $table->string('comment_text');
-            $table->string('comment_status');			
-			$table->string('user_id');
-            $table->string('link')->nullable();
+			$table->string('invoice');
+			$table->integer('cid');
+			$table->string('shop_name');			
+			$table->string('customer_phone');
+			$table->decimal('Total', 10, 2);
+			$table->decimal('payment', 10, 2);
+			$table->decimal('due', 10, 2);
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('payments');
     }
 }

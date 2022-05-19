@@ -164,29 +164,36 @@ $(function() {
                      <thead>
                                 <tr>
                                   <tr >
-                                    <th style="width: 3%">কোড নং</th>
-                                    <th style="width: 15%">সামগ্রীর নাম</th>
-                                    <th style="width: 3%"> মূল্য</th>
-                                    <th style="width: 3%"> স্টক</th>
-                                    <th style="width: 3%"> পরিমান</th>
+                                    <th style="text-align: center; width: 1%;">কোড নং</th>
+                                    <th style="text-align: center; width: 3%;">সামগ্রীর নাম</th>
+                                    <th style="text-align: center; width: 3%;"> মূল্য</th>
+                                    <th style="text-align: center; width: 3%;"> স্টক</th>
+                                    <th style="text-align: center; width: 3%;"> পরিমান</th>
                                    
-                                    <th style="width: 5%" > বিক্রয়</th>
+                                    <th style="width: 5%;" > বিক্রয়</th>
                                    
                                   </tr>
                                 </tr>
                               </thead>  
                      <tbody>
-                                @foreach ($products as $item)
+                              @foreach ($products as $item)  
                                 <tr>
 								 <form action="{{url('cart/wholeseal')}}" method="POST" enctype="multipart/form-data">
                         @csrf
+						           <input type="hidden" value="{{$customer->shop_name}}" name="shop_name">
+								   <input type="hidden" value="{{$customer->customer_name}}" name="customer_name">
+								   <input type="hidden" value="{{$customer->customer_phone}}" name="customer_phone">
+								   <input type="hidden" value="Admin" name="created_by">
+								   <br>
+						          
+						
                                   <td class="center" style="text-align: center" >{{ $item->product_code }}</td>
                                   <td class="center" style="text-align: center" > {{ $item->product_name }} </td>
                                   <td class="center" style="text-align: center" > {{ $item->price }} </td>
                                   <td class="center" style="text-align: center" > {{ $item->product_quantity }} </td>
-                                  <td class="center" style="text-align: center" > <input style="text-align: center;width:10px;"  type="number" name="qty" id="qty1" value="1"></td>
+                                  <td class="center" style="text-align: center" > <input style="text-align: center;width:50px;"  type="number" name="qty" id="qty1" value="1"></td>
                                 
-                                  <td style="text-align: center" >
+                                  <td >
                                  
                                       
 										
@@ -204,7 +211,7 @@ $(function() {
 			
 			  echo $pass; 
 		}?>" name="invoice">
-						  <button type="submit" class="btn btn-warning "><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+						  <button type="submit" class="btn btn-warning "><i class="fa fa-shopping-cart"></i></button>
 						    
 						   
                     </form> 
@@ -323,7 +330,7 @@ $(function() {
           </div>
               </div><!-- modal-body -->
               <div class="modal-footer">
-                <button type="button" class="btn btn-info pd-x-20">Save changes</button>
+                <a class="btn btn-info pd-x-20" href="{{ url('cart/save1/') }}">Save changes</a>
                 <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Close</button>
               </div>
             </div>
