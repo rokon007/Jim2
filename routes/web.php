@@ -1,13 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Admin\CustomerController;
-use App\Http\Controllers\Admin\ProductController;
-
-
-
-
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,121 +13,72 @@ use App\Http\Controllers\Admin\ProductController;
 |
 */
 
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/','FontendController@index');
+Route::get('/', function () {
+    return view('welcome');
+  
+});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('admin/home', 'AdminController@index');
-Route::get('/admin','Admin\LoginController@showLoginForm')->name('admin.login');
-Route::post('admin','Admin\LoginController@Login');
-Route::get('admin/logout','AdminController@Logout')->name('admin.logout');
-// =========================== Admin Route ===========================
-// category section
-Route::get('admin/categories','Admin\CategoryController@index')->name('admin.category');
-Route::post('admin/categories-store','Admin\CategoryController@StoreCat')->name('store.category');
-Route::get('admin/categories/edit/{cat_id}','Admin\CategoryController@Edit');
-Route::post('admin/categories-update','Admin\CategoryController@UpdateCat')->name('update.category');
-Route::get('admin/categories/delete/{cat_id}','Admin\CategoryController@Delete');
-Route::get('admin/categories/inactive/{cat_id}','Admin\CategoryController@Inactive');
-Route::get('admin/categories/active/{cat_id}','Admin\CategoryController@Active');
-// ====================== Brand ===============
-Route::get('admin/brand','Admin\BrandController@index')->name('admin.brand');
-Route::post('admin/brand-store','Admin\BrandController@Store')->name('store.brand');
-Route::get('admin/brand/edit/{brand_id}','Admin\BrandController@Edit');
-Route::post('admin/brand-update','Admin\BrandController@Update')->name('update.brand');
-Route::get('admin/brand/delete/{brand_id}','Admin\BrandController@Delete');
-Route::get('admin/brand/inactive/{brand_id}','Admin\BrandController@Inactive');
-Route::get('admin/brand/active/{brand_id}','Admin\BrandController@Active');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'admin_index'])->name('admin.home');
+
+//Route::get('admin/products/add', [App\Http\Controllers\ProductController::class, 'addProduct'])->name('add-products');
 // ============================= Products ============================
-Route::get('admin/products/add','Admin\ProductController@addProduct')->name('add-products');
-Route::post('admin/products/store','Admin\ProductController@storeProduct')->name('store-products');
-Route::get('admin/products/manage','Admin\ProductController@manageProduct')->name('manage-products');
-Route::get('admin/products/edit/{proudct_id}','Admin\ProductController@editProduct');
-Route::post('admin/products/update','Admin\ProductController@updateProduct')->name('update-products');
-Route::post('admin/products/image-update','Admin\ProductController@updateImage')->name('update-image');
-Route::get('admin/products/delete/{product_id}','Admin\ProductController@destroy');
-Route::get('admin/products/inactive/{product_id}','Admin\ProductController@Inactive');
-Route::get('admin/products/active/{product_id}','Admin\ProductController@Active');
+Route::get('admin/products/add', [App\Http\Controllers\ProductController::class, 'addProduct'])->name('add-products');
+Route::post('admin/products/store', [App\Http\Controllers\ProductController::class, 'storeProduct'])->name('store-products');
+//Route::post('admin/products/store','ProductController@storeProduct')->name('store-products');
+Route::get('admin/products/manage',[App\Http\Controllers\ProductController::class, 'manageProduct'])->name('manage-products');
+Route::get('admin/products/edit/{proudct_id}',[App\Http\Controllers\ProductController::class, 'editProduct']);
+Route::post('admin/products/update',[App\Http\Controllers\ProductController::class, 'updateProduct'])->name('update-products');
+Route::post('admin/products/image-update',[App\Http\Controllers\ProductController::class, 'updateImage'])->name('update-image');
+Route::get('admin/products/delete/{product_id}',[App\Http\Controllers\ProductController::class, 'destroy']);
+Route::get('admin/products/inactive/{product_id}',[App\Http\Controllers\ProductController::class, 'Inactive']);
+Route::get('admin/products/active/{product_id}',[App\Http\Controllers\ProductController::class, 'Active']);
 // ============================= Wholesale ============================
 //All Customer Start
-     Route::get('admin/customers','Admin\ProductController@create')->name('create-customers');
-	 Route::post('admin/add_customer','Admin\ProductController@store')->name('store-customers');
-	 Route::get('admin/all_customer','Admin\ProductController@index')->name('index-customers');
-	 Route::get('admin/edit_customer/{customer}','Admin\ProductController@edit')->name('edit-customers');
-	 Route::get('admin/update_customer/{customer}','Admin\ProductController@update')->name('update-customers');
+     Route::get('admin/customers',[App\Http\Controllers\ProductController::class, 'create'])->name('create-customers');
+	 Route::post('admin/add_customer',[App\Http\Controllers\ProductController::class, 'store'])->name('store-customers');
+	 Route::get('admin/all_customer',[App\Http\Controllers\ProductController::class, 'index'])->name('index-customers');
+	 Route::get('admin/edit_customer/{customer}',[App\Http\Controllers\ProductController::class, 'edit'])->name('edit-customers');
+	 Route::get('admin/update_customer/{customer}',[App\Http\Controllers\ProductController::class, 'update'])->name('update-customers');
     //All Sele
-   Route::get('admin/product_sale/{id}','Admin\ProductController@cart_view')->name('cart_view-customers');
-   Route::get('admin/selas_pro/{id}','Admin\CouponController@cart_create')->name('cart_create-customers');
-    Route::get('admin/add_sale','Admin\ProductController@cart_store')->name('cart_store-customers');
+   Route::get('admin/product_sale/{id}',[App\Http\Controllers\ProductController::class, 'cart_view'])->name('cart_view-customers');
+   Route::get('admin/selas_pro/{user_id}/{cid}',[App\Http\Controllers\ProductController::class, 'cart_create'])->name('cart_create-customers');
+    Route::get('admin/add_sale',[App\Http\Controllers\ProductController::class, 'cart_store'])->name('cart_store-customers');
    
   
-   Route::get('cart/cansel/{id}/{code}/{qty}/{invoice}','Admin\ProductController@cart_cansel')->name('cart_cansel');
+   Route::get('cart/cansel/{id}/{code}/{qty}/{invoice}',[App\Http\Controllers\ProductController::class, 'cart_cansel'])->name('cart_cansel');
    //cart/save1
-   Route::get('cart/save1','Admin\ProductController@cart_save1')->name('cart_save1');
+   Route::get('cart/save1/{invoice}',[App\Http\Controllers\ProductController::class, 'cart_save1'])->name('cart_save1');
    //
-    Route::put('cart/qty_update/{id}/{invoice}/{code}','Admin\ProductController@order_qty_update')->name('order-qtyupdate');
+    Route::put('cart/qty_update/{id}/{invoice}/{code}',[App\Http\Controllers\ProductController::class, 'order_qty_update'])->name('order-qtyupdate');
       //All Customer End
 	  Route::get('/jim','CartController@view_login')->name('view_login');
 // ======================= cart =============================	
-Route::post('cart/wholeseal','Admin\ProductController@view_cart')->name('view-cart');
+Route::post('cart/wholeseal',[App\Http\Controllers\ProductController::class, 'view_cart'])->name('view-cart');
+Route::get('getcart/wholeseal/{invoice}',[App\Http\Controllers\ProductController::class, 'view_cart12'])->name('view-cart12');
 //view-orders
- Route::get('admin/view-orders','Admin\ProductController@view_orders')->name('view-orders');
+ Route::get('admin/view-orders',[App\Http\Controllers\ProductController::class, 'view_orders'])->name('view-orders');
+ //SRview-orders
+ Route::get('admin/sr-orders/{sr}',[App\Http\Controllers\ProductController::class, 'SRview_orders'])->name('SRview-orders');
  //view-confirm order
- Route::get('admin/confirm-order','Admin\ProductController@view_confirmorder')->name('confirm-order');
+ Route::get('admin/confirm-order',[App\Http\Controllers\ProductController::class, 'view_confirmorder'])->name('confirm-order');
  //conferm/cart/
- Route::get('conferm/cart/{invoice}','Admin\ProductController@conferm_cart')->name('conferm-cart');
+ Route::get('conferm/cart/{invoice}',[App\Http\Controllers\ProductController::class, 'conferm_cart'])->name('conferm-cart');
  //conferm/cart-view
-  Route::get('conferm/cart-view/{invoice}/{cid}','Admin\ProductController@conferm_cart_view')->name('conferm-cart-view');
+  Route::get('conferm/cart-view/{invoice}/{cid}',[App\Http\Controllers\ProductController::class, 'conferm_cart_view'])->name('conferm-cart-view');
  //cart/comfermsave1/
-  Route::post('cart/comfermsave1','Admin\ProductController@comfermsave1')->name('order-comfermsave1');
+  Route::post('cart/comfermsave1',[App\Http\Controllers\ProductController::class, 'comfermsave1'])->name('order-comfermsave1');
 //All cart End  
-// ======================= coupon =============================
-Route::get('admin/coupon','Admin\CouponController@index')->name('admin.coupon');
-Route::post('admin/coupon-store','Admin\CouponController@Store')->name('store.coupon');
-Route::get('admin/coupon/edit/{coupon_id}','Admin\CouponController@couponEdit');
-Route::post('admin/coupon-update','Admin\CouponController@update')->name('update.coupon');
-Route::get('admin/coupon/delete/{coupon_id}','Admin\CouponController@couponDelete');
-Route::get('admin/coupon/inactive/{coupon_id}','Admin\CouponController@Inactive');
-Route::get('admin/coupon/active/{coupon_id}','Admin\CouponController@Active');
-//
-Route::get('admin/orders','Admin\CouponController@orderIndex')->name('admin.orders');
-Route::get('admin/orders/view/{id}','Admin\CouponController@viewOrder');
-// =========================== fontend routes ===================
-// ================= cart ============
-Route::post('add/to-cart/{prouct_id}','CartController@addToCart');
-Route::get('cart','CartController@cartPage');
-Route::get('cart/destroy/{cart_id}','CartController@destroy');
-Route::post('cart/quantity/update/{cart_id}','CartController@quantityUpdate');
-Route::post('coupon/apply','CartController@applyCoupon');
-Route::get('coupon/destroy','CartController@couponDestroy');
-// ================= wishlist ============
-Route::get('add/to-wishlist/{prouct_id}','WishlistController@addToWishlist');
-Route::get('wishlist','WishlistController@wishPage');
-Route::get('wishlist/destroy/{wishlist_id}','WishlistController@destroy');
-
-//shop page rotues
-Route::get('shop','FontendController@shopPage')->name('shop.page');
-//categorywise product show
-Route::get('category/product-show/{id}','FontendController@catWiseProduct');
-
-// ============= product details ============
-Route::get('proudct/details/{product_id}','FontendController@productDetail');
-
-// checkout page
-Route::get('checkout','CheckoutController@index');
-Route::post('place/order','OrderController@storeOrder')->name('place-order');
-Route::get('order/success','OrderController@orderSuccess');
-
-//usr routes
-Route::get('user/order','UserController@order')->name('user.order');
-Route::get('user/order-view/{id}','UserController@orderView');
-
-
-
-
-
+//ordered-products
+Route::get('ordered/products',[App\Http\Controllers\ProductController::class, 'ordered_products'])->name('ordered-products');
+//==================================================================
+//add-user
+Route::get('add/user',[App\Http\Controllers\ProductController::class, 'add_user'])->name('add-user');
+//register_user
+Route::post('register/user',[App\Http\Controllers\ProductController::class, 'register_user'])->name('register_user');
+//SR.home
+Route::get('sr/home',[App\Http\Controllers\ProductController::class, 'sr_home'])->name('SR.home');
+//DM.home
+Route::get('dm/home',[App\Http\Controllers\ProductController::class, 'dm_home'])->name('DM.home');

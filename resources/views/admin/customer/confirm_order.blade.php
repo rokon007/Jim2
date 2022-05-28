@@ -1,6 +1,6 @@
 @extends('admin.admin-master')
-@section('products') active show-sub @endsection
-@section('manage-products') active @endsection
+@section('Wholesale') active show-sub @endsection
+@section('Confirmed_order') active @endsection
 @section('admin_content')
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">

@@ -60,7 +60,13 @@
       </div><!-- input-group -->
 
       <div class="sl-sideleft-menu">
-        <a href="{{ url('admin/home') }}" class="sl-menu-link @yield('dashboard')">
+	  @if(Auth::user()->roll==1)
+        <a href="{{route('admin.home')}}" class="sl-menu-link @yield('dashboard')">
+	  @elseif(Auth::user()->roll==2)
+	   <a href="{{route('SR.home')}}" class="sl-menu-link @yield('dashboard')">
+	    @elseif(Auth::user()->roll==3)
+	   <a href="{{route('DM.home')}}" class="sl-menu-link @yield('dashboard')">
+	   @endif
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Dashboard</span>
@@ -74,34 +80,33 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item1"><a href="{{ route('create-customers') }}" class="nav-link @yield('add-customer') ">Add customer</a></li>
-          <li class="nav-item1"><a href="{{ route('index-customers') }}" class="nav-link @yield('Manage-customer')">Manage customer</a></li>
-		   <li class="nav-item1"><a href="{{ route('view-orders') }}" class="nav-link @yield('View-Orders')">View Orders </a></li>
-		    <li class="nav-item1"><a href="{{ route('confirm-order') }}" class="nav-link @yield('Confirmed-order')">Confirmed order </a></li>
+          <li class="nav-item1"><a href="{{ route('create-customers') }}" class="nav-link @yield('add_customer') ">Add customer</a></li>
+          <li class="nav-item1"><a href="{{ route('index-customers') }}" class="nav-link @yield('Manage_customer')">Manage customer</a></li>
+		   
+		   @if(Auth::user()->roll==2)
+			 <li class="nav-item1"><a href="{{ url('admin/sr-orders/'.Auth::user()->name) }}" class="nav-link @yield('View_Orders')">View Orders </a></li>
+		   @else
+		   <li class="nav-item1"><a href="{{ route('view-orders') }}" class="nav-link @yield('View_Orders')">View Orders </a></li>
+		@endif
+		   @if(Auth::user()->roll==2)
+			  <li class="nav-item1"><a href="#" data-toggle="modal" data-target="#modaldemo2" class="nav-link @yield('Confirmed_order')">Confirmed order </a></li> 
+		   @else
+		    <li class="nav-item1"><a href="{{ route('confirm-order') }}" class="nav-link @yield('Confirmed_order')">Confirmed order </a></li>
+		@endif
         </ul>
 
-        <a href="{{ url('/') }}" target="_blank" class="sl-menu-link ">
+       <!-- <a href="{{ url('/') }}" target="_blank" class="sl-menu-link ">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Visit Site</span>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
+          </div>
+        </a>--> <!-- sl-menu-link -->
 
-        <a href="{{ route('admin.category') }}"  class="sl-menu-link @yield('category')">
-          <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-            <span class="menu-item-label">Category</span>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
+       
 
-        <a href="{{ route('admin.brand') }}"  class="sl-menu-link @yield('brand')">
-          <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-            <span class="menu-item-label">Brand</span>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
+       
 
-      
+       @if(Auth::user()->roll==1)
         <a href="#" class="sl-menu-link @yield('products')">
           <div class="sl-menu-item">
             <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
@@ -113,22 +118,31 @@
           <li class="nav-item"><a href="{{ route('add-products') }}" class="nav-link @yield('add-products')">Add Products</a></li>
           <li class="nav-item"><a href="{{ route('manage-products') }}" class="nav-link @yield('manage-products')">Manage Product</a></li>
         </ul>
-
-        <a href="{{ route('admin.coupon') }}"  class="sl-menu-link @yield('coupon')">
+		 @endif
+         @if(Auth::user()->roll==1)
+        <a href="{{ route('ordered-products') }}"  class="sl-menu-link @yield('ordered_products')">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-            <span class="menu-item-label">coupon</span>
+            <span class="menu-item-label">Ordered products</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-
-        <a href="{{ route('admin.orders') }}"  class="sl-menu-link @yield('orders')">
+		  @endif
+           @if(Auth::user()->roll==1)
+        <a href="#"  class="sl-menu-link @yield('orders')">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-            <span class="menu-item-label">Orders</span>
+            <span class="menu-item-label">Product return</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-
-
+		 @endif
+          @if(Auth::user()->roll==1)
+		   <a href="{{ route('add-user') }}"  class="sl-menu-link @yield('user')">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Add User</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+         @endif
 
       
         </ul>
@@ -138,7 +152,7 @@
     </div><!-- sl-sideleft -->
     <!-- ########## END: LEFT PANEL ########## -->
 
-    <!-- ########## START: HEAD PANEL ########## -->
+    <!-- ########## START: HEAD PANEL ##########    -->
     <div class="sl-header">
       <div class="sl-header-left">
         <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="icon ion-navicon-round"></i></a></div>
@@ -148,8 +162,9 @@
         <nav class="nav">
           <div class="dropdown">
             <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name"><span class="hidden-md-down"></span></span>
-              <img src="{{ asset('backend') }}/img/img3.jpg" class="wd-32 rounded-circle" alt="">
+              <span class="logged-name">{{ Auth::user()->name }}<span class="hidden-md-down"></span></span>
+			   <img src="{{ asset('upload') }}/admin/{{ Auth::user()->image }}" class="wd-32 rounded-circle" alt="">
+             
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-200">
               <ul class="list-unstyled user-profile-nav">
@@ -158,7 +173,16 @@
                 <li><a href=""><i class="icon ion-ios-download-outline"></i> Downloads</a></li>
                 <li><a href=""><i class="icon ion-ios-star-outline"></i> Favorites</a></li>
                 <li><a href=""><i class="icon ion-ios-folder-outline"></i> Collections</a></li>
-                <li><a href="{{ route('admin.logout') }}"><i class="icon ion-power"></i> Sign Out</a></li>
+                <li>
+				  <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                       <i class="icon ion-power"></i> Sign Out</a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+				</li>
               </ul>
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
@@ -329,8 +353,27 @@
         </div><!-- #notifications -->
 
       </div><!-- tab-content -->
+	  
     </div><!-- sl-sideright -->
     <!-- ########## END: RIGHT PANEL ########## --->
+	<!-- SMALL MODAL -->
+    <div id="modaldemo2" class="modal fade">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-x-20">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Notice</h6>
+            
+          </div>
+          <div class="modal-body pd-20">
+            <h5>আপনি এই কাজের জন্য যোগ্য নন !! </h5>
+          </div>
+          <div class="modal-footer justify-content-center">
+            
+            <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Ok</button>
+          </div>
+        </div>
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
     @endguest
     @yield('admin_content')
 
@@ -406,6 +449,5 @@
 
     <script src="/backend/js/starlight.js"></script>
    
-
   </body>
 </html>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -60,14 +60,54 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
+	 
+	 /**
     protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+			'roll'=> $data['roll'],
+		    'mobile'=> $data['mobile'],
+		    'image'=> $data['image'],
         ]);
+    }
+	 */
+	 
+	protected $request;
+
+    public function __contruct(Request $request)
+    {
+      $this->request = $request;
+    }
+	protected function create(Request $request, array $data )
+    {
+
+         $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+			'roll'=> $data['roll'],
+		    'mobile'=> $data['mobile'],
+		    'image'=> $data['image'],
+        ]);
+
+      $file = $this->request->file('image');
+      $thumbnail_path = public_path('uploads/propic/thumbnail/');
+      $original_path = public_path('uploads/propic/original/');
+      $file_name = 'user_'. $user->id .'_'. str_rand(32) . '.' . $file->getClientOriginalExtension();
+        Image::make($file)
+              ->resize(261,null,function ($constraint) {
+                $constraint->aspectRatio();
+                 })
+              ->save($original_path . $file_name)
+              ->resize(90, 90)
+              ->save($thumbnail_path . $file_name);
+
+      $user->update(['image' => $file_name]);
+      return $user;
     }
 }

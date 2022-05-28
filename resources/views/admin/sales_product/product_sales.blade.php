@@ -148,16 +148,25 @@ $(function() {
 				
             <div class="sl-pagebody">
               <div class="card pd-20 pd-sm-40">
-			 <a href="" class="btn btn-info pd-x-20" data-toggle="modal" data-target="#myModal" style="width:20%;"><i class="fa fa-shopping-cart"></i>
-			Invoice #<?php $pass = Session::get('invoice_key');
-        if($pass)
+			  <?php $cart_order = Session::get('cart_order');
+        if($cart_order)
         {
-			
-			  echo $pass; 
-		}?>
+			?>
+			 <a href="" class="btn btn-info pd-x-20" data-toggle="modal" data-target="#myModal" style="width:20%;"><i class="fa fa-shopping-cart"></i>
+			Invoice # {{$invoice}}
 			  
 			  </a>
-                <br>
+            <?php
+		}else{		
+			?> 
+			<a href="{{url('getcart/wholeseal/'.$invoice) }}"class="btn btn-info pd-x-20" style="width:20%;"><i class="fa fa-shopping-cart"></i>
+			Invoice # {{$invoice}}
+			  
+			  </a>
+             
+			<?php
+		}
+            ?>
            
                 <div class="table-wrapper">
                   <table id="datatable1" class="table display responsive nowrap">
@@ -183,7 +192,7 @@ $(function() {
 						           <input type="hidden" value="{{$customer->shop_name}}" name="shop_name">
 								   <input type="hidden" value="{{$customer->customer_name}}" name="customer_name">
 								   <input type="hidden" value="{{$customer->customer_phone}}" name="customer_phone">
-								   <input type="hidden" value="Admin" name="created_by">
+								   <input type="hidden" value="{{ Auth::user()->name }}" name="created_by">
 								   <br>
 						          
 						
@@ -204,13 +213,8 @@ $(function() {
                         <input type="hidden" value="{{ $item->price }}" name="price">
                         <input type="hidden" value="{{ $item->product_code }}"  name="product_code">
                         <input type="hidden" value="1" name="quantity">
-						 <input type="hidden" value="admin/selas_pro/{{ $customer->id }}" name="ad">
-                           <input type="hidden" value="<?php $pass = Session::get('invoice_key');
-        if($pass)
-        {
-			
-			  echo $pass; 
-		}?>" name="invoice">
+						<input type="hidden" value="admin/selas_pro/{{ $customer->id }}" name="ad">
+                        <input type="hidden" value="{{$invoice}}" name="invoice">
 						  <button type="submit" class="btn btn-warning "><i class="fa fa-shopping-cart"></i></button>
 						    
 						   
@@ -238,12 +242,7 @@ $(function() {
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content tx-size-sm">
               <div class="modal-header pd-x-20">
-                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Invoice #<?php $pass = Session::get('invoice_key');
-        if($pass)
-        {
-			
-			  echo $pass; 
-		}?></h6>
+                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Invoice #{{$invoice}}</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -330,7 +329,7 @@ $(function() {
           </div>
               </div><!-- modal-body -->
               <div class="modal-footer">
-                <a class="btn btn-info pd-x-20" href="{{ url('cart/save1/') }}">Save changes</a>
+                <a class="btn btn-info pd-x-20" href="{{ url('cart/save1/'.$invoice) }}">Save changes</a>
                 <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Close</button>
               </div>
             </div>

@@ -1,5 +1,6 @@
 @extends('admin.admin-master')
-@section('Jim Customer Create') active @endsection
+@section('Wholesale') active show-sub @endsection
+@section('add_customer') active @endsection
 @section('admin_content')
 
 

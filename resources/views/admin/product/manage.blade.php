@@ -43,10 +43,10 @@
                   <table id="datatable1" class="table display responsive nowrap">
                     <thead>
                       <tr>
-                        <th class="wd-15p">Image</th>
+                       
                         <th class="wd-15p">Product Name</th>
                         <th class="wd-15p">Product Quantity</th>
-                        <th class="wd-15p">Category</th>
+                        
                         <th class="wd-20p">Status</th>  
                         <th class="wd-25p">Action</th>
                       </tr>
@@ -55,12 +55,10 @@
 
                     @foreach ($products as $row)
                       <tr>
-                        <td>
-                            <img src="{{ asset($row->image_one) }}" width="50px;" height="50px;" alt="">
-                        </td>
+                       
                         <td>{{ $row->product_name }}</td>
                         <td>{{ $row->product_quantity }}</td>
-                        <td>{{ $row->category->category_name }}</td>
+                       
                         <td>
                             @if($row->status == 1)
                             <span class="badge badge-success">Active</span>

@@ -1,6 +1,6 @@
 @extends('admin.admin-master')
-@section('products') active show-sub @endsection
-@section('manage-products') active @endsection
+@section('Wholesale') active show-sub @endsection
+@section('View_Orders') active @endsection
 @section('admin_content')
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
@@ -79,6 +79,7 @@ $(function() {
                         <th class="wd-15p">Shope name</th>
                         <th class="wd-15p">Mobile</th>
                         <th class="wd-15p">Amount</th>
+						<th class="wd-15p">Created by</th>
                         
                       </tr>
                     </thead>
@@ -99,6 +100,7 @@ $(function() {
 					  {{ $order->customer_phone}} 
 					  </td>
 					  <td> {{ $order->total_amount }} </td>
+					   <td> {{ $order->created_by }} </td>
              
                       </tr>
                       @endforeach
@@ -220,7 +222,7 @@ $(function() {
 				</strong></td>
 				<td colspan="1"><strong style="font-size: 12px;">
 			
-		<input style="text-align: center;width:100px;"  type="text" name="due" id="due" value="" readonly>
+		<input style="text-align: center;width:100px;"  type="text" name="due" id="due" value="0" readonly>
 				</td>
 			</tr>
               </tbody>
@@ -234,13 +236,49 @@ $(function() {
 			  <input type="hidden" value="<?php $sales_order = Session::get('sales_order');if($sales_order){echo $sales_order->shop_name;}?>" name="shop_name">
 			  <input type="hidden" value="<?php $sales_order = Session::get('sales_order');if($sales_order){echo $sales_order->cid;}?>" name="cid">
 			   <input type="hidden" value="<?php $sales_order = Session::get('sales_order');if($sales_order){echo $sales_order->customer_phone;}?>" name="customer_phone">
-			    
-                <button type="submit" class="btn btn-info pd-x-20" href="{{ url('cart/comfermsave1/') }}">Conferm</button>
+			   <?php
+			   if(Auth::user()->roll==2){
+			   ?>			  
+               
+				<?php
+			   }elseif(Auth::user()->roll==1){
+				?>			   
+               <button type="submit" class="btn btn-info pd-x-20" href="{{ url('cart/comfermsave1/') }}">Conferm</button>
+			   <?php
+			   }elseif(Auth::user()->roll==3){
+				?>
+               <button type="submit" class="btn btn-info pd-x-20" href="{{ url('cart/comfermsave1/') }}">Conferm</button>
+		       <?php
+			   }
+			   ?>
 				</form>
+				<?php  if(Auth::user()->roll==2){ ?>
+				 <button  class="btn btn-info pd-x-20 " data-toggle="modal" data-target="#modaldemo2" href="#">Conferm</button>
+				<?php } ?>
                 <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div><!-- modal-dialog -->
         </div><!-- modal -->
-<!--===============================end modal========================-->		
+<!--===============================end modal========================-->	
+
+
+<!-- SMALL MODAL -->
+    <div id="modaldemo2" class="modal fade">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content bd-0 tx-14">
+          <div class="modal-header pd-x-20">
+            <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Notice</h6>
+            
+          </div>
+          <div class="modal-body pd-20">
+            <h5>আপনি এই কাজের জন্য যোগ্য নন !! </h5>
+          </div>
+          <div class="modal-footer justify-content-center">
+            
+            <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Ok</button>
+          </div>
+        </div>
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->	
 @endsection
