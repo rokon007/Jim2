@@ -41,7 +41,7 @@ Route::get('admin/products/active/{product_id}',[App\Http\Controllers\ProductCon
 	 Route::post('admin/add_customer',[App\Http\Controllers\ProductController::class, 'store'])->name('store-customers');
 	 Route::get('admin/all_customer',[App\Http\Controllers\ProductController::class, 'index'])->name('index-customers');
 	 Route::get('admin/edit_customer/{customer}',[App\Http\Controllers\ProductController::class, 'edit'])->name('edit-customers');
-	 Route::get('admin/update_customer/{customer}',[App\Http\Controllers\ProductController::class, 'update'])->name('update-customers');
+	 Route::put('admin/update_customer/{customer}',[App\Http\Controllers\ProductController::class, 'update'])->name('update-customers');
     //All Sele
    Route::get('admin/product_sale/{id}',[App\Http\Controllers\ProductController::class, 'cart_view'])->name('cart_view-customers');
    Route::get('admin/selas_pro/{user_id}/{cid}',[App\Http\Controllers\ProductController::class, 'cart_create'])->name('cart_create-customers');

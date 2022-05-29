@@ -193,6 +193,7 @@ $(function() {
 								   <input type="hidden" value="{{$customer->customer_name}}" name="customer_name">
 								   <input type="hidden" value="{{$customer->customer_phone}}" name="customer_phone">
 								   <input type="hidden" value="{{ Auth::user()->name }}" name="created_by">
+								   <input type="hidden" value="{{$customer->id}}" name="cid">
 								   <br>
 						          
 						

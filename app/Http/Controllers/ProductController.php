@@ -15,6 +15,7 @@ use DB;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -249,7 +250,8 @@ class ProductController extends Controller
        
         if($request->hasfile('image')){
             $file = $request->file('image');
-            $filename = time().'.'. $file->getClientOriginalExtension();
+           // $filename = time().'.'. $file->getClientOriginalExtension();
+            $filename = $request->customer_phone.'.'. $file->getClientOriginalExtension();
             $file->move('upload/customer/', $filename);
             $customer->image = $filename;
         }
@@ -302,7 +304,8 @@ class ProductController extends Controller
             }
 
             $file = $request->file('image');
-            $filename = time().'.'. $file->getClientOriginalExtension();
+           // $filename = time().'.'. $file->getClientOriginalExtension();
+             $filename = $request->customer_phone.'.'. $file->getClientOriginalExtension();
             $file->move('upload/customer/', $filename);
             $customer->image = $filename;
         }
@@ -310,7 +313,7 @@ class ProductController extends Controller
         
         $customer->total_paid =$request->total_paid;
         $customer->total_deu =$request->total_deu;
-        $customer->created_by = Admin;
+        $customer->created_by =Auth::user()->name;
         $customer->update();
 
         return redirect('admin/all_customer')->with('message','গ্রাহকের নামটি পুর্নরায় সংরক্ষীত হল।');
@@ -379,7 +382,7 @@ class ProductController extends Controller
 		
         $order = new sales_order();
         $order->invoice = $request->invoice;
-        $order->cid =$request->id;
+        $order->cid =$request->cid;
 		$order->shop_name =$request->shop_name;
 		$order->customer_name =$request->customer_name;
 		$order->customer_phone =$request->customer_phone;
@@ -619,7 +622,8 @@ class ProductController extends Controller
        
         if($request->hasfile('image')){
             $file = $request->file('image');
-            $filename = time().'.'. $file->getClientOriginalExtension();
+           // $filename = time().'.'. $file->getClientOriginalExtension();
+             $filename = $request->email.'.'. $file->getClientOriginalExtension();
             $file->move('upload/admin/', $filename);
             $user->image = $filename;
         }       
