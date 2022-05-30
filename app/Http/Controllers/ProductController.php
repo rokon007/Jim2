@@ -16,6 +16,9 @@ use Session;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Illuminate\Support\Facades\File;
+use Carbo\Corbon;
+use App\Events\Formsubmited;
+use App\Models\Comment;
 
 class ProductController extends Controller
 {
@@ -424,7 +427,22 @@ class ProductController extends Controller
 	{
 		//Session::forget('invoice_key');
 		$invoice_key = InvoiceNumber::where('invoice_number',$invoice); 
-		 $invoice_key->delete();
+		//$shop_name=$invoice_key->shop_name;
+		 
+		  //insert in to comments table
+		  $w=Auth::user()->name;
+		$comments = new Comment();
+		$comments->comment_subject ="Order  create by  $w";
+        $comments->comment_text = "invoice_number  $invoice";                
+        $comments->comment_status = 1;
+        $comments->user_id = Auth::user()->name;              
+        //$comments->link =$request->Total;               
+        $comments->save();
+		
+        
+           event(new Formsubmited("Order create by  $w.Invoice $invoice"));
+		   
+		  $invoice_key->delete();  
 		return redirect()->route('index-customers')->with('message','Cart seved successfully');
 	}
 	
@@ -521,6 +539,7 @@ class ProductController extends Controller
 		 $total_amount=$CustomerInfo->total_amount;
 		 $total_paid=$CustomerInfo->total_paid;
 		 $total_deu=$CustomerInfo->total_deu;
+		 $shope_name=$CustomerInfo->shop_name;
 		 
 		 $new_total_amount= $total_amount+$request->Total;
 		 $new_total_paid= $total_paid+$request->payment;
@@ -532,10 +551,23 @@ class ProductController extends Controller
 		 $Update_CustomerInfo->total_deu =$new_total_deu;
          $Update_CustomerInfo->update();
 		 
-		 //update sales_orders  table
-		// $sales_orders = sales_orders::where('invoice',$request->invoice)->get();
+		 //update sales_orders  table		
 		 sales_order::where('invoice',$request->invoice)->update((['status'=>1]));
 		 
+		 //insert in to comments table
+		  $w=Auth::user()->name;
+		$comments = new Comment();
+		$comments->comment_subject ="Order comfermed by  $w from $shope_name";
+        $comments->comment_text = "Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk";                
+        $comments->comment_status = 1;
+        $comments->user_id = Auth::user()->name;              
+        //$comments->link =$request->Total;               
+        $comments->save();
+           
+          
+           event(new Formsubmited("Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk"));
+
+
 		 return redirect()->back()->with('message','Order seved successfully');
 		
 		
@@ -655,6 +687,11 @@ class ProductController extends Controller
 		//$user=User::All();
 		// return view('admin.user.add_user',compact('user'));
 		return view('admin.dm.dm_home');
+	}
+	public function timeshow()
+	{
+		$current_date_time=Carbon::now();
+        echo $current_date_time;
 	}
 	
 }

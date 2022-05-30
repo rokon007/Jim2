@@ -18,6 +18,11 @@ Route::get('/', function () {
   
 });
 
+Route::get('/counter', function () {
+    return view('counter');
+  
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -82,3 +87,5 @@ Route::post('register/user',[App\Http\Controllers\ProductController::class, 'reg
 Route::get('sr/home',[App\Http\Controllers\ProductController::class, 'sr_home'])->name('SR.home');
 //DM.home
 Route::get('dm/home',[App\Http\Controllers\ProductController::class, 'dm_home'])->name('DM.home');
+//time timeshow
+Route::get('/time',[App\Http\Controllers\ProductController::class, 'timeshow'])->name('timeshow');
