@@ -44,7 +44,7 @@ function myFunction() {
 		Push.create("Jim Eladtric", {
     body: "<?php  echo $message; ?>",
     icon: '/backend/img/jim_logo.png',
-    timeout: 4000,
+    timeout: 11000,
     onClick: function () {
         window.focus();
         this.close();

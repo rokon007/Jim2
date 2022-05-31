@@ -693,5 +693,11 @@ class ProductController extends Controller
 		$current_date_time=Carbon::now();
         echo $current_date_time;
 	}
+	//delete_comment
+	public function delete_comment()
+	{
+		Comment::All()->update((['comment_status'=>0]));
+		 return redirect()->route('admin.home');
+	}
 	
 }

@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="{{ asset('backend') }}/css/starlight.css">
 
    <script src="/backend/push/push.min.js"></script> 
-	 <script src="push.js"></script>
+<!--	 <script src="push.js"></script> -->
 
 <!--============ Pusher ===========-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -241,12 +241,16 @@
 		
 		
 	<!--=================================================================-->
-
+ <script>function rokon(){ $.ajax({ url:"update-coment", });} </script>
        <nav class="nav">
           <div class="dropdown">
-            <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
+            <a href="" onclick="rokon()" class="nav-link nav-link-profile" data-toggle="dropdown">
+			 @isset($unread)
+                  
               <span class="logged-name">Notifications<span class="hidden-md-down"></span></span>
 			   <i class="icon ion-ios-bell-outline"></i>
+			    (<span class="notif-count">{{$unread}}</span>)
+             @endisset
              
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-200">
@@ -261,7 +265,9 @@
                   <div class="dropdown-toolbar-actions">
                     <a href="#">Mark all as read</a>
                   </div>
-                  <h3 class="dropdown-toolbar-title">Notifications (<span class="notif-count">0</span>)</h3>
+				   @isset($unread)
+                  <h3 class="dropdown-toolbar-title">Notifications (<span class="notif-count">{{$unread}}</span>)</h3>
+				    @endisset
                 </div>
                 <ul class="dropdown-menu">
                 </ul>
@@ -270,7 +276,29 @@
                 </div>
               </div>
             </li>
-            <li><a href="#">Timeline</a></li>
+			 @isset($notifications)
+                   @foreach($notifications as $key)
+				   <?php
+				      date_default_timezone_set('Asia/Dhaka');
+                      $currenttime=date('Y-m-d H:i:s');                          
+                      $now = new DateTime("$key->dt");
+                      $ref = new DateTime("$currenttime");
+                      $diff = $now->diff($ref);                                                                      
+				   ?>
+            <li>
+			<a href="" onclick="rokon()" class="media-list-link">
+              <div class="media">
+                <img src="{{asset('upload')}}/admin/{{ $key->image }}" class="wd-30 rounded-circle" alt="">
+                <div class="media-body">
+                  <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Rokon{{$key->subject1}}</p>
+                  <span class="d-block tx-11 tx-gray-500"><?php  printf('%d days, %d hours, %d minutes', $diff->d, $diff->h, $diff->i);?> ago</span>
+                  <p class="tx-13 mg-t-10 mg-b-0">{{$key->text}}.</p>
+                </div>
+              </div><!-- media -->
+            </a>
+			</li>
+			@endforeach 
+             @endisset
             <li><a href="#">Friends</a></li>
           </ul>
             </div><!-- dropdown-menu -->
@@ -356,28 +384,15 @@
 		
 		
 		
-		
+		<!--
         <div class="navicon-right">
 		
 		  <ul class="navbar-nav mr-auto">
-		     @isset($notifications)
-                   @foreach($notifications as $key)
-                <li class="nav-item dropdown mr-2" id="{{ $key->id }}">
-                    <a href="#" class="nav-link" data-toggle="dropdown">
-                       <i class="icon ion-ios-bell-outline">
-                            @if($key->unread)
-                           <!-- <span class="badge badge-danger pending">{{ $key->unread }}</span> -->
-						 <span class=" bg-danger">10{ $key->unread }}</span>
-                            @endif
-                        </i>
-                    </a>
-                </li>   
-                @endforeach 
-             @endisset
+		     
                
 				
             </ul>
-		
+		-->
 		<!--
           <a id="btnRightMenu" href="" class="pos-relative">
             <i class="icon ion-ios-bell-outline"></i>
@@ -388,7 +403,7 @@
 		  -->
 		  
 		  
-        </div><!-- navicon-right -->
+      <!--    </div><!-- navicon-right -->
       </div><!-- sl-header-right -->
     </div><!-- sl-header -->
     <!-- ########## END: HEAD PANEL ########## -->
