@@ -694,9 +694,9 @@ class ProductController extends Controller
         echo $current_date_time;
 	}
 	//delete_comment
-	public function delete_comment()
+	public function delete_comment($id)
 	{
-		Comment::All()->update((['comment_status'=>0]));
+		Comment::find($id)->delete();
 		 return redirect()->route('admin.home');
 	}
 	

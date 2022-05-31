@@ -241,7 +241,7 @@
 		
 		
 	<!--=================================================================-->
- <script>function rokon(){ $.ajax({ url:"update-coment", });} </script>
+
        <nav class="nav">
           <div class="dropdown">
             <a href="" onclick="rokon()" class="nav-link nav-link-profile" data-toggle="dropdown">
@@ -297,9 +297,11 @@
               </div><!-- media -->
             </a>
 			</li>
+			
+			<li><a href="{{ url('update-coment/'.$key->id) }}">Delete</a></li>
 			@endforeach 
              @endisset
-            <li><a href="#">Friends</a></li>
+            
           </ul>
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
