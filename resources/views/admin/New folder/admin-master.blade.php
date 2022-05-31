@@ -238,19 +238,145 @@
           </div><!-- dropdown -->
         </nav>
 		
-		<div class="navicon-right">
-          <a id="btnRightMenu" href="" class="pos-relative">
-		  @isset($unread)
-            <i class="icon ion-ios-bell-outline"></i>
-            <!-- start: if statement -->
-			(<span class="notif-count">{{$unread}}</span>)
-            <span class="square-8 bg-danger"></span>
-            <!-- end: if statement -->
-			 @endisset
-          </a>
-        </div><!-- navicon-right -->
 		
-	
+		
+	<!--=================================================================-->
+
+       <nav class="nav">
+          <div class="dropdown">
+            <a href="" onclick="rokon()" class="nav-link nav-link-profile" data-toggle="dropdown">
+			 @isset($unread)
+                  
+              <span class="logged-name">Notifications<span class="hidden-md-down"></span></span>
+			   <i class="icon ion-ios-bell-outline"></i>
+			    (<span class="notif-count">{{$unread}}</span>)
+             @endisset
+             
+            </a>
+            <div class="dropdown-menu dropdown-menu-header wd-200">
+              <ul class="nav navbar-nav">
+            <li class="dropdown dropdown-notifications">
+              <a href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown">
+                <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
+              </a>
+
+              <div class="dropdown-container">
+                <div class="dropdown-toolbar">
+                  <div class="dropdown-toolbar-actions">
+                    <a href="#">Mark all as read</a>
+                  </div>
+				   @isset($unread)
+                  <h3 class="dropdown-toolbar-title">Notifications (<span class="notif-count">{{$unread}}</span>)</h3>
+				    @endisset
+                </div>
+                <ul class="dropdown-menu">
+                </ul>
+                <div class="dropdown-footer text-center">
+                  <a href="#">View All</a>
+                </div>
+              </div>
+            </li>
+			 @isset($notifications)
+                   @foreach($notifications as $key)
+				   <?php
+				      date_default_timezone_set('Asia/Dhaka');
+                      $currenttime=date('Y-m-d H:i:s');                          
+                      $now = new DateTime("$key->dt");
+                      $ref = new DateTime("$currenttime");
+                      $diff = $now->diff($ref);                                                                      
+				   ?>
+            <li>
+			<a href="" onclick="rokon()" class="media-list-link">
+              <div class="media">
+                <img src="{{asset('upload')}}/admin/{{ $key->image }}" class="wd-30 rounded-circle" alt="">
+                <div class="media-body">
+                  <p class="mg-b-0 tx-medium tx-gray-500 tx-13">Rokon{{$key->subject1}}</p>
+                  <span class="d-block tx-11 tx-gray-500"><?php  printf('%d days, %d hours, %d minutes', $diff->d, $diff->h, $diff->i);?> ago</span>
+                  <p class="tx-13 mg-t-10 mg-b-0">{{$key->text}}.</p>
+                </div>
+              </div><!-- media -->
+            </a>
+			</li>
+			
+			<li><a href="{{ url('update-coment/'.$key->id) }}">Delete</a></li>
+			@endforeach 
+             @endisset
+            
+          </ul>
+            </div><!-- dropdown-menu -->
+          </div><!-- dropdown -->
+        </nav>
+		
+		
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  
+		
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//js.pusher.com/3.1/pusher.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      var notificationsWrapper   = $('.dropdown-notifications');
+      var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
+      var notificationsCountElem = notificationsToggle.find('i[data-count]');
+      var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+      var notifications          = notificationsWrapper.find('ul.dropdown-menu');
+
+      if (notificationsCount <= 0) {
+        notificationsWrapper.hide();
+      }
+
+      // Enable pusher logging - don't include this in production
+      // Pusher.logToConsole = true;
+
+     // var pusher = new Pusher('API_KEY_HERE', {
+     //   encrypted: true
+     // });
+       var pusher = new Pusher('0e0182ecfb00e2311b64', {
+      cluster: 'ap2'
+    });
+      // Subscribe to the channel we specified in our Laravel Event
+     // var channel = pusher.subscribe('status-liked');
+	 
+	 var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+
+      // Bind a function to a Event (the full Laravel class)
+      channel.bind('App\\Events\\Formsubmited', function(data) {
+        var existingNotifications = notifications.html();
+        var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
+        var newNotificationHtml = `
+          <li class="notification active">
+              <div class="media">
+                <div class="media-left">
+                  <div class="media-object">
+                    <img src="https://api.adorable.io/avatars/71/`+avatar+`.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+                  </div>
+                </div>
+                <div class="media-body">
+                  <strong class="notification-title">`+data.message+`</strong>
+                  <!--p class="notification-desc">Extra description can go here</p-->
+                  <div class="notification-meta">
+                    <small class="timestamp">about a minute ago</small>
+                  </div>
+                </div>
+              </div>
+          </li>
+        `;
+        notifications.html(newNotificationHtml + existingNotifications);
+
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+      });
+    </script>
+
+
+    <!--================================================================-->	
 		
 		
 		
@@ -288,14 +414,10 @@
     <div class="sl-sideright">
       <ul class="nav nav-tabs nav-fill sidebar-tabs" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" role="tab" href="#messages">Notifications
-		  @isset($unread)
-		  ({{$unread}})
-		  @endisset
-		  </a>
+          <a class="nav-link active" data-toggle="tab" role="tab" href="#messages">Messages (2)</a>
         </li>
         <li class="nav-item">
-         <!-- <a class="nav-link" data-toggle="tab" role="tab" href="#">Notifications (8)</a> -->
+          <a class="nav-link" data-toggle="tab" role="tab" href="#notifications">Notifications (8)</a>
         </li>
       </ul><!-- sidebar-tabs -->
 
@@ -304,31 +426,21 @@
         <div class="tab-pane pos-absolute a-0 mg-t-60 active" id="messages" role="tabpanel">
           <div class="media-list">
 		  
-		  @isset($notifications)
-                   @foreach($notifications as $key)
-				   <?php
-				      date_default_timezone_set('Asia/Dhaka');
-                      $currenttime=date('Y-m-d H:i:s');                          
-                      $now = new DateTime("$key->dt");
-                      $ref = new DateTime("$currenttime");
-                      $diff = $now->diff($ref);                                                                      
-				   ?>
+		  
 		  
             <!-- loop starts here -->
             <a href="" class="media-list-link">
               <div class="media">
-                <img src="{{asset('upload')}}/admin/{{ $key->image }}" class="wd-40 rounded-circle" alt="">
+                <img src="../img/img3.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
-                  <p class="mg-b-0 tx-medium tx-gray-500 tx-13">Rokon{{$key->subject1}}</p>
-                  <span class="d-block tx-11 tx-gray-500"><?php  printf('%d days, %d hours, %d minutes', $diff->d, $diff->h, $diff->i);?> ago</span>
-                  <p class="tx-13 mg-t-10 mg-b-0">{{$key->text}}.</p>
+                  <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
+                  <span class="d-block tx-11 tx-gray-500">2 minutes ago</span>
+                  <p class="tx-13 mg-t-10 mg-b-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
                 </div>
               </div><!-- media -->
             </a>
             <!-- loop ends here -->
-           <li><a href="{{ url('update-coment/'.$key->id) }}">Delete</a></li>
-			@endforeach 
-             @endisset
+           
            
             
             
