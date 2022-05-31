@@ -30,7 +30,8 @@ class HomeController extends Controller
     }
 	 public function admin_index()
     {
-        $notifications = DB::select("SELECT users.id, users.name, users.image, COUNT(comment_status) AS unread FROM users LEFT JOIN comments ON users.id = comments.user_id AND comments.comment_status = 0 WHERE users.id = ".Auth::id()." GROUP BY users.id, users.name, users.image");
-        return view('admin.home', compact('notifications', $notifications));
+        //$notifications = DB::select("SELECT users.id, users.name, users.image, COUNT(comment_status) AS unread FROM users LEFT JOIN comments ON users.id = comments.user_id AND comments.comment_status = 0 WHERE users.id = ".Auth::id()." GROUP BY users.id, users.name, users.image");
+        //return view('admin.home', compact('notifications', $notifications));
+		return view('admin.home');
     }
 }
