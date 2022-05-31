@@ -436,11 +436,11 @@ class ProductController extends Controller
         $comments->comment_text = "invoice_number  $invoice";                
         $comments->comment_status = 1;
         $comments->user_id = Auth::user()->id;              
-        //$comments->link =$request->Total;               
+        $comments->link ="conferm/cart/$invoice";               
         $comments->save();
 		
         
-           event(new Formsubmited("Order create by  $w.Invoice $invoice"));
+           //event(new Formsubmited("Order create by  $w.Invoice $invoice"));
 		   
 		  $invoice_key->delete();  
 		return redirect()->route('index-customers')->with('message',"Order create by  $w.Invoice $invoice");
@@ -565,7 +565,7 @@ class ProductController extends Controller
         $comments->save();
            
           
-           event(new Formsubmited("Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk"));
+         //  event(new Formsubmited("Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk"));
 
 
 		 return redirect()->back()->with('message',"Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk");
@@ -698,6 +698,12 @@ class ProductController extends Controller
 	{
 		Comment::find($id)->delete();
 		 return redirect()->route('admin.home');
+	}
+	//delete_User
+	public function delete_User($id)
+	{
+		User::find($id)->delete();
+		  return redirect()->back()->with('message','User deleted');
 	}
 	
 }

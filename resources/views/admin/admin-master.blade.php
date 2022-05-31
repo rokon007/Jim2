@@ -45,53 +45,9 @@
     <link rel="stylesheet" href="{{ asset('backend') }}/css/starlight.css">
 
    <script src="/backend/push/push.min.js"></script> 
-<!--	 <script src="push.js"></script> -->
-
-<!--============ Pusher ===========-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-  @stack('javascript')
-  <script>
-
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('0e0182ecfb00e2311b64', {
-      cluster: 'ap2'
-    });
-
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-      alert(JSON.stringify(data));
-    });
-  </script>
+	 <script src="push.js"></script>
 
 
- <!--  <script>
-
-    $(document).ready(function() {
-
-
-       var pusher = new Pusher('0e0182ecfb00e2311b64', {
-      cluster: 'ap2'
-    });
-
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-            if(data.from) {
-                let pending = parseInt($('#' + data.from).find('.pending').html());
-                if(pending) {
-                    $('#' + data.from).find('.pending').html(pending + 1);
-                } else {
-                    $('#' + data.from).html('<a href="#" class="nav-link" data-toggle="dropdown"><i  class="fa fa-bell text-white"><span class="badge badge-danger pending">1</span></i></a>');
-                }
-            }
-        });
-
-        
-    });
-</script> -->
-  <!--============ End Pusher ===========-->
   
   </head>
 
@@ -242,9 +198,9 @@
           <a id="btnRightMenu" href="" class="pos-relative">
 		  @isset($unread)
             <i class="icon ion-ios-bell-outline"></i>
-            <!-- start: if statement -->
-			(<span class="notif-count">{{$unread}}</span>)
-            <span class="square-8 bg-danger"></span>
+            <!-- start: if statement 
+			(<span class="notif-count">{{$unread}}</span>)-->
+            <span class="tx-12">({{$unread}})</span>
             <!-- end: if statement -->
 			 @endisset
           </a>
@@ -315,18 +271,18 @@
 				   ?>
 		  
             <!-- loop starts here -->
-            <a href="" class="media-list-link">
+            <a href="{{ url('update-coment/'.$key->id) }}" class="media-list-link">
               <div class="media">
                 <img src="{{asset('upload')}}/admin/{{ $key->image }}" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
-                  <p class="mg-b-0 tx-medium tx-gray-500 tx-13">Rokon{{$key->subject1}}</p>
+                  <p class="mg-b-0 tx-medium tx-gray-800 tx-13">{{$key->subject1}}</p>
                   <span class="d-block tx-11 tx-gray-500"><?php  printf('%d days, %d hours, %d minutes', $diff->d, $diff->h, $diff->i);?> ago</span>
                   <p class="tx-13 mg-t-10 mg-b-0">{{$key->text}}.</p>
                 </div>
               </div><!-- media -->
             </a>
             <!-- loop ends here -->
-           <li><a href="{{ url('update-coment/'.$key->id) }}">Delete</a></li>
+          
 			@endforeach 
              @endisset
            

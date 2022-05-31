@@ -79,7 +79,7 @@
                     </td>
 					<td>
 					<a href="" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-                    <a href="" class="btn btn-sm btn-danger" onclick="return confirm('Are You Shure To Delete')"><i class="fa fa-trash"></i></a>
+                    <a href="{{ url('user-delete/'.$newuser->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are You Shure To Delete')"><i class="fa fa-trash"></i></a>
                     </td>
                       </tr>
                       @endforeach

@@ -10,7 +10,7 @@
  
       <div class="row row-sm">
         <div class="col-md-12">  
-         <?php
+          <?php
         $message = Session::get('message');
         if($message)
         {
@@ -20,18 +20,19 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                  </div>		
-		<script>
+                  </div>
+				 <script>
 		Push.create("Jim Eladtric", {
     body: "<?php  echo $message; ?>",
     icon: '/backend/img/jim_logo.png',
-    timeout: 9000,
+    timeout: 11000,
     onClick: function () {
         window.focus();
         this.close();
     }
 });
 		</script>        
+         
 		  <?php
           Session::put('message',null);
 

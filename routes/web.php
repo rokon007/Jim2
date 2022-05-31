@@ -91,3 +91,5 @@ Route::get('dm/home',[App\Http\Controllers\ProductController::class, 'dm_home'])
 Route::get('/time',[App\Http\Controllers\ProductController::class, 'timeshow'])->name('timeshow');
 //delete_comment   update-coment
 Route::get('update-coment/{id}',[App\Http\Controllers\ProductController::class, 'delete_comment'])->name('delete_comment');
+//delete_User
+Route::get('user-delete/{id}',[App\Http\Controllers\ProductController::class, 'delete_User'])->name('delete_User');
