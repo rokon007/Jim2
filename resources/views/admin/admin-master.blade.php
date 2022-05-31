@@ -333,7 +333,7 @@ $(function() {
 				   ?>
 		  
             <!-- loop starts here -->
-            <a href="{{ url(.$key->golink) }}" class="media-list-link">
+            <a href="#" class="media-list-link">
               <div class="media">
                 <img src="{{asset('upload')}}/admin/{{ $key->image }}" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
