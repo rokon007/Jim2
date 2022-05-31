@@ -435,7 +435,7 @@ class ProductController extends Controller
 		$comments->comment_subject ="Order  create by  $w";
         $comments->comment_text = "invoice_number  $invoice";                
         $comments->comment_status = 1;
-        $comments->user_id = Auth::user()->name;              
+        $comments->user_id = Auth::user()->id;              
         //$comments->link =$request->Total;               
         $comments->save();
 		
@@ -443,7 +443,7 @@ class ProductController extends Controller
            event(new Formsubmited("Order create by  $w.Invoice $invoice"));
 		   
 		  $invoice_key->delete();  
-		return redirect()->route('index-customers')->with('message','Cart seved successfully');
+		return redirect()->route('index-customers')->with('message',"Order create by  $w.Invoice $invoice");
 	}
 	
 	
@@ -560,7 +560,7 @@ class ProductController extends Controller
 		$comments->comment_subject ="Order comfermed by  $w from $shope_name";
         $comments->comment_text = "Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk";                
         $comments->comment_status = 1;
-        $comments->user_id = Auth::user()->name;              
+        $comments->user_id = Auth::user()->id;              
         //$comments->link =$request->Total;               
         $comments->save();
            
@@ -568,7 +568,7 @@ class ProductController extends Controller
            event(new Formsubmited("Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk"));
 
 
-		 return redirect()->back()->with('message','Order seved successfully');
+		 return redirect()->back()->with('message',"Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk");
 		
 		
 	}

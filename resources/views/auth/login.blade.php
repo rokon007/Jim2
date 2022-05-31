@@ -107,7 +107,9 @@ body {
 </style>
 <div class="wrapper">
         <div class="logo">
-            <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt="">
+		
+            <!--<img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> -->
+			 <img src="{{asset('backend')}}/img/jim_logo.png" alt="">
         </div>
         <div class="text-center mt-4 name">
             Jim Electric

@@ -20,8 +20,18 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                  </div>
-         
+                  </div>		
+		<script>
+		Push.create("Jim Eladtric", {
+    body: "<?php  echo $message; ?>",
+    icon: '/backend/img/jim_logo.png',
+    timeout: 4000,
+    onClick: function () {
+        window.focus();
+        this.close();
+    }
+});
+		</script>        
 		  <?php
           Session::put('message',null);
 
