@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
 			$table->string('comment_subject');
             $table->string('comment_text');
             $table->string('comment_status');			
-			$table->string('user_id');
+			$table->bigInteger('user_id');
             $table->string('link')->nullable();
             $table->timestamps();
         });
