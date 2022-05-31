@@ -440,7 +440,7 @@ class ProductController extends Controller
         $comments->save();
 		
         
-           //event(new Formsubmited("Order create by  $w.Invoice $invoice"));
+           event(new Formsubmited("Order create by  $w.Invoice $invoice"));
 		   
 		  $invoice_key->delete();  
 		return redirect()->route('index-customers')->with('message',"Order create by  $w.Invoice $invoice");
@@ -565,7 +565,7 @@ class ProductController extends Controller
         $comments->save();
            
           
-         //  event(new Formsubmited("Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk"));
+           event(new Formsubmited("Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk"));
 
 
 		 return redirect()->back()->with('message',"Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk");
