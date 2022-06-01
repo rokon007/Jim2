@@ -7,7 +7,25 @@
       <a class="breadcrumb-item" href="index.html">Admin</a>
       <span class="breadcrumb-item active">whole sale</span>
     </nav>
- 
+       <script>
+function myFunction() {
+            var Total = document.getElementById('total').value;
+            var Payment = document.getElementById('payment').value;
+            var Due = parseFloat(Total) - parseFloat(Payment);
+            if (!isNaN(Due)) {
+                document.getElementById('due').value = Due;
+				
+            }
+            if(due<0){
+                jQuery(function validation(){
+              swal("বিক্রয় মূল্য ক্রয় মূল্যের চেয়ে কম হচ্ছে", "এতো  বেশি ডিসকাউন্ট দেওয়া উচিত নয়", "warning", {
+              button: "Continue",
+                  });
+              });
+            }
+           
+}
+</script>
       <div class="row row-sm">
         <div class="col-md-12">  
           <?php
@@ -21,7 +39,8 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-				 <script>
+                  
+		<script type="text/javascript">
 		Push.create("Jim Eladtric", {
     body: "<?php  echo $message; ?>",
     icon: '/backend/img/jim_logo.png',

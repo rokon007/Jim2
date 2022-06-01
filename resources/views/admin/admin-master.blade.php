@@ -44,9 +44,10 @@
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('backend') }}/css/starlight.css">
 
-   <script src="/backend/push/push.min.js"></script> 
-<!--	 <script src="push.js"></script> -->
-
+   <script src="{{ asset('backend') }}/push/push.min.js"></script> 
+ <script src="{{ asset('push.js') }}"></script> 
+	  <!-- <script src="push.js"></script> -->
+ 
 <!--============ Pusher ===========-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
@@ -543,6 +544,11 @@ $(function() {
 			  <input type="hidden" value="<?php $sales_order = Session::get('sales_order');if($sales_order){echo $sales_order->shop_name;}?>" name="shop_name">
 			  <input type="hidden" value="<?php $sales_order = Session::get('sales_order');if($sales_order){echo $sales_order->cid;}?>" name="cid">
 			   <input type="hidden" value="<?php $sales_order = Session::get('sales_order');if($sales_order){echo $sales_order->customer_phone;}?>" name="customer_phone">
+			   @if(isset($rokon))
+                  <button  class="btn btn-info pd-x-20 " data-toggle="modal" data-target="#modaldemo2" href="#">Conferm</button>
+		       @else
+		 
+         
 			   <?php
 			   if(Auth::user()->roll==2){
 			   ?>			  
@@ -562,6 +568,7 @@ $(function() {
 				<?php  if(Auth::user()->roll==2){ ?>
 				 <button  class="btn btn-info pd-x-20 " data-toggle="modal" data-target="#modaldemo2" href="#">Conferm</button>
 				<?php } ?>
+				@endif
                 <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Close</button>
               </div>
             </div>
