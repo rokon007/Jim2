@@ -706,4 +706,26 @@ class ProductController extends Controller
 		  return redirect()->back()->with('message','User deleted');
 	}
 	
+	//view_customer
+	
+	public function viewcustomer()
+	{
+		 $customer= CustomerInfo::all();
+        return view('admin.customer.profile',compact('customer'));
+	}
+	//delete_customer
+	public function delete_customer($id)
+	{
+		CustomerInfo::find($id)->delete();
+		return redirect()->back()->with('message','Customer deleted');
+	}
+	//delete_customer
+	public function view_profile_customer($id)
+	{
+		$customer=CustomerInfo::where('id',$id)->first();
+		$payment=Payment::where('cid',$id)->get();
+		$sales_order=sales_order::where('cid',$id)->get();
+		 return view('admin.customer.viewprofile',compact('customer','payment','sales_order'));
+	}
+	
 }

@@ -93,8 +93,16 @@
 </script> -->
   <!--============ End Pusher ===========-->
   </head>
-
-  <body>
+        @isset($unread)
+		  ({{$unread}})
+		  @endisset
+		  
+		  @if(isset($rokon))
+             <body class="collapsed-menu">
+		 @else
+		 <body>
+         @endif
+  
   <?php
         $view_cart = Session::get('view_cart');
         if($view_cart)
@@ -211,7 +219,12 @@ $(function() {
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
          @endif
-
+         <a href="{{ route('viewcustomer') }}"  class="sl-menu-link @yield('customer_profile')">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Customer Profile</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
       
         </ul>
       </div><!-- sl-sideleft-menu -->

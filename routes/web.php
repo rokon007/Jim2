@@ -93,3 +93,12 @@ Route::get('/time',[App\Http\Controllers\ProductController::class, 'timeshow'])-
 Route::get('update-coment/{id}',[App\Http\Controllers\ProductController::class, 'delete_comment'])->name('delete_comment');
 //delete_User
 Route::get('user-delete/{id}',[App\Http\Controllers\ProductController::class, 'delete_User'])->name('delete_User');
+
+
+
+//view-customer
+Route::get('admin/customer-list',[App\Http\Controllers\ProductController::class, 'viewcustomer'])->name('viewcustomer');
+//'customer-delete/'.$newcustomer->id
+Route::get('customer-delete/{id}',[App\Http\Controllers\ProductController::class, 'delete_customer'])->name('delete_customer');
+//customer/view_profile/'.$newcustomer->id
+Route::get('customer/view_profile/{id}',[App\Http\Controllers\ProductController::class, 'view_profile_customer'])->name('view_profile_customer');
