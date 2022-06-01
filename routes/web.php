@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Models\Comment;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,21 @@ Route::get('/counter', function () {
 });
 
 Auth::routes();
+
+/*View composer*/
+// View::composer(['*'], function($view){
+
+// $notifications = DB::table('comments')
+//           ->join('users', 'comments.user_id', '=', 'users.id')
+//           ->select('users.name as name','users.image as image','comments.id as id','comments.comment_subject as subject1','comments.comment_text as text','comments.link as golink','comments.created_at as dt')
+//           ->where('comments.comment_status',1)
+//           ->orderBy('comments.id', 'DESC')->get();
+//         $unread = Comment::where('comment_status','=','1')->count(); 
+
+//         $view->with('notifications',$notifications,'unread',$unread);
+
+// });
+/*View composer*/
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'admin_index'])->name('admin.home');

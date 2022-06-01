@@ -32,18 +32,6 @@ class HomeController extends Controller
     }
 	 public function admin_index()
     {
-		$notifications = DB::table('comments')
-          ->join('users', 'comments.user_id', '=', 'users.id')
-          ->select('users.name as name','users.image as image','comments.id as id','comments.comment_subject as subject1','comments.comment_text as text','comments.link as golink','comments.created_at as dt')
-          ->where('comments.comment_status',1)
-          ->orderBy('comments.id', 'DESC')->get();
-		$unread = Comment::where('comment_status','=','1')->count();   
-		
-        //$notifications = DB::select("SELECT users.id, users.name, users.image, COUNT(comment_status) AS unread FROM users LEFT JOIN comments ON users.id = comments.user_id AND comments.comment_status = 0 WHERE users.id = ".Auth::id()." GROUP BY users.id, users.name, users.image");
-       //return view('admin.home', compact('notifications', $notifications));
-		//return view('admin.home');
-
-
         $order_today = DB::table('sales_orders')             
             ->whereDate('created_at', '=', date('Y-m-d'))            
              ->count('invoice');  
@@ -105,6 +93,6 @@ class HomeController extends Controller
         $monthName = $date->format('F');
         $year = $date->format('Y');                                           
 		
-		return view('admin.home',compact('notifications','unread','order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year'));
+		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year'));
     }
 }

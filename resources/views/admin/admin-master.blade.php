@@ -272,13 +272,13 @@ $(function() {
 		
 		<div class="navicon-right">
           <a id="btnRightMenu" href="" class="pos-relative">
-		  @isset($unread)
+		  
             <i class="icon ion-ios-bell-outline"></i>
             <!-- start: if statement 
 			(<span class="notif-count">{{$unread}}</span>)-->
             <span class="tx-12">({{$unread}})</span>
             <!-- end: if statement -->
-			 @endisset
+			 
           </a>
         </div><!-- navicon-right -->
 		
@@ -336,7 +336,7 @@ $(function() {
         <div class="tab-pane pos-absolute a-0 mg-t-60 active" id="messages" role="tabpanel">
           <div class="media-list">
 		  
-		  @isset($notifications)
+		  
                    @foreach($notifications as $key)
 				   <?php
 				      date_default_timezone_set('Asia/Dhaka');
@@ -361,7 +361,7 @@ $(function() {
             <!-- loop ends here -->
           
 			@endforeach 
-             @endisset
+            
            
             
             
