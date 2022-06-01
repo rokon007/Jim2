@@ -66,7 +66,7 @@
 					   <td>{{ $newcustomer->customer_phone}}</td> 
 					    <td>{{ $newcustomer->customer_adderss}}</td> 
 					  <td>
-					<img src="{{ asset('upload/admin/'.$newcustomer->image) }}" class="wd-36 rounded-circle" alt="Image">
+					<img src="{{ asset('upload/customer/'.$newcustomer->image) }}" class="wd-36 rounded-circle" alt="Image">
                     </td>
 					<td>
 					<a href="{{ url('customer/view_profile/'.$newcustomer->id) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
