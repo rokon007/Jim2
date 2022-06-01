@@ -243,18 +243,20 @@ language: {
 		</div>
 		
 		
-		
-		<div  id="divDiactivcustomar" style="display: none;" class="card pd-20 pd-sm-40 mg-t-25">
+		<div  id="divDiactivcustomar" style="display: none;">
 		<div class="sl-pagebody">
+		<div class="card pd-20 pd-sm-40 mg-t-25">
+		
 		 <h6 class="card-body-title"> Returned product</h6>
 		 <p class="mg-b-20 mg-sm-b-30">Under constraction.</p>
 		</div>
 		</div>
+		</div>
 		
 	</body>	
-		
-		<div id="divIncome" class="card pd-20 pd-sm-40 mg-t-25">
 		<div class="sl-pagebody">
+		<div id="divIncome" class="card pd-20 pd-sm-40 mg-t-25">
+		
           <h6 class="card-body-title">Profile of {{$customer->customer_name}}</h6>
           <p class="mg-b-20 mg-sm-b-30">Align terms and descriptions horizontally by using our grid system’s predefined classes.</p>
 
