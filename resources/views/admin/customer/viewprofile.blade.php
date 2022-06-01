@@ -35,12 +35,12 @@
           <a href="javascript:void(0)" id="Transactions" class="nav-link "  onclick="AllcustomarFunction()">
             <i class="icon ion-ios-filing-outline tx-24"></i>
             <span>Transactions</span>
-            <span class="mg-l-auto tx-12">20</span>
+            <label class="mg-l-auto tx-12" id="lbldiactiv"> </label>
           </a>
           <a href="javascript:void(0)" id="Purchased" class="nav-link"   onclick="ActivcustomarFunction()">
             <i class="icon ion-ios-folder-outline tx-20"></i>
             <span>Purchased List</span>
-            <span class="mg-l-auto tx-12">8</span>
+            <label id="lblactiv" class="mg-l-auto tx-12"> </label>
           </a>
           <a href="javascript:void(0)" id="Returned" class="nav-link" onclick="DiactivcustomarFunction()"><i class="icon ion-ios-paperplane-outline tx-24"></i> Returned product</a>
           <a href="javascript:void(0)" class="nav-link"><i class="icon ion-ios-trash-outline tx-24"></i> Trash</a>
@@ -127,7 +127,7 @@
         </div>
 		
 		<body onload="myFunction()">
-		
+		<div class="sl-pagebody">
         <div id="divAllcustomar" style="display: none;">
         <div class="card pd-20 pd-sm-40">
                 <h6 class="card-body-title">Transactions</h6>    
@@ -169,6 +169,7 @@
                 </div><!-- table-wrapper -->
               </div><!-- card -->
 		</div>
+		</div>
 		
 		
 		
@@ -186,7 +187,7 @@ language: {
 		</script>
 		
 		
-		
+		<div class="sl-pagebody">
 		  <div  id="divActivcustomar" style="display: none;" >
          <div class="card pd-20 pd-sm-40">
                 <h6 class="card-body-title">Order pending</h6>    
@@ -237,10 +238,14 @@ language: {
                 </div><!-- table-wrapper -->
               </div><!-- card -->
 		</div>
+		</div>
 		
-		<div  id="divDiactivcustomar" style="display: none;" class="col-md-9">
-		divDiactivcustomar
 		
+		<div class="sl-pagebody">
+		<div  id="divDiactivcustomar" style="display: none;" class="card pd-20 pd-sm-40 mg-t-25">
+		 <h6 class="card-body-title"> Returned product</h6>
+		 <p class="mg-b-20 mg-sm-b-30">Under constraction.</p>
+		</div>
 		</div>
 		
 	</body>	
@@ -358,5 +363,23 @@ function Profile() {
   }
 } 
 	 </script>
+	 
+	 <script>
+function myFunction() {
+  //Activtable count    
+var x = document.getElementById("datatable2").rows.length;
+document.getElementById("lblactiv").innerHTML = x-1 ;
+
+//Diactivtable count    
+var y = document.getElementById("datatable1").rows.length;
+document.getElementById("lbldiactiv").innerHTML = y-1 ;
+ 
+ //Total count
+ var z = document.getElementById("mytable").rows.length;
+document.getElementById("lbltotal").innerHTML = z-1 ;
+
+
+}
+</script>
 @endsection
 
