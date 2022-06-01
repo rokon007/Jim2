@@ -127,8 +127,9 @@
         </div>
 		
 		<body onload="myFunction()">
-		<div class="sl-pagebody">
+		
         <div id="divAllcustomar" style="display: none;">
+		<div class="sl-pagebody">
         <div class="card pd-20 pd-sm-40">
                 <h6 class="card-body-title">Transactions</h6>    
                 <div class="table-wrapper">
@@ -187,8 +188,9 @@ language: {
 		</script>
 		
 		
-		<div class="sl-pagebody">
+		
 		  <div  id="divActivcustomar" style="display: none;" >
+		  <div class="sl-pagebody">
          <div class="card pd-20 pd-sm-40">
                 <h6 class="card-body-title">Order pending</h6>    
                 <div class="table-wrapper">
@@ -241,16 +243,18 @@ language: {
 		</div>
 		
 		
-		<div class="sl-pagebody">
+		
 		<div  id="divDiactivcustomar" style="display: none;" class="card pd-20 pd-sm-40 mg-t-25">
+		<div class="sl-pagebody">
 		 <h6 class="card-body-title"> Returned product</h6>
 		 <p class="mg-b-20 mg-sm-b-30">Under constraction.</p>
 		</div>
 		</div>
 		
 	</body>	
-		<div class="sl-pagebody">
+		
 		<div id="divIncome" class="card pd-20 pd-sm-40 mg-t-25">
+		<div class="sl-pagebody">
           <h6 class="card-body-title">Profile of {{$customer->customer_name}}</h6>
           <p class="mg-b-20 mg-sm-b-30">Align terms and descriptions horizontally by using our grid system’s predefined classes.</p>
 

@@ -69,7 +69,8 @@
 					<img src="{{ asset('upload/customer/'.$newcustomer->image) }}" class="wd-36 rounded-circle" alt="Image">
                     </td>
 					<td>
-					<a href="{{ url('customer/view_profile/'.$newcustomer->id) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+					<a href="{{ url('customer/view_profile/'.$newcustomer->id) }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
+
                     <a href="{{ url('customer-delete/'.$newcustomer->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are You Shure To Delete')"><i class="fa fa-trash"></i></a>
                     </td>
                       </tr>
