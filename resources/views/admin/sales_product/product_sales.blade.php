@@ -316,7 +316,7 @@ $(function() {
                   <td>{{ $item->qty  }}</td>
 				  <td>{{ $item->amount }}</td>
 				  <td>				  				 
-				<a class="btn btn-info" href="{{ url('cart/cansel/'.$item->id.'/'.$item->product_code.'/'.$item->qty.'/'.Session::get('invoice_key')) }}">
+				<a class="btn btn-info" href="{{ url('cart/cansel/'.$item->id.'/'.$item->product_code.'/'.$item->qty.'/'.$invoice) }}">
                   <i class="fa fa-close"></i>Cancel  
                 </a>
 				  </td>
