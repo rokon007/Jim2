@@ -86,6 +86,17 @@ Route::get('getcart/wholeseal/{invoice}',[App\Http\Controllers\ProductController
  Route::get('admin/sr-orders/{sr}',[App\Http\Controllers\ProductController::class, 'SRview_orders'])->name('SRview-orders');
  //view-confirm order
  Route::get('admin/confirm-order',[App\Http\Controllers\ProductController::class, 'view_confirmorder'])->name('confirm-order');
+ //confirm-order_cable
+ Route::get('admin/confirm-order-cable',[App\Http\Controllers\ProductController::class, 'view_confirmordercable'])->name('confirm-order_cable');
+ //payment_1
+ Route::get('admin/customer/pay',[App\Http\Controllers\ProductController::class, 'payment_1'])->name('payment_1');
+ 
+ //admin/customer_payment/'.$customer->id
+ Route::get('admin/customer_payment/{id}',[App\Http\Controllers\ProductController::class, 'payment_modelview'])->name('payment_modelview');
+ 
+ //payment/save/
+ Route::post('payment/save',[App\Http\Controllers\ProductController::class, 'payment_save'])->name('payment_save');
+ 
  //conferm/cart/
  Route::get('conferm/cart/{invoice}',[App\Http\Controllers\ProductController::class, 'conferm_cart'])->name('conferm-cart');
  //conferm/cart-view

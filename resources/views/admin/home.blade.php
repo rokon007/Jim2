@@ -123,10 +123,78 @@
 
         </div><!-- col-3 -->
       </div><!-- row -->
+
+      </div><!-- sl-pagebody -->
+
+  </div><!-- sl-mainpanel -->
+
+
+ 
+            
+    
+     
+    
+    <div class="sl-pagebody">
+     <div class="row row-sm">
+        <div class="col-md-12"> 
+              <div class="card pd-20 pd-sm-40">
+                <h6 class="card-body-title">Low Quantity Products</h6>    
+                <div class="table-wrapper">
+                   <table id="datatable1" class="table display responsive nowrap">
+                    <thead>
+                      <tr>
+                       <th class="wd-15p">Product Code</th>
+                        <th class="wd-15p">Product Name</th>
+						
+                        <th class="wd-15p">Product Quantity</th>
+                        
+                        <th class="wd-20p">Status</th>  
+                        <th class="wd-25p">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    @foreach ($products as $row)
+					@if($row->product_quantity <= $row->lowquantity_alart)
+                      <tr>
+					   <td>{{ $row->product_code }}</td>
+                        <td>{{ $row->product_name }}</td>
+                        <td>{{ $row->product_quantity }}</td>
+                       
+                        <td>
+                            @if($row->status == 1)
+                            <span class="badge badge-success">Active</span>
+                            @else 
+                            <span class="badge badge-danger">Iactive</span>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{ url('admin/products/edit/'.$row->id) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                            <a href="{{ url('admin/products/delete/'.$row->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are You Shure To Delete')"><i class="fa fa-trash"></i></a>
+                            @if($row->status == 1)
+                            <a href="{{ url('admin/products/inactive/'.$row->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-arrow-down"></i></a>
+                            @else
+                            <a href="{{ url('admin/products/active/'.$row->id) }}" class="btn btn-sm btn-success"><i class="fa fa-arrow-up"></i></a>
+                            @endif
+                        </td>
+                      </tr>
+					   @endif
+                      @endforeach
+					 
+                    </tbody>
+                  </table>
+                </div><!-- table-wrapper -->
+              </div><!-- card -->
+        </div>
+
+    </div>
+
+
+
       
     </div><!-- sl-pagebody -->
 
-  </div><!-- sl-mainpanel -->
+  
   <!-- ########## END: MAIN PANEL ########## -->
     
 @endsection

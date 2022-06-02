@@ -20,6 +20,8 @@ class CreateProductsTable extends Migration
 			$table->bigInteger('product_quantity');
 			$table->decimal('price', 10, 2);
 			$table->integer('status')->default(1);
+            $table->integer('is_cable')->default(0);
+            $table->bigInteger('lowquantity_alart');
             $table->timestamps();			
         });
     }

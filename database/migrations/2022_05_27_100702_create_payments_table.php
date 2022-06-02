@@ -22,6 +22,7 @@ class CreatePaymentsTable extends Migration
 			$table->decimal('Total', 10, 2);
 			$table->decimal('payment', 10, 2);
 			$table->decimal('due', 10, 2);
+            $table->string('created_by')->nullable();
             $table->timestamps();
         });
     }

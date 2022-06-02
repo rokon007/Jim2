@@ -19,11 +19,12 @@ use Illuminate\Support\Facades\File;
 use Carbo\Corbon;
 use App\Events\Formsubmited;
 use App\Models\Comment;
+use App\Models\ReturnProdict;
 
 class ProductController extends Controller
 {
    
-	// --------------------- add product ------------------ 
+	// --------------------- add product ------------------ view_profile_customer
     public function addProduct(){
         //$categories = Category::latest()->get();
        // $brands = Brand::latest()->get();
@@ -71,7 +72,13 @@ class ProductController extends Controller
        // Image::make($imag_three)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);  
         	   
        // $img_url3 = 'fontend/img/product/upload/'.$name_gen;
-
+         if($request->has('is_cable'))
+               {
+				   $cable = 1;
+                 
+              }else{
+				$cable = 0;
+			  }
         Product::insert([
            // 'category_id' => $request->category_id,
           //  'brand_id' => $request->brand_id,
@@ -80,6 +87,8 @@ class ProductController extends Controller
             'product_code' => $request->product_code,
             'price' => $request->price,
             'product_quantity' => $request->product_quantity,
+			'lowquantity_alart' => $request->lowquantity_alart,
+			'is_cable' => $cable,
            // 'short_description' => $request->short_description,
            // 'long_description' => $request->long_description,
            // 'image_one' => $img_url1,
@@ -110,6 +119,13 @@ class ProductController extends Controller
     // ======================== update data =========================== 
     public function updateProduct(Request $request){
         $product_id = $request->id;
+		 if($request->has('is_cable'))
+               {
+				   $cable = 1;
+                 
+              }else{
+				$cable = 0;
+			  }
         Product::findOrFail($product_id)->Update([
           //  'category_id' => $request->category_id,
           //  'brand_id' => $request->brand_id,
@@ -118,6 +134,8 @@ class ProductController extends Controller
             'product_code' => $request->product_code,
             'price' => $request->price,
             'product_quantity' => $request->product_quantity,
+			'lowquantity_alart' => $request->lowquantity_alart,
+			'is_cable' => $cable,
            // 'short_description' => $request->short_description,
             //'long_description' => $request->long_description,
             'update_at' => Carbon::now(),
@@ -395,6 +413,7 @@ class ProductController extends Controller
         $order->price =$request->price;       
         $order->qty  =$request->qty;
         $order->discount =$request->qty;
+		$order->is_cable =$request->is_cable;
 		$order->amount =$request->price * $request->qty;
         $order->profit =0;
 		$order->save();
@@ -531,7 +550,7 @@ class ProductController extends Controller
         $payment->Total =$request->Total;       
         $payment->payment =$request->payment;
         $payment->due =$request->due;
-        //$payment->created_by ='Admin';
+        $payment->created_by = Auth::user()->id;    
         $payment->save();
 		
 		//update cudtomerinfos table
@@ -580,12 +599,44 @@ class ProductController extends Controller
 		$order=sales_order::where('id',$id)->first();
 		$old_quantity=$order->qty;
 		$price=$order->price; 
+		
+		$cid=$order->cid; 
+		$shop_name=$order->shop_name; 
+		$customer_name=$order->customer_name; 	
+		$customer_phone=$order->customer_phone;
+		$product_code=$order->product_code;
+		$productname=$order->product; 
+		$is_cable=$order->is_cable; 
+		$amount=$order->amount;
+		
+		
+		
+		
 		$product = Product::where('product_code',$code)->first();
 		$cqty=$product->product_quantity;	
 		if($old_quantity>=$new_quantity)
 		{						
 			$new1_quantity=$cqty+($old_quantity-$new_quantity);			
 			Product::where('product_code',$code)->update((['product_quantity'=>$new1_quantity]));
+			if(Auth::user()->roll==3)
+			{
+				$ReturnProdict = new ReturnProdict();
+        $ReturnProdict->invoice = $invoice;
+        $ReturnProdict->cid =$cid;
+		$ReturnProdict->shop_name =$shop_name;
+		$ReturnProdict->customer_name =$customer_name;
+		$ReturnProdict->customer_phone =$customer_phone;
+		$ReturnProdict->created_by =Auth::user()->name;
+        $ReturnProdict->product_code = $product_code;
+        $ReturnProdict->product = $productname;             
+        $ReturnProdict->price =$price;       
+        $ReturnProdict->qty  =$old_quantity-$new_quantity;
+        $ReturnProdict->discount =$old_quantity;
+		$ReturnProdict->is_cable =$is_cable;
+		$ReturnProdict->amount =0;
+        $ReturnProdict->profit =0;
+		$ReturnProdict->save();
+			}
 		}
 		elseif($old_quantity<=$new_quantity)
 		{
@@ -622,6 +673,74 @@ class ProductController extends Controller
 			->orderBy('invoice')
 			 ->get();
 		  return view('admin.customer.confirm_order',compact('sales_order'));
+	}
+	
+	//view_confirmordercable
+	public function view_confirmordercable()
+	{
+		    $sales_order = DB::table('sales_orders')			
+			->join('payments', 'sales_orders.invoice', '=', 'payments.invoice')
+		    ->select('sales_orders.invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),'sales_orders.shop_name','sales_orders.customer_phone','payments.payment','payments.due','payments.created_at')
+			->groupBy('sales_orders.invoice','sales_orders.shop_name','sales_orders.customer_phone','payments.payment','payments.due','payments.created_at')
+			->where('status',1)	
+            ->where('is_cable',1)			
+			->orderBy('invoice')
+			 ->get();
+			  $sales_ordertb=DB::table('sales_orders')->where('status',1)->where('is_cable',1) ->get();	
+		  return view('admin.customer.view_cable',compact('sales_order','sales_ordertb'));
+	}
+	//payment_1
+	public function payment_1()
+	{
+		  $customers= CustomerInfo::all(); 
+		  return view('admin.customer.customer_pay',compact('customers'));
+	}
+	//payment_modelview
+	public function payment_modelview($id)
+	{
+		  $customers= CustomerInfo::where('id',$id)->first(); 
+		   return redirect()->back()->with(['customers' => $customers,'view_cart' => 'view_cart']);		
+	}
+	//payment save
+	public function payment_save(Request $request)
+	{
+		//insert in to payments table
+		$payment = new Payment();
+		$payment->invoice =mt_rand(10000000,99999999);
+        $payment->shop_name = $request->shop_name;                
+        $payment->cid = $request->cid;
+        $payment->customer_phone = $request->customer_phone;              
+        $payment->Total =$request->total_payment;       
+        $payment->payment =$request->payment;
+        $payment->due =$request->new_due;
+        $payment->created_by = Auth::user()->id;    
+        $payment->save();
+		
+		//update customerinfo
+		 $Update_CustomerInfo = CustomerInfo::find($request->cid);
+		// $Update_CustomerInfo->total_amount =$request->total_payment; 
+		 $Update_CustomerInfo->total_paid =$request->total_payment; 
+		 $Update_CustomerInfo->total_deu =$request->new_due;
+         $Update_CustomerInfo->update();
+		 
+		  //insert in to comments table
+		  $shope_name=$request->shop_name;
+		  $recive_amount=$request->payment;
+		  $w=Auth::user()->name;
+		$comments = new Comment();
+		$comments->comment_subject ="Recive Payment by  $w from $shope_name";
+        $comments->comment_text = "Recive amount= $recive_amount Tk";                
+        $comments->comment_status = 1;
+        $comments->user_id = Auth::user()->id;              
+        //$comments->link =$request->Total;               
+        $comments->save();
+           
+          
+           event(new Formsubmited("Recive Payment by  $w from $shope_name.Recive amount= $recive_amount Tk"));
+
+
+		 return redirect()->back()->with('message',"Recive Payment by  $w from $shope_name.Recive amount= $recive_amount Tk");
+		
 	}
 	//ordered_products
 	public function ordered_products()
@@ -668,6 +787,86 @@ class ProductController extends Controller
 	//sr_home
 	public function sr_home()
 	{
+		$order_today = DB::table('sales_orders')             
+            ->whereDate('created_at', '=', date('Y-m-d'))
+            ->where('created_by',Auth::user()->name)            
+             ->count('invoice');  
+             
+        $order_currentMonth=DB::table('sales_orders')             
+            ->whereMonth('created_at', date('m'))
+            ->where('created_by',Auth::user()->name)            
+             ->count('invoice');
+
+        $order_currentYear=DB::table('sales_orders')             
+            ->whereYear('created_at', date('Y')) 
+            ->where('created_by',Auth::user()->name)			
+             ->count('invoice');
+
+         $order_Total=DB::table('sales_orders') 
+            ->where('created_by',Auth::user()->name)		 
+             ->count('invoice');     
+
+        $Totalamount_today = DB::table('sales_orders')
+             ->whereDate('created_at', '=', date('Y-m-d'))
+			 ->where('created_by',Auth::user()->name)
+             ->sum('amount');  
+
+        $Totalamount_currentMonth = DB::table('sales_orders')
+             ->whereMonth('created_at', date('m')) 
+			 ->where('created_by',Auth::user()->name)
+             ->sum('amount');
+             
+        $Totalamount_currentYear = DB::table('sales_orders')
+             ->whereYear('created_at', date('Y'))
+			 ->where('created_by',Auth::user()->name)
+             ->sum('amount');
+             
+        $Totalamount = DB::table('sales_orders') 
+             ->where('created_by',Auth::user()->name)		
+             ->sum('amount');  
+
+
+        $collection_today=DB::table('payments')
+              ->whereDate('created_at', '=', date('Y-m-d'))
+              ->where('created_by',Auth::user()->name)			  
+             ->sum('payment'); 
+        $due_today=DB::table('payments')
+              ->whereDate('created_at', '=', date('Y-m-d'))
+             ->where('created_by',Auth::user()->name)			  
+             ->sum('due');
+
+        $collection_currentMonth=DB::table('payments')
+              ->whereMonth('created_at', date('m')) 
+              ->where('created_by',Auth::user()->name)			  
+             ->sum('payment'); 
+        $due_currentMonth=DB::table('payments')
+              ->whereMonth('created_at', date('m')) 
+              ->where('created_by',Auth::user()->name)			  
+             ->sum('due');
+             
+        $collection_currentYear=DB::table('payments')
+              ->whereYear('created_at', date('Y')) 
+              ->where('created_by',Auth::user()->name)			  
+             ->sum('payment'); 
+        $due_currentYear=DB::table('payments')
+              ->whereYear('created_at', date('Y'))
+              ->where('created_by',Auth::user()->name)			  
+             ->sum('due');
+             
+        $collection_Total=DB::table('payments') 
+             ->where('created_by',Auth::user()->name)		
+             ->sum('payment'); 
+        $due_Total=DB::table('payments')
+             ->where('created_by',Auth::user()->name)		
+             ->sum('due');  
+
+        $date = Carbon::now();
+        $monthName = $date->format('F');
+        $year = $date->format('Y');                                           
+		
+        $products = Product::orderBy('id','DESC')->get();
+		
+		
 		
 		$sales_order = DB::table('sales_orders')
 		     ->where('created_by',Auth::user()->name)
@@ -678,15 +877,103 @@ class ProductController extends Controller
 		$Totalamount = DB::table('sales_orders')->where('created_by',Auth::user()->name)
 		->whereDate('created_at', '=', date('Y-m-d'))
 		->sum('amount');	 
-		return view('admin.sr.sr_home',compact('sales_order','Totalamount'));
+		return view('admin.sr.sr_home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','products'));
 		//return view('admin.sr.sr_home');
 	}
 	//dm_home
 	public function dm_home()
 	{
-		//$user=User::All();
-		// return view('admin.user.add_user',compact('user'));
-		return view('admin.dm.dm_home');
+		$order_today = DB::table('sales_orders')             
+            ->whereDate('created_at', '=', date('Y-m-d'))
+            ->where('created_by',Auth::user()->name)            
+             ->count('invoice');  
+             
+        $order_currentMonth=DB::table('sales_orders')             
+            ->whereMonth('created_at', date('m'))
+            ->where('created_by',Auth::user()->name)            
+             ->count('invoice');
+
+        $order_currentYear=DB::table('sales_orders')             
+            ->whereYear('created_at', date('Y')) 
+            ->where('created_by',Auth::user()->name)			
+             ->count('invoice');
+
+         $order_Total=DB::table('sales_orders') 
+            ->where('created_by',Auth::user()->name)		 
+             ->count('invoice');     
+
+        $Totalamount_today = DB::table('sales_orders')
+             ->whereDate('created_at', '=', date('Y-m-d'))
+			 ->where('created_by',Auth::user()->name)
+             ->sum('amount');  
+
+        $Totalamount_currentMonth = DB::table('sales_orders')
+             ->whereMonth('created_at', date('m')) 
+			 ->where('created_by',Auth::user()->name)
+             ->sum('amount');
+             
+        $Totalamount_currentYear = DB::table('sales_orders')
+             ->whereYear('created_at', date('Y'))
+			 ->where('created_by',Auth::user()->name)
+             ->sum('amount');
+             
+        $Totalamount = DB::table('sales_orders') 
+             ->where('created_by',Auth::user()->name)		
+             ->sum('amount');  
+
+
+        $collection_today=DB::table('payments')
+              ->whereDate('created_at', '=', date('Y-m-d'))
+              ->where('created_by',Auth::user()->name)			  
+             ->sum('payment'); 
+        $due_today=DB::table('payments')
+              ->whereDate('created_at', '=', date('Y-m-d'))
+             ->where('created_by',Auth::user()->name)			  
+             ->sum('due');
+
+        $collection_currentMonth=DB::table('payments')
+              ->whereMonth('created_at', date('m')) 
+              ->where('created_by',Auth::user()->name)			  
+             ->sum('payment'); 
+        $due_currentMonth=DB::table('payments')
+              ->whereMonth('created_at', date('m')) 
+              ->where('created_by',Auth::user()->name)			  
+             ->sum('due');
+             
+        $collection_currentYear=DB::table('payments')
+              ->whereYear('created_at', date('Y')) 
+              ->where('created_by',Auth::user()->name)			  
+             ->sum('payment'); 
+        $due_currentYear=DB::table('payments')
+              ->whereYear('created_at', date('Y'))
+              ->where('created_by',Auth::user()->name)			  
+             ->sum('due');
+             
+        $collection_Total=DB::table('payments') 
+             ->where('created_by',Auth::user()->name)		
+             ->sum('payment'); 
+        $due_Total=DB::table('payments')
+             ->where('created_by',Auth::user()->name)		
+             ->sum('due');  
+
+        $date = Carbon::now();
+        $monthName = $date->format('F');
+        $year = $date->format('Y');                                           
+		
+        $products = Product::orderBy('id','DESC')->get();
+		
+		
+		
+		$sales_order = DB::table('sales_orders')
+		     ->where('created_by',Auth::user()->name)
+			->whereDate('created_at', '=', date('Y-m-d'))
+            
+             ->count('invoice');	
+		
+		$Totalamount = DB::table('sales_orders')->where('created_by',Auth::user()->name)
+		->whereDate('created_at', '=', date('Y-m-d'))
+		->sum('amount');
+		return view('admin.dm.dm_home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','products'));
 	}
 	public function timeshow()
 	{
@@ -722,10 +1009,13 @@ class ProductController extends Controller
 	//delete_customer
 	public function view_profile_customer($id)
 	{
+		$date = Carbon::now();
+		$monthName = $date->format('F');
 		$customer=CustomerInfo::where('id',$id)->first();
 		$payment=Payment::where('cid',$id)->get();
+		$Total_payment_m=Payment::where('cid',$id)->whereMonth('created_at', date('m'))->sum('payment');
 		$sales_order=sales_order::where('cid',$id)->get();
-		 return view('admin.customer.viewprofile',compact('customer','payment','sales_order'));
+		 return view('admin.customer.viewprofile',compact('customer','payment','sales_order','Total_payment_m','monthName'));
 	}
 	
 }

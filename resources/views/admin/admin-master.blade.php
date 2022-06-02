@@ -170,6 +170,11 @@ $(function() {
 		   @else
 		    <li class="nav-item1"><a href="{{ route('confirm-order') }}" class="nav-link @yield('Confirmed_order')">Confirmed order </a></li>
 		@endif
+    @if(Auth::user()->roll==2)
+        <li class="nav-item1"><a href="#" data-toggle="modal" data-target="#modaldemo2" class="nav-link @yield('Confirmed_order')">Confirmed order(All) </a></li> 
+       @else
+        <li class="nav-item1"><a href="{{ route('confirm-order_cable') }}" class="nav-link @yield('Confirmed_orderc')">Confirmed order (Cable) </a></li>
+    @endif
         </ul>
 
        <!-- <a href="{{ url('/') }}" target="_blank" class="sl-menu-link ">
@@ -220,6 +225,16 @@ $(function() {
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
          @endif
+
+         <a href="{{ route('payment_1') }}"  class="sl-menu-link @yield('customer_pay')">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Customer Pay</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+
+
+
          <a href="{{ route('viewcustomer') }}"  class="sl-menu-link @yield('customer_profile')">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>

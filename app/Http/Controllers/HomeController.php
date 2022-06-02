@@ -8,6 +8,7 @@ use App\Models\Comment;
 use Auth;
 use DB;
 use Carbon\Carbon;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -93,6 +94,8 @@ class HomeController extends Controller
         $monthName = $date->format('F');
         $year = $date->format('Y');                                           
 		
-		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year'));
+        $products = Product::orderBy('id','DESC')->get();
+
+		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','products'));
     }
 }

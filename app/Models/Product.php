@@ -14,5 +14,7 @@ class Product extends Model
 	'product_quantity',		
 	'price',	
 	'status',
+	'lowquantity_alart',
+	'is_cable',
     ];
 }

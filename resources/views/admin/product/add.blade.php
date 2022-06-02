@@ -43,6 +43,18 @@
                     @enderror
                   </div>
                 </div><!-- col-4 -->
+
+
+                 <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label">Is Cable: <span class="tx-danger">*</span></label>
+                   <label class="ckbox">
+                <input type="checkbox" name="is_cable"><span>If it's cable pls checked</span>
+              </label>
+                  </div>
+                </div>
+
+
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label">Price: <span class="tx-danger">*</span></label>
@@ -58,6 +70,16 @@
                       <label class="form-control-label">Quantity: <span class="tx-danger">*</span></label>
                       <input class="form-control" type="number" name="product_quantity" value="{{ old('product_quantity') }}" placeholder="product quantity">
                       @error('product_quantity')
+                      <strong class="text-danger">{{ $message }}</strong> 
+                      @enderror
+                    </div>
+                  </div><!-- col-4 -->
+
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Low Quantity: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" name="lowquantity_alart" value="{{ old('lowquantity_alart') }}" placeholder="low Quantity">
+                      @error('lowquantity_alart')
                       <strong class="text-danger">{{ $message }}</strong> 
                       @enderror
                     </div>

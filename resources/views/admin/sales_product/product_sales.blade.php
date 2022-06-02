@@ -246,6 +246,7 @@ $(function() {
                         <input type="hidden" value="1" name="quantity">
 						<input type="hidden" value="admin/selas_pro/{{ $customer->id }}" name="ad">
                         <input type="hidden" value="{{$invoice}}" name="invoice">
+						 <input type="hidden" value="{{$item->is_cable}}" name="is_cable">
 						  <button type="submit" class="btn btn-warning "><i class="fa fa-shopping-cart"></i></button>
 						    
 						   

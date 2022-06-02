@@ -78,8 +78,8 @@
               <div class="d-flex align-items-center">
                
                 <div class="mg-l-15">
-                  <p class="tx-uppercase tx-11 tx-spacing-1 tx-medium tx-gray-600 mg-b-8">Monthly </p>
-                  <h6 class="tx-bold tx-lato tx-inverse mg-b-0">&#2547; 4530.00</h6>
+                  <p class="tx-uppercase tx-11 tx-spacing-1 tx-medium tx-gray-600 mg-b-8">Payment of {{$monthName}}</p>
+                  <h6 class="tx-bold tx-lato tx-inverse mg-b-0">&#2547; {{$Total_payment_m}}</h6>
                 </div>
               </div>
             </div><!-- card -->
