@@ -130,3 +130,5 @@ Route::get('admin/customer-list',[App\Http\Controllers\ProductController::class,
 Route::get('customer-delete/{id}',[App\Http\Controllers\ProductController::class, 'delete_customer'])->name('delete_customer');
 //customer/view_profile/'.$newcustomer->id
 Route::get('customer/view_profile/{id}',[App\Http\Controllers\ProductController::class, 'view_profile_customer'])->name('view_profile_customer');
+//product_return
+Route::get('product/return',[App\Http\Controllers\ProductController::class, 'product_return'])->name('product_return');

@@ -210,7 +210,7 @@ $(function() {
         </a><!-- sl-menu-link -->
 		  @endif
            @if(Auth::user()->roll==1)
-        <a href="#"  class="sl-menu-link @yield('orders')">
+        <a href="{{ route('product_return') }}"  class="sl-menu-link @yield('product_return')">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Product return</span>

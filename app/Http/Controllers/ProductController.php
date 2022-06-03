@@ -1017,5 +1017,15 @@ class ProductController extends Controller
 		$sales_order=sales_order::where('cid',$id)->get();
 		 return view('admin.customer.viewprofile',compact('customer','payment','sales_order','Total_payment_m','monthName'));
 	}
+	//product_return
+	public function product_return()
+	{
+		$date = Carbon::now();
+		$monthName = $date->format('F');
+		
+		$ReturnProdict=ReturnProdict::all();
+		
+		 return view('admin.product.product_return',compact('ReturnProdict','monthName','date'));
+	}
 	
 }
