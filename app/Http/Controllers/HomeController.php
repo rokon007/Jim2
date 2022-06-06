@@ -185,9 +185,10 @@ class HomeController extends Controller
          //    ->orderBy('id','DESC')
          //    ->get();
           $cullection_Bydate = DB::table('payments')
-          ->select( DB::raw("(sum(payment)) as total_payment"), DB::raw("(DATE_FORMAT(created_at, '%d-%m-%Y')) as my_date"))
-                 ->orderBy('created_at')
-                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d-%m-%Y')"))
+
+          ->select( DB::raw("(sum(payment)) as total_payment"), DB::raw("(DATE_TRUNC(date,'created_at')) as my_date"))
+                
+                ->groupBy(DB::raw("DATE_TRUNC(date,'created_at')"))
              ->get();
             //SR button
             $srbutton=DB::table('users')->where('roll',2)->get();
