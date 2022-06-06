@@ -162,16 +162,16 @@ class HomeController extends Controller
 		
         $products = Product::orderBy('id','DESC')->get();
         
-        $low_qty_count= Product::where('product_quantity', '<' ,'lowquantity_alart')
+        $low_qty_count= Product::where('product_quantity','<=','lowquantity_alart')
         
         ->count();
          $todays_cullection = DB::table('payments')
           ->orderBy('id','DESC')
-         ->whereDate('created_at', '=', date('Y-m-d'))
+         ->whereDate('created_at','=', date('Y-m-d'))
          ->get();
          $todays_cullection_count=DB::table('payments')
           ->orderBy('id','DESC')
-         ->whereDate('created_at', '=', date('Y-m-d'))
+         ->whereDate('created_at','=', date('Y-m-d'))
          ->sum('payment'); 
   //        $cullection_Bydate=DB::table('payments')
 
