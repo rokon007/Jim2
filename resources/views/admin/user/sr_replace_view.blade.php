@@ -34,7 +34,6 @@
                     <option value="">Replace with<option>
                     @foreach ($all_sr as $newsr)
 					 <option value="{{$newsr->name}}">
-					 	<img src="{{ asset('upload/admin/'.$newsr->image) }}" class="wd-10 rounded-circle" alt="Image">
 					 	{{$newsr->name}}
 					 	<option>
 					@endforeach 
