@@ -9,7 +9,8 @@ use Auth;
 use DB;
 use Carbon\Carbon;
 use App\Models\Product;
-use\Models\Payment;
+use App\Models\Payment;
+
 
 class HomeController extends Controller
 {
@@ -86,7 +87,7 @@ class HomeController extends Controller
             ->groupBy('invoice','shop_name','customer_phone','created_by')
             ->where('status',NULL)
              ->whereDate('created_at', '=', date('Y-m-d'))
-            ->orderBy('invoice')
+            ->orderBy('id','DESC')
              ->get(); 
         $confermorder_today_count=DB::table('sales_orders')
             ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),'shop_name','customer_phone','created_by')
@@ -99,7 +100,7 @@ class HomeController extends Controller
             ->groupBy('invoice','shop_name','customer_phone','created_by')
             ->where('status',1)
              ->whereDate('created_at', '=', date('Y-m-d'))
-            ->orderBy('invoice')
+            ->orderBy('id','DESC')
              ->get();              
              
         $order_currentMonth=DB::table('sales_orders')             
