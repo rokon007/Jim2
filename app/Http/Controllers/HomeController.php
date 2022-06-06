@@ -67,10 +67,10 @@ class HomeController extends Controller
     {
          $all_order = DB::table('sales_orders')           
             
-            ->select('product_code',DB::raw('SUM(qty) as total_qty'),'product')
-            ->groupBy('product_code','product')
+            ->select('id','product_code',DB::raw('SUM(qty) as total_qty'),'product')
+            ->groupBy('id','product_code','product')
             ->where('status',NULL)
-           // ->orderBy('id','DESC')
+            ->orderBy('id','DESC')
              ->get();
 
         $order_today = DB::table('sales_orders')             
