@@ -67,10 +67,10 @@ class HomeController extends Controller
     {
          $all_order = DB::table('sales_orders')           
             
-            ->select('id','product_code',DB::raw('SUM(qty) as total_qty'),'product')
-            ->groupBy('id','product_code','product')
+            ->select('product_code',DB::raw('SUM(qty) as total_qty'),'product')
+            ->groupBy('product_code','product')
             ->where('status',NULL)
-            ->orderBy('id','DESC')
+           // ->orderBy('id','DESC')
              ->get();
 
         $order_today = DB::table('sales_orders')             
@@ -87,7 +87,7 @@ class HomeController extends Controller
             ->groupBy('invoice','shop_name','customer_phone','created_by')
             ->where('status',NULL)
              ->whereDate('created_at', '=', date('Y-m-d'))
-            ->orderBy('id','DESC')
+           // ->orderBy('id','DESC')
              ->get(); 
         $confermorder_today_count=DB::table('sales_orders')
             ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),'shop_name','customer_phone','created_by')
@@ -100,7 +100,7 @@ class HomeController extends Controller
             ->groupBy('invoice','shop_name','customer_phone','created_by')
             ->where('status',1)
              ->whereDate('created_at', '=', date('Y-m-d'))
-            ->orderBy('id','DESC')
+            //->orderBy('id','DESC')
              ->get();              
              
         $order_currentMonth=DB::table('sales_orders')             
