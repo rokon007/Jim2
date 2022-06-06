@@ -151,6 +151,7 @@ function myFunction() {
 </script>
 
 <?php $customers = Session::get('customers');
+      $srname=Session::get('srname');
         if($customers)
         {
 			?>
@@ -168,10 +169,12 @@ function myFunction() {
           <div class="modal-body pd-20">
           	<form action="{{ url('payment/save/') }}" method="POST">
 		@csrf
+            
           	<input type="hidden" name="total_pay" id="total_pay" value="{{$customers->total_paid}}">
           	<input type="hidden" name="shop_name" id="shop_name" value="{{$customers->shop_name}}">
           	<input type="hidden" name="cid" id="cid" value="{{$customers->id}}">
           	<input type="hidden" name="customer_phone" id="customer_phone" value="{{$customers->customer_phone}}">
+            <input type="hidden" name="sr" id="sr" value="{{$customers->sr}}">
             <div class="row">
             	<div class="col-lg-4">
                  <div class="form-group">

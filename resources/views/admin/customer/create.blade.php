@@ -62,7 +62,7 @@
                   <div class="form-group">
                     <label class="form-control-label">Customer Name: <span class="tx-danger">*</span></label>
                     <input class="form-control" type="text" name="customer_name" required placeholder="Customer Name">
-                    @error('product_code')
+                    @error('customer_name')
                     <strong class="text-danger">{{ $message }}</strong> 
                     @enderror
                   </div>
@@ -71,7 +71,7 @@
                   <div class="form-group">
                     <label class="form-control-label">Customer address: <span class="tx-danger">*</span></label>
                     <input class="form-control" type="text" name="customer_adderss" required placeholder="Customer address">
-                    @error('price')
+                    @error('customer_adderss')
                     <strong class="text-danger">{{ $message }}</strong> 
                     @enderror
                   </div>
@@ -81,7 +81,7 @@
                     <div class="form-group">
                       <label class="form-control-label">Customer Phone: <span class="tx-danger">*</span></label>
                       <input class="form-control" type="number" name="customer_phone" required placeholder="Customer Phone">
-                      @error('product_quantity')
+                      @error('customer_phone')
                       <strong class="text-danger">{{ $message }}</strong> 
                       @enderror
                     </div>
@@ -91,7 +91,7 @@
                     <div class="form-group">
                       <label class="form-control-label">Total Amount: <span class="tx-danger">*</span></label>
                       <input class="form-control" type="number" name="total_amount" required placeholder="Total Amount">
-                      @error('product_quantity')
+                      @error('total_amount')
                       <strong class="text-danger">{{ $message }}</strong> 
                       @enderror
                     </div>
@@ -102,7 +102,7 @@
                     <div class="form-group">
                       <label class="form-control-label">Total Paid: <span class="tx-danger">*</span></label>
                       <input class="form-control" type="number" name="total_paid" required placeholder="Total Paid">
-                      @error('product_quantity')
+                      @error('total_paid')
                       <strong class="text-danger">{{ $message }}</strong> 
                       @enderror
                     </div>
@@ -111,7 +111,21 @@
                     <div class="form-group">
                       <label class="form-control-label">Total Due: <span class="tx-danger">*</span></label>
                       <input class="form-control" type="number" name="total_deu" required placeholder="Total Due">
-                      @error('product_quantity')
+                      @error('total_deu')
+                      <strong class="text-danger">{{ $message }}</strong> 
+                      @enderror
+                    </div>
+                  </div>
+				   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">SR: <span class="tx-danger">*</span></label>
+                     <select class="form-control" name="sr" required>
+					 <option value="">Select SR name</option>
+					@foreach ($sr as $newsr)
+					 <option value="{{$newsr->name}}">{{$newsr->name}}<option>
+					@endforeach 
+					 </select>
+                      @error('sr')
                       <strong class="text-danger">{{ $message }}</strong> 
                       @enderror
                     </div>

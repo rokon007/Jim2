@@ -121,6 +121,8 @@ Route::get('/time',[App\Http\Controllers\ProductController::class, 'timeshow'])-
 Route::get('update-coment/{id}',[App\Http\Controllers\ProductController::class, 'delete_comment'])->name('delete_comment');
 //delete_User
 Route::get('user-delete/{id}',[App\Http\Controllers\ProductController::class, 'delete_User'])->name('delete_User');
+///today_order_prnpriview
+Route::get('order/todayorder-prnpriview',[App\Http\Controllers\ProductController::class, 'today_order_prnpriview'])->name('today_order_prnpriview');
 
 
 
@@ -132,3 +134,7 @@ Route::get('customer-delete/{id}',[App\Http\Controllers\ProductController::class
 Route::get('customer/view_profile/{id}',[App\Http\Controllers\ProductController::class, 'view_profile_customer'])->name('view_profile_customer');
 //product_return
 Route::get('product/return',[App\Http\Controllers\ProductController::class, 'product_return'])->name('product_return');
+//url('sr-detels/'.$button->id) 
+Route::get('sr-detels/{sr}/{image}',[App\Http\Controllers\HomeController::class, 'sr_detels'])->name('sr_detels');
+//sr-set/'.$newuser->id
+Route::get('sr-set/{id}',[App\Http\Controllers\ProductController::class, 'sr_set'])->name('sr_set');

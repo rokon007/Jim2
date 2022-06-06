@@ -11,14 +11,14 @@
 <script type="text/javascript">
   $(document).ready(function () {
     // Setup - add a text input to each footer cell
-    $('#example tfoot th').each(function () {
+    $('#example1 tfoot th').each(function () {
         var title = $(this).text();
         $(this).html('<input type="text" placeholder="Search ' + title + '" />');
         // $(this).html('<select><option value="{!! date('D, d, M, Y', strtotime($date)) !!}">{!! date('D, d, M, Y', strtotime($date)) !!}</option><option value="">All</option><option></select>');
     });
  
     // DataTable
-    var table = $('#example').DataTable({
+    var table = $('#example1').DataTable({
         initComplete: function () {
             // Apply the search
             this.api()
@@ -53,7 +53,7 @@
 <div class="card pd-20 pd-sm-40">
   <h6 class="card-body-title">Products Return</h6>    
     <div class="table-wrapper">
-    <table id="example" class="display" style="width:100%">
+    <table id="example1" class="display" style="width:100%">
     	 
         <thead>
             <tr>

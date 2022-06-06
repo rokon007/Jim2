@@ -9,6 +9,7 @@ use Auth;
 use DB;
 use Carbon\Carbon;
 use App\Models\Product;
+use\Models\Payment;
 
 class HomeController extends Controller
 {
@@ -31,11 +32,75 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    //sr_detels
+    public function sr_detels($sr,$image)
+    {
+         $sr_order = DB::table('sales_orders')                    
+            ->select('sales_orders.invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),'sales_orders.shop_name','sales_orders.customer_phone','sales_orders.created_at')
+            ->groupBy('sales_orders.invoice','sales_orders.shop_name','sales_orders.customer_phone','sales_orders.created_at')
+            //->where('sales_orders.status',1) 
+            ->where('sales_orders.created_by',$sr)           
+            ->orderBy('sales_orders.id','DESC')
+             ->get();
+        //Sr details
+        $sr_quary=DB::table('users')->where('name',$sr)->first();
+        $usersr=$sr;
+        $img=$image;
+        $todays_srcullection_count=DB::table('payments')
+          ->orderBy('id','DESC')
+         ->whereDate('created_at', '=', date('Y-m-d'))
+         ->where('sr','=',$sr)
+         ->sum('payment'); 
+         //todays cullection
+          $monthly_sr_cullection = DB::table('payments')
+          ->select( DB::raw("(sum(payment)) as total_payment"), DB::raw("(DATE_FORMAT(created_at, '%d-%m-%Y')) as my_date"))
+                
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d-%m-%Y')"))
+             ->whereMonth('created_at', date('m')) 
+             ->where('sr',$sr)   
+             ->get();
+          return redirect()->back()          
+          ->with(['view_div' => 'view_div','todays_srcullection_count' => $todays_srcullection_count,'usersr'=>$usersr,'img'=>$img,'monthly_sr_cullection'=>$monthly_sr_cullection,'sr_quary'=>$sr_quary,'sr_order'=>$sr_order]);
+    }
 	 public function admin_index()
     {
+         $all_order = DB::table('sales_orders')           
+            
+            ->select('product_code',DB::raw('SUM(qty) as total_qty'),'product')
+            ->groupBy('product_code','product')
+            ->where('status',NULL)
+            ->orderBy('id','DESC')
+             ->get();
+
         $order_today = DB::table('sales_orders')             
             ->whereDate('created_at', '=', date('Y-m-d'))            
              ->count('invoice');  
+        $sales_order_today_count=DB::table('sales_orders')
+            ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),'shop_name','customer_phone','created_by')
+            ->groupBy('invoice','shop_name','customer_phone','created_by')
+            ->where('status',NULL)
+             ->whereDate('created_at', '=', date('Y-m-d'))
+            ->count('shop_name');   
+        $sales_order_today = DB::table('sales_orders')
+            ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),'shop_name','customer_phone','created_by')
+            ->groupBy('invoice','shop_name','customer_phone','created_by')
+            ->where('status',NULL)
+             ->whereDate('created_at', '=', date('Y-m-d'))
+            ->orderBy('invoice')
+             ->get(); 
+        $confermorder_today_count=DB::table('sales_orders')
+            ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),'shop_name','customer_phone','created_by')
+            ->groupBy('invoice','shop_name','customer_phone','created_by')
+            ->where('status',1)
+             ->whereDate('created_at', '=', date('Y-m-d'))
+            ->count('invoice');
+        $confermorder_today = DB::table('sales_orders')
+            ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),'shop_name','customer_phone','created_by')
+            ->groupBy('invoice','shop_name','customer_phone','created_by')
+            ->where('status',1)
+             ->whereDate('created_at', '=', date('Y-m-d'))
+            ->orderBy('invoice')
+             ->get();              
              
         $order_currentMonth=DB::table('sales_orders')             
             ->whereMonth('created_at', date('m'))            
@@ -95,7 +160,35 @@ class HomeController extends Controller
         $year = $date->format('Y');                                           
 		
         $products = Product::orderBy('id','DESC')->get();
+        
+        $low_qty_count= Product::orderBy('id','DESC')
+        ->where('product_quantity', '<=' ,'lowquantity_alart')
+        ->count();
+         $todays_cullection = DB::table('payments')
+          ->orderBy('id','DESC')
+         ->whereDate('created_at', '=', date('Y-m-d'))
+         ->get();
+         $todays_cullection_count=DB::table('payments')
+          ->orderBy('id','DESC')
+         ->whereDate('created_at', '=', date('Y-m-d'))
+         ->sum('payment'); 
+  //        $cullection_Bydate=DB::table('payments')
 
-		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','products'));
+  // ->select('*',DB::raw('DATE(created_at) as date'),DB::raw('SUM(payment) as total_payment'))
+  // ->get()->groupBy('date');
+
+
+         // ->select('created_at',DB::raw('SUM(payment) as total_payment'))
+         //    ->groupBy('created_at')
+         //    ->orderBy('id','DESC')
+         //    ->get();
+          $cullection_Bydate = DB::table('payments')
+          ->select( DB::raw("(sum(payment)) as total_payment"), DB::raw("(DATE_FORMAT(created_at, '%d-%m-%Y')) as my_date"))
+                 ->orderBy('created_at')
+                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d-%m-%Y')"))
+             ->get();
+            //SR button
+            $srbutton=DB::table('users')->where('roll',2)->get();
+		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','products','sales_order_today_count','sales_order_today','low_qty_count','confermorder_today_count','confermorder_today','todays_cullection','todays_cullection_count','cullection_Bydate','srbutton','all_order'));
     }
 }

@@ -187,6 +187,9 @@ $(function() {
 				</form>
 				  </td>
 				   </tr>
+           <form action="{{ url('cart/comfermsave1/') }}" method="POST">
+    @csrf
+    <input type="hidden" name="created_by" value="{{ $item->created_by }}">
 			 @endforeach
 			<?php
 			 
@@ -224,8 +227,8 @@ $(function() {
 		}?>	
 		</tr>
 		<tr>
-		<form action="{{ url('cart/comfermsave1/') }}" method="POST">
-		@csrf
+		<!-- <form action="{{ url('cart/comfermsave1/') }}" method="POST">
+		@csrf -->
 		<th colspan="4"><strong style="font-size: 12px; ">Payment:</strong></th>
 				<td colspan="1"><strong style="font-size: 12px; ">
 				<input style="text-align: center;width:100px;" onkeyup="myFunction();" type="number" name="payment" id="payment" value="0" >

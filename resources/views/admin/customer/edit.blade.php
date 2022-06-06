@@ -117,6 +117,20 @@
                       @enderror
                     </div>
                   </div>
+				    <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">SR: <span class="tx-danger">*</span></label>
+                     <select class="form-control" name="sr" required>
+					 <option value="{{ $customer->sr }}">{{ $customer->sr }}</option>
+					@foreach ($sr as $newsr)
+					 <option value="{{$newsr->name}}">{{$newsr->name}}<option>
+					@endforeach 
+					 </select>
+                      @error('sr')
+                      <strong class="text-danger">{{ $message }}</strong> 
+                      @enderror
+                    </div>
+                  </div>
 
 
                  
@@ -124,7 +138,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label">Customer Image: <span class="tx-danger">*</span></label>
-                      <input class="form-control"  name="image"  type="file" required >
+                      <input class="form-control"  name="image"  type="file"  >
                       @error('image_one')
                       <strong class="text-danger">{{ $message }}</strong> 
                       @enderror

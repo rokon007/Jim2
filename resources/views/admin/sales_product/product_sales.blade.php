@@ -178,6 +178,7 @@ $(function() {
 				
             <div class="sl-pagebody">
               <div class="card pd-20 pd-sm-40">
+                <div class="table-wrapper">
 			  <?php $cart_order = Session::get('cart_order');
         if($cart_order)
         {
@@ -198,7 +199,7 @@ $(function() {
 		}
             ?>
            
-                <div class="table-wrapper">
+                
                   <table id="datatable1" class="table display responsive nowrap">
                      <thead>
                                 <tr>

@@ -23,6 +23,7 @@ class CreateCustomerInfosTable extends Migration
 			$table->decimal('total_amount', 10, 2);
 			$table->decimal('total_paid', 10, 2);
 			$table->decimal('total_deu', 10, 2);
+			$table->string('sr')->nullable();
             $table->string('created_by');
             $table->timestamps();
         });

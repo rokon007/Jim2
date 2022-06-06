@@ -21,6 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
 			$table->string('roll')->nullable();
 			$table->string('mobile')->nullable();
+			$table->decimal('total_amount', 10, 2)->default(0);
+			$table->decimal('total_paid', 10, 2)->default(0);
+			$table->decimal('total_deu', 10, 2)->default(0);
+			$table->decimal('total_personalcollection', 10, 2)->default(0);
+			$table->string('replaced_by')->nullable();
 			$table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();

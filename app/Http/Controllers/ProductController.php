@@ -254,7 +254,8 @@ class ProductController extends Controller
 	//========================================================CustomerController==============
 	 public function create()
     {
-        return view('admin.customer.create');
+		 $sr=User::where('roll',2)->get();
+        return view('admin.customer.create',compact('sr'));
     }
 
 
@@ -280,7 +281,8 @@ class ProductController extends Controller
         
         $customer->total_paid =$request->total_paid;
         $customer->total_deu =$request->total_deu;
-        $customer->created_by ='Admin';
+		 $customer->sr =$request->sr;
+        $customer->created_by =Auth::user()->name; 
         $customer->save();
 		
     
@@ -300,8 +302,9 @@ class ProductController extends Controller
     public function edit($customer)
     {
          $customer = CustomerInfo::find($customer);
+		 $sr=User::where('roll',2)->get();
        
-        return view('admin.customer.edit',compact('customer'));
+        return view('admin.customer.edit',compact('customer','sr'));
     }
 
 
@@ -334,6 +337,7 @@ class ProductController extends Controller
         
         $customer->total_paid =$request->total_paid;
         $customer->total_deu =$request->total_deu;
+		$customer->sr =$request->sr;
         $customer->created_by =Auth::user()->name;
         $customer->update();
 
@@ -459,7 +463,7 @@ class ProductController extends Controller
         $comments->save();
 		
         
-           event(new Formsubmited("Order create by  $w.Invoice $invoice"));
+          event(new Formsubmited("Order create by  $w.Invoice $invoice"));
 		   
 		  $invoice_key->delete();  
 		return redirect()->route('index-customers')->with('message',"Order create by  $w.Invoice $invoice");
@@ -541,6 +545,7 @@ class ProductController extends Controller
 	//comfermsave1
 	public function comfermsave1(Request $request)
 	{
+		$SR=$request->created_by;
 		//insert in to payments table
 		$payment = new Payment();
 		$payment->invoice =$request->invoice;
@@ -550,7 +555,8 @@ class ProductController extends Controller
         $payment->Total =$request->Total;       
         $payment->payment =$request->payment;
         $payment->due =$request->due;
-        $payment->created_by = Auth::user()->id;    
+		$payment->sr =$SR;
+        $payment->created_by =Auth::user()->name; 
         $payment->save();
 		
 		//update cudtomerinfos table
@@ -570,6 +576,23 @@ class ProductController extends Controller
 		 $Update_CustomerInfo->total_deu =$new_total_deu;
          $Update_CustomerInfo->update();
 		 
+		 //update users tb for SR amount 
+		 $sr_Info=DB::table('users')->where('name',$SR)->first();
+		 $sr_total_amount=$sr_Info->total_amount;
+		 $sr_total_paid=$sr_Info->total_paid;
+		 $sr_total_deu=$sr_Info->total_deu;
+		
+		 
+		 $sr_new_total_amount= $sr_total_amount+$request->Total;
+		 $sr_new_total_paid= $sr_total_paid+$request->payment;
+		 $sr_new_total_deu= $sr_total_deu+$request->due;
+		 
+		 $Update_sr_amount = User::where('name',$SR);
+		 $Update_sr_amount->total_amount =$sr_new_total_amount;
+		 $Update_sr_amount->total_paid =$sr_new_total_paid;
+		 $Update_sr_amount->total_deu =$sr_new_total_deu;
+         $Update_sr_amount->update();
+		 
 		 //update sales_orders  table		
 		 sales_order::where('invoice',$request->invoice)->update((['status'=>1]));
 		 
@@ -584,7 +607,7 @@ class ProductController extends Controller
         $comments->save();
            
           
-           event(new Formsubmited("Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk"));
+          event(new Formsubmited("Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk"));
 
 
 		 return redirect()->back()->with('message',"Order comfermed by  $w from $shope_name. Total amount= $new_total_amount Tk,Paid= $new_total_paid Tk,Deu=  $new_total_deu Tk");
@@ -698,12 +721,14 @@ class ProductController extends Controller
 	//payment_modelview
 	public function payment_modelview($id)
 	{
+		 
 		  $customers= CustomerInfo::where('id',$id)->first(); 
 		   return redirect()->back()->with(['customers' => $customers,'view_cart' => 'view_cart']);		
 	}
 	//payment save
 	public function payment_save(Request $request)
 	{
+		$SR=$request->sr;
 		//insert in to payments table
 		$payment = new Payment();
 		$payment->invoice =mt_rand(10000000,99999999);
@@ -713,9 +738,41 @@ class ProductController extends Controller
         $payment->Total =$request->total_payment;       
         $payment->payment =$request->payment;
         $payment->due =$request->new_due;
-        $payment->created_by = Auth::user()->id;    
+        $payment->sr =$request->sr;
+        $payment->created_by =Auth::user()->name;  
         $payment->save();
 		
+		 //update users tb for SR amount 
+		 $sr_Info=DB::table('users')->where('name',$SR)->first();
+		 $sr_total_amount=$sr_Info->total_amount;
+		 $sr_total_paid=$sr_Info->total_paid;
+		 $sr_total_deu=$sr_Info->total_deu;
+		 $total_personalcollection=$sr_Info->total_personalcollection;
+		 
+		// $sr_new_total_amount= $sr_total_amount+$request->Total;
+		 $sr_new_total_paid= $sr_total_paid+$request->payment;
+		 $sr_new_total_deu= $sr_total_deu-$request->payment;
+		 $pcullection=$total_personalcollection+$request->payment;
+		  if($sr_new_total_deu<0){
+			  $srDue=0;
+		  }else{
+			   $srDue=$sr_new_total_deu;
+		  }
+		 if(Auth::user()->name==$SR){
+			 DB::table('users')
+              ->where('name',$SR)
+              ->update(['total_personalcollection' => $pcullection,
+			           'total_paid' => $sr_new_total_paid,
+					   'total_deu' => $srDue			  
+			  ]);
+		 
+		}else{
+			DB::table('users')
+              ->where('name',$SR)
+              ->update(['total_paid' => $sr_new_total_paid,
+					   'total_deu' => $srDue			           			  
+			  ]);
+		}
 		//update customerinfo
 		 $Update_CustomerInfo = CustomerInfo::find($request->cid);
 		// $Update_CustomerInfo->total_amount =$request->total_payment; 
@@ -736,7 +793,7 @@ class ProductController extends Controller
         $comments->save();
            
           
-           event(new Formsubmited("Recive Payment by  $w from $shope_name.Recive amount= $recive_amount Tk"));
+          event(new Formsubmited("Recive Payment by  $w from $shope_name.Recive amount= $recive_amount Tk"));
 
 
 		 return redirect()->back()->with('message',"Recive Payment by  $w from $shope_name.Recive amount= $recive_amount Tk");
@@ -1025,7 +1082,27 @@ class ProductController extends Controller
 		
 		$ReturnProdict=ReturnProdict::all();
 		
-		 return view('admin.product.product_return',compact('ReturnProdict','monthName','date'));
+		 return view('admin.product.product_return',compact('ReturnProdict','date'));
 	}
+	//today_order_prnpriview
+	public function today_order_prnpriview()
+	{
+		$all_order = DB::table('sales_orders')           
+            
+            ->select('product_code',DB::raw('SUM(qty) as total_qty'),'product')
+            ->groupBy('product_code','product')
+            ->where('status',NULL)            
+             ->get();
+		
+		 return view('admin.product.print_todatorder',compact('all_order'));
+	}
+	//sr_set
+	public function sr_set($id)
+	{
+		$all_sr = DB::table('users')->where('roll',2)->get();           
+        $sr=DB::table('users')->where('id',$id)->first();             	
+		return view('admin.user.sr_replace_view',compact('all_sr','sr'));
+	}
+	
 	
 }

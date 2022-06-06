@@ -47,7 +47,7 @@
    <script src="{{ asset('backend') }}/push/push.min.js"></script> 
  <script src="{{ asset('push.js') }}"></script> 
 	  <!-- <script src="push.js"></script> -->
- 
+ @yield('rokonlink')
 <!--============ Pusher ===========-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://js.pusher.com/7.0/pusher.min.js"></script>

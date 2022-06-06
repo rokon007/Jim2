@@ -78,8 +78,11 @@
 					<img src="{{ asset('upload/admin/'.$newuser->image) }}" class="wd-36 rounded-circle" alt="Image">
                     </td>
 					<td>
-					<a href="" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-                    <a href="{{ url('user-delete/'.$newuser->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are You Shure To Delete')"><i class="fa fa-trash"></i></a>
+					@if($newuser->roll==2)
+					<a href="{{ url('sr-set/'.$newuser->id) }}"  title="Replace" class="btn btn-outline-warning btn-icon rounded-circle mg-r-5"><div><i class="fa fa-stack-overflow"></i></div></a>
+				    @endif
+					<a href=""  title="Edit" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                    <a title="Delete"  href="{{ url('user-delete/'.$newuser->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are You Shure To Delete')"><i class="fa fa-trash"></i></a>
                     </td>
                       </tr>
                       @endforeach
