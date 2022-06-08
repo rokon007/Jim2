@@ -673,6 +673,15 @@
                              keys: true
                           } );
                         } );
+						
+						$('#srmonth_tb').DataTable( {
+    drawCallback: function () {
+      var api = this.api();
+      $( api.table().footer() ).html(
+        api.column( 4, {page:'current'} ).data().sum()
+      );
+    }
+  } );
                   </script>
 
           <div class="table-wrapper">
@@ -694,6 +703,12 @@
             @endforeach 
             <?php } ?> 
                      </tbody>
+					  <tfoot>
+                             <tr>
+            
+                             </tr>
+                        </tfoot>
+
                   </table>   
                 </div><!--table-wrapper--> 
 
