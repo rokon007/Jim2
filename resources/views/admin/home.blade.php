@@ -377,11 +377,12 @@
                                document.getElementById('commission').value = Commission; 						
                                       }                      
                                }
-							var Total_cab = document.getElementById('t_amount_cable').value;
-                            var percentage = document.getElementById('percentage_cable').value;
-						    var x = parseFloat(Total_cab) * parseFloat(Percentage_cab);							
-                            var Commission_cab = (x/ 100).toFixed(2);
-                            if (!isNaN(Commission_cab)) {
+					function cableFunction(){
+                           var Total_cab = document.getElementById('t_amount_cable').value;
+                           var percentage = document.getElementById('percentage_cable').value;
+						   var x = parseFloat(Total_cab) * parseFloat(Percentage_cab);							
+                           var Commission_cab = (x/ 100).toFixed(2);
+                           if (!isNaN(Commission_cab)) {
                                document.getElementById('commission_cable').value = Commission_cab; 						
                                       }		  
                               }   
@@ -468,7 +469,7 @@
     } );
 } );
 </script>
-                    
+                   
 
               <div class="card pd-20 pd-sm-40">
             <h6 class="card-body-title">{{$monthName}}'s Cable Order<br>Total Amount = {{$cable_totalamount_month}}</h6>
@@ -484,7 +485,7 @@
 		   <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label">Percentage: <span class="tx-danger">*</span></label>
-                      <input class="form-control" type="number" onkeyup="percentageFunction();"value="0" id="percentage_cable">                    
+                      <input class="form-control" type="number" onkeyup="cableFunction();" value="0" id="percentage_cable">                    
                     </div>
                   </div>
 		  
