@@ -88,6 +88,34 @@ class HomeController extends Controller
             ->where('status',NULL)
            // ->orderBy('id','DESC')
              ->get();
+			 //cable
+			  $cable_order_month = DB::table('sales_orders')
+             ->where('status',1)
+             ->where('is_cable',1)
+			 ->whereMonth('created_at', '=', date('m'))          
+             ->orderBy('id','DESC')
+             ->get(); 
+			 
+			  $cable_totalamount_month = DB::table('sales_orders')
+             ->where('status',1)
+             ->where('is_cable',1)
+			 ->whereMonth('created_at', '=', date('m'))          
+             ->orderBy('id','DESC')
+             ->sum('amount'); 
+		//Other
+			  $other_order_month = DB::table('sales_orders')
+             ->where('status',1)
+             ->where('is_cable',0)
+			 ->whereMonth('created_at', '=', date('m'))          
+             ->orderBy('id','DESC')
+             ->get();
+			 
+             $other_totalamount_month = DB::table('sales_orders')
+             ->where('status',1)
+             ->where('is_cable',1)
+			 ->whereMonth('created_at', '=', date('m'))          
+             ->orderBy('id','DESC')
+             ->sum('amount');			 
 
         $order_today = DB::table('sales_orders')             
             ->whereDate('created_at', '=', date('Y-m-d'))            

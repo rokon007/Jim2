@@ -1,3 +1,40 @@
+   function div_cableFunction() {
+  var x = document.getElementById("div_cable");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    div_today.style.display="none";
+    div_year.style.display="none";
+    div_currentmonth.style.display="none";
+    div_dassboard.style.display="none";
+    div_total.style.display="none";
+    div_todayConfermorder.style.display="none"; 
+    div_todaysCullection.style.display="none";
+    div_sr.style.display="none";
+	div_order.style.display="none";
+  } else {
+    x.style.display = "none";
+    div_dassboard.style.display="block";
+  }
+} 
+   function div_otherFunction() {
+  var x = document.getElementById("div_other");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    div_today.style.display="none";
+    div_year.style.display="none";
+    div_currentmonth.style.display="none";
+    div_dassboard.style.display="none";
+    div_total.style.display="none";
+    div_todayConfermorder.style.display="none"; 
+    div_todaysCullection.style.display="none";
+    div_sr.style.display="none";
+	div_order.style.display="none";
+	div_cable.style.display="none";
+  } else {
+    x.style.display = "none";
+    div_dassboard.style.display="block";
+  }
+} 
   function div_orderFunction() {
   var x = document.getElementById("div_order");
   if (x.style.display === "none") {
@@ -10,6 +47,8 @@
     div_todayConfermorder.style.display="none"; 
     div_todaysCullection.style.display="none";
     div_sr.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
     div_dassboard.style.display="block";
@@ -29,6 +68,8 @@
     div_todaysCullection.style.display="none";
     div_sr.style.display="none";
     div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
     div_dassboard.style.display="block";
@@ -49,6 +90,8 @@
     div_todaysCullection.style.display="none";
     div_sr.style.display="none"; 
     div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -66,6 +109,8 @@ function div_currentmonthFunction() {
     div_todaysCullection.style.display="none";
     div_sr.style.display="none";
     div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -82,6 +127,8 @@ function div_yearFunction() {
     div_todaysCullection.style.display="none"; 
     div_sr.style.display="none";
     div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -98,6 +145,8 @@ function div_totalFunction() {
     div_todaysCullection.style.display="none"; 
     div_sr.style.display="none";
     div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -106,15 +155,17 @@ function div_totalFunction() {
 function Profile() {
   var x = document.getElementById("div_dassboard");
   if (x.style.display === "none") {
-    x.style.display = "block";
-    div_year.style.display="none";
-    div_lowqty.style.display="none"; 
-	  div_currentmonth.style.display="none";
-    div_total.style.display="none";
-    div_todayConfermorder.style.display="none";
+     x.style.display = "block";
+     div_year.style.display="none";
+     div_lowqty.style.display="none"; 
+	 div_currentmonth.style.display="none";
+     div_total.style.display="none";
+     div_todayConfermorder.style.display="none";
      div_todaysCullection.style.display="none";
      div_sr.style.display="none";
-     div_order.style.display="none"; 
+     div_order.style.display="none";
+     div_other.style.display="none";
+     div_cable.style.display="none";	 
 	
   } else {
     x.style.display = "none";
@@ -136,6 +187,8 @@ function div_todayConfermorderFunction() {
     div_todaysCullection.style.display="none";
     div_sr.style.display="none";
     div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -155,6 +208,8 @@ function todaysCullectionFunction() {
     div_todayConfermorder.style.display="none";
     div_sr.style.display="none";
     div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -174,6 +229,8 @@ function div_srFunction() {
     div_todayConfermorder.style.display="none";
     div_todaysCullection.style.display="none";
     div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -197,6 +254,8 @@ function sr_monthFunction() {
     div_todaysCullection.style.display="none";
     sr_today.style.display="none";
     div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
      sr_today.style.display="block";
@@ -218,6 +277,8 @@ function sr_todayFunction() {
     div_todaysCullection.style.display="none";
     sr_month.style.display="none";
     div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
   } else {
     x.style.display = "none";
      sr_today.style.display="block";

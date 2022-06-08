@@ -82,8 +82,8 @@
           </div><!-- card -->
 
                <br><button onclick="div_orderFunction()" class="btn btn-info btn-block mg-b-10">All Order</button>
-                <button onclick="div_orderFunction()" class="btn btn-info btn-block mg-b-10">Cable</button>
-                 <button onclick="div_orderFunction()" class="btn btn-info btn-block mg-b-10">Other Priducts</button>
+                <button onclick="div_cableFunction()" class="btn btn-info btn-block mg-b-10">Cable</button>
+                 <button onclick="div_otherFunction()" class="btn btn-info btn-block mg-b-10">Other Priducts</button>
 
         </div><!-- col-3 -->
 
@@ -358,6 +358,117 @@
                 </div><!-- table-wrapper -->
               </div><!-- card -->
         </div><!--div_lowqty-->
+		
+		<!-------------->
+     <div id="div_other" style="display: none;">
+        <script type="text/javascript">
+           $(document).ready(function() {
+    $('#other_tb').DataTable( {
+        keys: true
+    } );
+} );
+       </script>
+
+              <div class="card pd-20 pd-sm-40">
+            <h6 class="card-body-title">{{$monthName}}'s Other Order<br>Total Amount = {{$other_totalamount_month}}</h6>    
+                <div class="table-wrapper">
+                 <table id="other_tb" class="table table-bordered display" style="width:100%">
+                    <thead>
+                      <tr>
+					    <th class="wd-15p">Date</th>
+                        <th class="wd-15p">Invoice</th>
+                        <th class="wd-15p">Shope name</th>
+                        <th class="wd-15p">Mobile</th>
+                        <th class="wd-15p">Amount</th>
+                       <th class="wd-15p">Created by</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                   @foreach ($other_order_month as $order)
+                      <tr>
+					  <td>{{date('d-M-y',strtotime($cullection->my_date))}}</td>
+            <td>
+             <a class="submenu" href="#">                 
+                  <span class="hidden-tablet" style="color: blue">{{ $order->invoice}}</span></a>
+            </td>
+           
+            <td>
+            {{ $order->shop_name}} 
+            </td>
+             <td>
+            {{ $order->customer_phone}} 
+            </td>
+            <td> {{ $order->total_amount }} </td>
+             <td> {{ $order->created_by }} </td>
+             
+                      </tr>
+                      @endforeach
+                    </tbody>
+                    
+                  </table>
+                </div><!-- table-wrapper -->
+              </div><!-- card -->
+          
+      </div><!--div_other-->           
+    <!--------------> 
+		
+		 <!-------------->
+     <div id="div_cable" style="display: none;">
+        <script type="text/javascript">
+           $(document).ready(function() {
+    $('#cable_tb').DataTable( {
+        keys: true
+    } );
+} );
+</script>
+
+              <div class="card pd-20 pd-sm-40">
+            <h6 class="card-body-title">{{$monthName}}'s Cable Order<br>Total Amount = {{$cable_totalamount_month}}</h6>    
+                <div class="table-wrapper">
+                 <table id="cable_tb" class="table table-bordered display" style="width:100%">
+                    <thead>
+                      <tr>
+					    <th class="wd-15p">Date</th>
+                        <th class="wd-15p">Invoice</th>
+                        <th class="wd-15p">Shope name</th>
+                        <th class="wd-15p">Mobile</th>
+                        <th class="wd-15p">Amount</th>
+                       <th class="wd-15p">Created by</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                   @foreach ($cable_order_month as $order)
+                      <tr>
+					  <td>{{date('d-M-y',strtotime($cullection->my_date))}}</td>
+            <td>
+             <a class="submenu" href="#">
+                 
+                  <span class="hidden-tablet" style="color: blue">{{ $order->invoice}}</span></a>
+            </td>
+           
+            <td>
+            {{ $order->shop_name}} 
+            </td>
+             <td>
+            {{ $order->customer_phone}} 
+            </td>
+            <td> {{ $order->total_amount }} </td>
+             <td> {{ $order->created_by }} </td>
+             
+                      </tr>
+                      @endforeach
+                    </tbody>
+                    
+                  </table>
+                </div><!-- table-wrapper -->
+              </div><!-- card -->
+          
+      </div><!--div_cable-->           
+    <!--------------> 
      
     <!-------------->
      <div id="div_today" style="display: none;">
