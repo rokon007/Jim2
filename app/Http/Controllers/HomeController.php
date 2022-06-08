@@ -112,7 +112,7 @@ class HomeController extends Controller
 			 
              $other_totalamount_month = DB::table('sales_orders')
              ->where('status',1)
-             ->where('is_cable',1)
+             ->where('is_cable',0)
 			 ->whereMonth('created_at', '=', date('m'))          
              ->orderBy('id','DESC')
              ->sum('amount');			 

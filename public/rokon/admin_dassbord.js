@@ -11,6 +11,7 @@
     div_todaysCullection.style.display="none";
     div_sr.style.display="none";
 	div_order.style.display="none";
+	div_other.style.display="none";
   } else {
     x.style.display = "none";
     div_dassboard.style.display="block";
@@ -30,6 +31,7 @@
     div_sr.style.display="none";
 	div_order.style.display="none";
 	div_cable.style.display="none";
+	
   } else {
     x.style.display = "none";
     div_dassboard.style.display="block";

@@ -368,15 +368,51 @@
     } );
 } );
        </script>
+	                         <script>
+                      function percentageFunction() {
+                            var Total = document.getElementById('t_amount').value;
+                            var percentage = document.getElementById('percentage').value;
+                            var Commission = (parseFloat(Total)*100)/ parseFloat(percentage);
+                            if (!isNaN(Commission)) {
+                               document.getElementById('commission').value = Commission;				
+                                      }                      
+                               }
+                      </script>
 
               <div class="card pd-20 pd-sm-40">
-            <h6 class="card-body-title">{{$monthName}}'s Other Order<br>Total Amount = {{$other_totalamount_month}}</h6>    
+            <h6 class="card-body-title">{{$monthName}}'s Other Order<br>Total Amount = {{$other_totalamount_month}}</h6>
+			<div class="col-md-12">
+           <div class="row">
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Total Amount: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" id="t_amount" value="{{$other_totalamount_month}}" readonly>                    
+                    </div>
+                  </div>
+		   
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Percentage: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number"  onkeyup="percentageFunction();" value="0" id="percentage">                    
+                    </div>
+                  </div>
+		  
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Commission: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" value="0"id="commission" readonly>                    
+                    </div>
+                  </div>
+		  </div>
+            </div>		   
                 <div class="table-wrapper">
                  <table id="other_tb" class="table table-bordered display" style="width:100%">
                     <thead>
                       <tr>
 					    <th class="wd-15p">Date</th>
                         <th class="wd-15p">Invoice</th>
+						<th class="wd-15p">Product Code</th>
+						<th class="wd-15p">Product</th>
                         <th class="wd-15p">Shope name</th>
                         <th class="wd-15p">Mobile</th>
                         <th class="wd-15p">Amount</th>
@@ -393,7 +429,8 @@
              <a class="submenu" href="#">                 
                   <span class="hidden-tablet" style="color: blue">{{ $order->invoice}}</span></a>
             </td>
-           
+            <td>{{$order->product_code}}</td>
+			<td>{{$order->product}}</td>
             <td>
             {{ $order->shop_name}} 
             </td>
@@ -423,15 +460,51 @@
     } );
 } );
 </script>
+                    <script>
+                      function percentage_cableFunction() {
+                            var Total = document.getElementById('t_amount_cable').value;
+                            var Percentage = document.getElementById('percentage_cable').value;
+                            var Commission = (parseFloat(Total)*100)/ parseFloat(Percentage);
+                            if (!isNaN(Commission)) {
+                               document.getElementById('commission_cable').value = Commission;				
+                                      }                      
+                               }
+               </script>
 
               <div class="card pd-20 pd-sm-40">
-            <h6 class="card-body-title">{{$monthName}}'s Cable Order<br>Total Amount = {{$cable_totalamount_month}}</h6>    
+            <h6 class="card-body-title">{{$monthName}}'s Cable Order<br>Total Amount = {{$cable_totalamount_month}}</h6>
+             <div class="col-md-12">
+           <div class="row">
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Total Amount: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" id="t_amount_cable" value="{{$cable_totalamount_month}" readonly>                    
+                    </div>
+                  </div>
+		   
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Percentage: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" onkeyup="percentage_cableFunction();"value="0" id="percentage_cable">                    
+                    </div>
+                  </div>
+		  
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Commission: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" value="0"id="commission_cable" readonly>                    
+                    </div>
+                  </div>
+		  </div>
+            </div>				
                 <div class="table-wrapper">
                  <table id="cable_tb" class="table table-bordered display" style="width:100%">
                     <thead>
                       <tr>
 					    <th class="wd-15p">Date</th>
                         <th class="wd-15p">Invoice</th>
+						<th class="wd-15p">Product Code</th>
+						<th class="wd-15p">Product</th>
                         <th class="wd-15p">Shope name</th>
                         <th class="wd-15p">Mobile</th>
                         <th class="wd-15p">Amount</th>
@@ -449,10 +522,11 @@
                  
                   <span class="hidden-tablet" style="color: blue">{{ $order->invoice}}</span></a>
             </td>
-           
+            <td>{{$order->product_code}}</td>
+			<td>{{$order->product}}</td>
             <td>
             {{ $order->shop_name}} 
-            </td>
+            </td>			
              <td>
             {{ $order->customer_phone}} 
             </td>
