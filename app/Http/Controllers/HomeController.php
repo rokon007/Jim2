@@ -41,24 +41,32 @@ class HomeController extends Controller
             ->groupBy('sales_orders.invoice','sales_orders.shop_name','sales_orders.customer_phone','sales_orders.created_at')
             //->where('sales_orders.status',1) 
             ->where('sales_orders.created_by',$sr)           
-            ->orderBy('sales_orders.id','DESC')
+           // ->orderBy('sales_orders.id','DESC')
              ->get();
         //Sr details
         $sr_quary=DB::table('users')->where('name',$sr)->first();
         $usersr=$sr;
         $img=$image;
         $todays_srcullection_count=DB::table('payments')
-          ->orderBy('id','DESC')
+         // ->orderBy('id','DESC')
          ->whereDate('created_at', '=', date('Y-m-d'))
          ->where('sr','=',$sr)
          ->sum('payment'); 
          //todays cullection
-          $monthly_sr_cullection = DB::table('payments')
-          ->select( DB::raw("(sum(payment)) as total_payment"), DB::raw("(DATE_FORMAT(created_at, '%d-%m-%Y')) as my_date"))
+          // $monthly_sr_cullection = DB::table('payments')
+          // ->select( DB::raw("(sum(payment)) as total_payment"), DB::raw("(DATE_FORMAT(created_at, '%d-%m-%Y')) as my_date"))
                 
-                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d-%m-%Y')"))
-             ->whereMonth('created_at', date('m')) 
-             ->where('sr',$sr)   
+          //       ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d-%m-%Y')"))
+          //    ->whereMonth('created_at', date('m')) 
+          //    ->where('sr',$sr)   
+          //    ->get();
+		   $$monthly_sr_cullection = DB::table('payments')
+
+          ->select( DB::raw("(sum(payment)) as total_payment"), DB::raw("(DATE_TRUNC('day',created_at)) as my_date"))
+                
+                ->groupBy(DB::raw("DATE_TRUNC('day',created_at)"))
+				->whereMonth('created_at', date('m')) 
+              ->where('sr',$sr)
              ->get();
           return redirect()->back()          
           ->with(['view_div' => 'view_div','todays_srcullection_count' => $todays_srcullection_count,'usersr'=>$usersr,'img'=>$img,'monthly_sr_cullection'=>$monthly_sr_cullection,'sr_quary'=>$sr_quary,'sr_order'=>$sr_order]);
