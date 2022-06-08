@@ -642,7 +642,7 @@
             @foreach ($order as $neworder)
                        <tr>            
                       
-                <td class="tx-danger">{{$neworder->created_at}}</td>
+                <td class="tx-danger">{{$neworder->my_date}}</td>
                 <td class="tx-danger">{{ $neworder->invoice}}</td>
                 <td class="tx-danger">{{$neworder->shop_name}}</td>
                 <td class="tx-danger">{{ $neworder->customer_phone}}</td>   
