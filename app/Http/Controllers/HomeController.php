@@ -37,11 +37,11 @@ class HomeController extends Controller
     public function sr_detels($sr,$image)
     {
          $sr_order = DB::table('sales_orders')                    
-            ->select('sales_orders.invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),'sales_orders.shop_name','sales_orders.customer_phone','sales_orders.created_at')
-            ->groupBy('sales_orders.invoice','sales_orders.shop_name','sales_orders.customer_phone','sales_orders.created_at')
+            ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),'shop_name','customer_phone','created_at')
+            ->groupBy('invoice','shop_name','customer_phone','created_at')
             //->where('sales_orders.status',1) 
-            ->where('sales_orders.created_by',$sr)           
-           // ->orderBy('sales_orders.id','DESC')
+            ->where('created_by',$sr)           
+           ->orderBy('created_at','DESC')
              ->get();
         //Sr details
         $sr_quary=DB::table('users')->where('name',$sr)->first();
