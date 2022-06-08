@@ -478,7 +478,7 @@
 		   <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label">Total Amount: <span class="tx-danger">*</span></label>
-                      <input class="form-control" type="number" id="t_amount_cable" value="{{$cable_totalamount_month}" readonly>                    
+                      <input class="form-control" type="number" id="t_amount_cable" value="{{$cable_totalamount_month}}" readonly>                    
                     </div>
                   </div>
 		   
