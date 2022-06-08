@@ -40,17 +40,17 @@ class HomeController extends Controller
 		 $sr_order = DB::table('sales_orders')
             ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('day',created_at)) as my_date"),'shop_name','customer_phone','created_by')
             ->groupBy('invoice','shop_name',DB::raw("(DATE_TRUNC('day',created_at))"),'customer_phone','created_by')
-            ->where('created_by',$sr)           
-             ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))
+            ->where('created_by',$sr) 
+			 ->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('m'))
+            // ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))
              ->orderBy(DB::raw("(DATE_TRUNC('day',created_at))"),'DESC')
              ->get(); 	 
 			  //Sr Order
-		 $sr_monthlyamount_sum = DB::table('sales_orders')
-            ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('day',created_at)) as my_date"),'shop_name','customer_phone','created_by')
-            ->groupBy('invoice','shop_name',DB::raw("(DATE_TRUNC('day',created_at))"),'customer_phone','created_by')
-            ->where('created_by',$sr)           
-             ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))           
-              ->sum('total_amount'); 
+		 $sr_monthlyamount_sum = DB::table('sales_orders')      
+            ->where('created_by',$sr)
+            ->whereMonth('created_at', date('m')) 			
+            // ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))           
+              ->sum('payment'); 
         //Sr details
         $sr_quary=DB::table('users')->where('name',$sr)->first();
         $usersr=$sr;
