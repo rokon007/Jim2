@@ -94,6 +94,12 @@
 </script> -->
   <!--============ End Pusher ===========-->
   </head>
+  <?php
+  if(Auth::user()==null){
+	 return redirect()->route('login')->with('error','Session Expired.Please Login'); 
+  }
+  ?>
+  
         @isset($unread)
 		  ({{$unread}})
 		  @endisset
