@@ -50,7 +50,7 @@ class HomeController extends Controller
             ->where('created_by',$sr)
             ->whereMonth('created_at', date('m')) 			
             // ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))           
-              ->sum('payment'); 
+              ->sum('amount'); 
         //Sr details
         $sr_quary=DB::table('users')->where('name',$sr)->first();
         $usersr=$sr;
