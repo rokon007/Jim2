@@ -42,7 +42,7 @@ class HomeController extends Controller
             ->groupBy('invoice','shop_name','customer_phone','created_by')
             ->where('created_by',$sr)           
              ->whereDate('created_at', '=', date('Y-m-d'))
-             ->orderBy('created_at','DESC')
+            // ->orderBy('created_at','DESC')
              ->get(); 	 
         //Sr details
         $sr_quary=DB::table('users')->where('name',$sr)->first();
