@@ -374,7 +374,7 @@
                             var percentage = document.getElementById('percentage').value;
                             var Commission = (parseFloat(Total)*100)/ parseFloat(percentage);
                             if (!isNaN(Commission)) {
-                               document.getElementById('commission').value = Commission;				
+                               document.getElementById('commission').value = parseFloat(Commission); 						
                                       }                      
                                }
                       </script>
@@ -466,7 +466,7 @@
                             var Percentage = document.getElementById('percentage_cable').value;
                             var Commission = (parseFloat(Total)*100)/ parseFloat(Percentage);
                             if (!isNaN(Commission)) {
-                               document.getElementById('commission_cable').value = Commission;				
+                               document.getElementById('commission_cable').value =parseFloat(Commission); 			
                                       }                      
                                }
                </script>
