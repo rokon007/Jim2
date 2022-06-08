@@ -324,7 +324,7 @@
                     <tbody>
 
                     @foreach ($low_products as $row)
-					<?php if($row->product_quantity ,'<', 1){?>
+					<?php if($row->product_quantity <= 1){?>
                       <tr class="bg-danger" >
 					<?php }else{ ?>
 					 <tr>
