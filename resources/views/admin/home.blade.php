@@ -378,12 +378,11 @@
                                       }                      
                                }
 					function cableFunction(){
-                           var Total_cab = document.getElementById('t_amount_cable').value;
-                           var percentage = document.getElementById('percentage_cable').value;
-						   var x = parseFloat(Total_cab) * parseFloat(Percentage_cab);							
-                           var Commission_cab = (x/ 100).toFixed(2);
-                           if (!isNaN(Commission_cab)) {
-                               document.getElementById('commission_cable').value = Commission_cab; 						
+                           var Totalcab = document.getElementById('tamountcable').value;
+                           var percentagecab = document.getElementById('percentagecable').value;						  
+						   var Commissioncab = parseFloat((Totalcab*percentagecab)/ 100).toFixed(2)
+                           if (!isNaN(Commissioncab)) {
+                               document.getElementById('commissioncable').value = Commissioncab; 						
                                       }		  
                               }   
                       </script>
@@ -478,21 +477,21 @@
 		   <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label">Total Amount: <span class="tx-danger">*</span></label>
-                      <input class="form-control" type="number" id="t_amount_cable" value="{{$cable_totalamount_month}}" readonly>                    
+                      <input class="form-control" type="number" id="tamountcable" value="{{$cable_totalamount_month}}" readonly>                    
                     </div>
                   </div>
 		   
 		   <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label">Percentage: <span class="tx-danger">*</span></label>
-                      <input class="form-control" type="number" onkeyup="cableFunction();" value="0" id="percentage_cable">                    
+                      <input class="form-control" type="number" onkeyup="cableFunction();" value="0" id="percentagecable">                    
                     </div>
                   </div>
 		  
 		   <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label">Commission: <span class="tx-danger">*</span></label>
-                      <input class="form-control" type="number" value="0"id="commission_cable" readonly>                    
+                      <input class="form-control" type="number" value="0"id="commissioncable" readonly>                    
                     </div>
                   </div>
 		  </div>
