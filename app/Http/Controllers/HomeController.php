@@ -166,13 +166,15 @@ class HomeController extends Controller
 
         $date = Carbon::now();
         $monthName = $date->format('F');
-        $year = $date->format('Y');                                           
+        $year = $date->format('Y');  
+        
+        $low_products = Product::->whereColumn('product_quantity','<','lowquantity_alart')->get();
+         $low_qty_count= Product::->whereColumn('product_quantity','<','lowquantity_alart') ->count();		
 		
-        $low_products = Product::where('product_quantity','<','lowquantity_alart')->get();
+         //$low_products = Product::where('product_quantity','<','lowquantity_alart')->get();        
+         //$low_qty_count= Product::where('product_quantity','<','lowquantity_alart')->count();
         
-         $low_qty_count= Product::where('product_quantity','<','lowquantity_alart')
-        
-         ->count();
+         
         //$low_qty_count=0;
          $todays_cullection = DB::table('payments')
           ->orderBy('id','DESC')
