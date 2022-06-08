@@ -60,7 +60,7 @@ class HomeController extends Controller
           //    ->whereMonth('created_at', date('m')) 
           //    ->where('sr',$sr)   
           //    ->get();
-		   $$monthly_sr_cullection = DB::table('payments')
+		   $monthly_sr_cullection = DB::table('payments')
 
           ->select( DB::raw("(sum(payment)) as total_payment"), DB::raw("(DATE_TRUNC('day',created_at)) as my_date"))
                 
