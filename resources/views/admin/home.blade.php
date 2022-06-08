@@ -400,7 +400,7 @@
              <td>
             {{ $order->customer_phone}} 
             </td>
-            <td> {{ $order->total_amount }} </td>
+            <td> {{ $order->amount }} </td>
              <td> {{ $order->created_by }} </td>
              
                       </tr>
@@ -456,7 +456,7 @@
              <td>
             {{ $order->customer_phone}} 
             </td>
-            <td> {{ $order->total_amount }} </td>
+            <td> {{ $order->amount }} </td>
              <td> {{ $order->created_by }} </td>
              
                       </tr>
