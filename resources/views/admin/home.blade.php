@@ -666,7 +666,7 @@
 <div class="card bg-dark tx-white bd-0">
                 <div class="card-body">
                   <h5 class="card-body-title tx-white">{{$monthName}} cullection</h5>
-                  <p class="card-subtitle tx-normal tx-white-8 mg-b-15">This is the card subtitle</p>
+                  <p class="card-subtitle tx-normal tx-white-8 mg-b-15">{{$monthName}}'s Total Cullection = {{Session::get('sr_monthlyamount_sum')}}</p>
                   <script type="text/javascript">
                     $(document).ready(function() {
                     $('#srmonth_tb').DataTable( {

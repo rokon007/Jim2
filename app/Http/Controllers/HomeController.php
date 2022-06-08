@@ -44,6 +44,13 @@ class HomeController extends Controller
              ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))
              ->orderBy(DB::raw("(DATE_TRUNC('day',created_at))"),'DESC')
              ->get(); 	 
+			  //Sr Order
+		 $sr_monthlyamount_sum = DB::table('sales_orders')
+            ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('day',created_at)) as my_date"),'shop_name','customer_phone','created_by')
+            ->groupBy('invoice','shop_name',DB::raw("(DATE_TRUNC('day',created_at))"),'customer_phone','created_by')
+            ->where('created_by',$sr)           
+             ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))           
+              ->sum('total_amount'); 
         //Sr details
         $sr_quary=DB::table('users')->where('name',$sr)->first();
         $usersr=$sr;
@@ -70,7 +77,7 @@ class HomeController extends Controller
               ->where('sr',$sr)
              ->get();
           return redirect()->back()          
-          ->with(['view_div' => 'view_div','todays_srcullection_count' => $todays_srcullection_count,'usersr'=>$usersr,'img'=>$img,'monthly_sr_cullection'=>$monthly_sr_cullection,'sr_quary'=>$sr_quary,'sr_order'=>$sr_order]);
+          ->with(['view_div' => 'view_div','todays_srcullection_count' => $todays_srcullection_count,'usersr'=>$usersr,'img'=>$img,'monthly_sr_cullection'=>$monthly_sr_cullection,'sr_quary'=>$sr_quary,'sr_order'=>$sr_order,'sr_monthlyamount_sum'=>$sr_monthlyamount_sum]);
     }
 	 public function admin_index()
     {
