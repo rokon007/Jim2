@@ -323,15 +323,18 @@
                     </thead>
                     <tbody>
 
-                    @foreach ($products as $row)
-					@if($row->product_quantity <= $row->lowquantity_alart)
-                      <tr>
+                    @foreach ($low_products as $row)
+					<?php if($row->product_quantity ,'<', 1){?>
+                      <tr class="bg-danger" >
+					<?php }else{ ?>
+					 <tr>
+					<?php } ?>
 					   <td>{{ $row->product_code }}</td>
-                        <td>{{ $row->product_name }}</td>
+                        <td>{{ $row->product_name }}</td>										
                         <td>{{ $row->product_quantity }}</td>
                        
                         <td>
-                            @if($row->status == 1)
+                            @if($row->product_quantity == 1)
                             <span class="badge badge-success">Active</span>
                             @else 
                             <span class="badge badge-danger">Iactive</span>
@@ -347,7 +350,7 @@
                             @endif
                         </td>
                       </tr>
-					   @endif
+					   
                       @endforeach
 					 
                     </tbody>
