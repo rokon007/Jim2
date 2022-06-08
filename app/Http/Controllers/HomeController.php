@@ -168,9 +168,9 @@ class HomeController extends Controller
         $monthName = $date->format('F');
         $year = $date->format('Y');                                           
 		
-        $low_products = Product::where('product_quantity', '<','lowquantity_alart')->orderBy('id','DESC')->get();
+        $low_products = Product::where('product_quantity','<','lowquantity_alart')->orderBy('id','DESC')->get();
         
-         $low_qty_count= Product::where('product_quantity', '<','lowquantity_alart')
+         $low_qty_count= Product::where('product_quantity','<','lowquantity_alart')
         
          ->count();
         //$low_qty_count=0;
