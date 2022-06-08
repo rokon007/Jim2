@@ -704,7 +704,7 @@
             <?php } ?> 
                      </tbody>
 					  <tfoot>
-                             <tr>
+                             <tr class="card-link tx-white-7 hover-white">
             
                              </tr>
                         </tfoot>
