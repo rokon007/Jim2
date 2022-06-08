@@ -39,10 +39,10 @@ class HomeController extends Controller
         
 		 $sr_order = DB::table('sales_orders')
             ->select('invoice',DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('day',created_at)) as my_date"),'shop_name','customer_phone','created_by')
-            ->groupBy('invoice','shop_name','my_date','customer_phone','created_by')
+            ->groupBy('invoice','shop_name','DATE_TRUNC('day',created_at))','customer_phone','created_by')
             ->where('created_by',$sr)           
-             ->whereDate('created_at', '=', date('Y-m-d'))
-             ->orderBy('created_at','DESC')
+             ->whereDate('DATE_TRUNC('day',created_at))', '=', date('Y-m-d'))
+             ->orderBy('DATE_TRUNC('day',created_at)),'DESC')
              ->get(); 	 
         //Sr details
         $sr_quary=DB::table('users')->where('name',$sr)->first();
