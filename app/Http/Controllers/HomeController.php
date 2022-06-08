@@ -49,7 +49,7 @@ class HomeController extends Controller
 		 $sr_monthlyamount_sum = DB::table('sales_orders')      
             ->where('created_by',$sr)
             //->whereMonth('created_at', date('m')) 			
-             ->whereDate(DB::raw("(date_part('month',created_at))"), '=', date('m'))           
+             ->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('m'))    
               ->sum('amount'); 
         //Sr details
         $sr_quary=DB::table('users')->where('name',$sr)->first();
