@@ -372,9 +372,9 @@
                       function percentageFunction() {
                             var Total = document.getElementById('t_amount').value;
                             var percentage = document.getElementById('percentage').value;
-                            var Commission = (parseFloat(Total)*100)/ parseFloat(percentage);
+                            var Commission = parseFloat((Total*percentage)/ 100).toFixed(2);
                             if (!isNaN(Commission)) {
-                               document.getElementById('commission').value = parseFloat(Commission); 						
+                               document.getElementById('commission').value = Commission; 						
                                       }                      
                                }
                       </script>
@@ -464,9 +464,9 @@
                       function percentage_cableFunction() {
                             var Total = document.getElementById('t_amount_cable').value;
                             var Percentage = document.getElementById('percentage_cable').value;
-                            var Commission = (parseFloat(Total)*100)/ parseFloat(Percentage);
+                           var Commission = parseFloat((Total*percentage)/ 100).toFixed(2);
                             if (!isNaN(Commission)) {
-                               document.getElementById('commission_cable').value =parseFloat(Commission); 			
+                               document.getElementById('commission_cable').value = Commission; 						
                                       }                      
                                }
                </script>
