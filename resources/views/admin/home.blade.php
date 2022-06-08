@@ -293,7 +293,7 @@
             @foreach ($cullection_Bydate as $cullection)
                        <tr>            
                       
-                      <td>{{$cullection->my_date}}</td>
+                      <td>{{date('d-M-y',strtotime($cullection->my_date))}}</td>
                       <td>{{ $cullection->total_payment}}</td>            
                     </tr>
             @endforeach           
@@ -642,7 +642,7 @@
             @foreach ($order as $neworder)
                        <tr>            
                       
-                <td class="tx-danger">{{$neworder->my_date}}</td>
+                <td class="tx-danger">{{date('d-M-y',strtotime($neworder->my_date))}}</td>
                 <td class="tx-danger">{{ $neworder->invoice}}</td>
                 <td class="tx-danger">{{$neworder->shop_name}}</td>
                 <td class="tx-danger">{{ $neworder->customer_phone}}</td>   
@@ -688,7 +688,7 @@
             @foreach ($cullection_month as $cullection)
                        <tr>            
                       
-                      <td class="tx-danger">{{$cullection->my_date}}</td>
+                      <td class="tx-danger">{{date('d-M-y',strtotime($cullection->my_date))}}</td>
                       <td class="tx-danger">{{ $cullection->total_payment}}</td>            
                     </tr>
             @endforeach 
