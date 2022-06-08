@@ -462,11 +462,11 @@
 </script>
                     <script>
                       function percentage_cableFunction() {
-                            var Total = document.getElementById('t_amount_cable').value;
-                            var Percentage = document.getElementById('percentage_cable').value;
-                           var Commission = parseFloat((Total*percentage)/ 100).toFixed(2);
-                            if (!isNaN(Commission)) {
-                               document.getElementById('commission_cable').value = Commission; 						
+                            var Total_cab = document.getElementById('t_amount_cable').value;
+                            var Percentage_cab = document.getElementById('percentage_cable').value;
+                           var Commission_cab = parseFloat((Total_cab*percentage_cab)/ 100).toFixed(2);
+                            if (!isNaN(Commission_cab)) {
+                               document.getElementById('commission_cable').value = Commission_cab; 						
                                       }                      
                                }
                </script>
