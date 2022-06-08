@@ -581,13 +581,14 @@ class ProductController extends Controller
 		 $sr_total_amount=$sr_Info->total_amount;
 		 $sr_total_paid=$sr_Info->total_paid;
 		 $sr_total_deu=$sr_Info->total_deu;
+		 $sid=$sr_Info->id;
 		
 		 
 		 $sr_new_total_amount= $sr_total_amount+$request->Total;
 		 $sr_new_total_paid= $sr_total_paid+$request->payment;
 		 $sr_new_total_deu= $sr_total_deu+$request->due;
 		 
-		 $Update_sr_amount = User::where('name',$SR);
+		 $Update_sr_amount = User::find($sid);
 		 $Update_sr_amount->total_amount =$sr_new_total_amount;
 		 $Update_sr_amount->total_paid =$sr_new_total_paid;
 		 $Update_sr_amount->total_deu =$sr_new_total_deu;
