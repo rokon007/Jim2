@@ -576,25 +576,14 @@ $(function() {
 		       @else
 		 
          
-			   <?php
-			   if(Auth::user()->roll==2){
-			   ?>			  
+			  			  
                
-				<?php
-			   }elseif(Auth::user()->roll==1){
-				?>			   
+				
                <button type="submit" class="btn btn-info pd-x-20" href="{{ url('cart/comfermsave1/') }}">Conferm</button>
-			   <?php
-			   }elseif(Auth::user()->roll==3){
-				?>
-               <button type="submit" class="btn btn-info pd-x-20" href="{{ url('cart/comfermsave1/') }}">Conferm</button>
-		       <?php
-			   }
-			   ?>
+			  
+              
 				</form>
-				<?php  if(Auth::user()->roll==2){ ?>
-				 <button  class="btn btn-info pd-x-20 " data-toggle="modal" data-target="#modaldemo2" href="#">Conferm</button>
-				<?php } ?>
+				
 				@endif
                 <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Close</button>
               </div>

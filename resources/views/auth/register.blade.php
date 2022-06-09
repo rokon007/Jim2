@@ -1,5 +1,14 @@
-
-<style type="text/css">
+       <<!DOCTYPE html>
+       <html>
+       <head>
+           <meta charset="utf-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1">
+           <title>Register</title>
+       </head>
+       <body>
+       
+       
+       <style type="text/css">
  .form-container{
     background-color: #fff;
     font-family: 'Titillium Web', sans-serif;
@@ -141,6 +150,7 @@
 License Terms 
 
 </style>
+     
 <div class="form-bg">
     <div class="container">
         <div class="row">
@@ -209,6 +219,8 @@ License Terms
         </div>
     </div>
 </div>
+</body>
+       </html>
 
 
 
