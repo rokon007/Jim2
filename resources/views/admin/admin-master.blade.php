@@ -1,5 +1,5 @@
  <?php
-  if(Auth::user()->name==null){
+  if(Auth::user()==NULL){
 	
 	 ?>
 	 <script>
