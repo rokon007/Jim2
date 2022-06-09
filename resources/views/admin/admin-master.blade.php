@@ -1,3 +1,13 @@
+ <?php
+  if(Auth::user()->name==null){
+	
+	 ?>
+	 <script>
+window.location.href = "{{ route('season_over') }}"
+</script>
+	 <?php
+  }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -94,16 +104,7 @@
 </script> -->
   <!--============ End Pusher ===========-->
   </head>
-  <?php
-  if(Auth::user()==null){
-	
-	 ?>
-	 <script>
-window.location.href = "{{ route('season_over') }}"
-</script>
-	 <?php
-  }
-  ?>
+ 
   
         @isset($unread)
 		  ({{$unread}})

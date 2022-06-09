@@ -39,7 +39,7 @@
 
 <head>
  
-  
+  <title>Season over</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Arvo'>
   
@@ -64,7 +64,7 @@
     </h3>
     <h4>Your Season is over!</h4>
     <p>Jim Electric & Hardware Office automation system</p>
-    <p>Developed by <a href="https://www.facebook.com/rezaulkarim.rokon/" class="link_404">Rokon</a></p>
+    <p>Developed by <a href="https://www.facebook.com/rezaulkarim.rokon/" >Rokon</a></p>
     
     
     <a href="{{route('login')}}" class="link_404">Go to Login</a>
