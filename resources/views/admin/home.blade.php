@@ -366,7 +366,7 @@
      <div id="other_all_month" style="display: none;">
         <script type="text/javascript">
            $(document).ready(function() {
-    $('#other_tb').DataTable( {
+    $('#c_tb').DataTable( {
         keys: true
     } );
 } );
@@ -377,7 +377,7 @@
             <h6 class="card-body-title">All Months Other Order<br>Total Amount = {{$othermonth_amount}}</h6>
 				   
                 <div class="table-wrapper">
-                 <table id="other_tb" class="table table-bordered display" style="width:100%">
+                 <table id="c_tb" class="table table-bordered display" style="width:100%">
                     <thead>
                       <tr>
 					    <th class="wd-15p">Month</th>                       
