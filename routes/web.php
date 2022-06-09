@@ -139,6 +139,6 @@ Route::get('sr-detels/{sr}/{image}',[App\Http\Controllers\HomeController::class,
 //sr-set/'.$newuser->id
 Route::get('sr-set/{id}',[App\Http\Controllers\ProductController::class, 'sr_set'])->name('sr_set');
 //view all other persent
-Route::get('view-otherpersent/{amount}/{month}',[App\Http\Controllers\ProductController::class, 'othermonth_search'])->name('othermonth_search');
+Route::get('view-otherpersent/{amount}/{month}',[App\Http\Controllers\HomeController::class, 'othermonth_search'])->name('othermonth_search');
 //view all cable persent
-Route::get('view-cablepersent/{amount}/{month}',[App\Http\Controllers\ProductController::class, 'cablemonth_search'])->name('cablemonth_search');
+Route::get('view-cablepersent/{amount}/{month}',[App\Http\Controllers\HomeController::class, 'cablemonth_search'])->name('cablemonth_search');
