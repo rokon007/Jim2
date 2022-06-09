@@ -483,12 +483,15 @@
                     </thead>
                     <tbody>
                    @foreach ($othermonth_order as $order)
-				    <a href="{{url('view-cablepersent/'.$order->total_amount.'/'.date('M-y',strtotime($order->month)))}}">
+				   
                       <tr>
-					  <td>{{date('M-y',strtotime($order->month))}}</td>
+					   <td>
+					   <a class="submenu" href="{{url('view-cablepersent/'.$order->total_amount.'/'.date('M-y',strtotime($order->month)))}}">
+                  <span class="hidden-tablet" style="color: blue">{{date('M-y',strtotime($order->month))}}</span></a>
+					  </td>
                       <td>{{ $order->total_amount }} </td>
                      </tr>
-					 </a>
+					 
                       @endforeach
                     </tbody>
                    </table>
@@ -520,12 +523,15 @@
                     </thead>
                     <tbody>
                    @foreach ($cabmemonth_order as $order)
-                      <a href="{{url('view-otherpersent/'.$order->total_amount.'/'.date('M-y',strtotime($order->month)))}}">
+                      
                       <tr>
-					  <td>{{date('M-y',strtotime($order->month))}}</td>
+					  <td>
+					   <a class="submenu" href="{{url('view-otherpersent/'.$order->total_amount.'/'.date('M-y',strtotime($order->month)))}}">
+                  <span class="hidden-tablet" style="color: blue">{{date('M-y',strtotime($order->month))}}</span></a>
+					  </td>					 
                       <td>{{ $order->total_amount }} </td>
                      </tr>
-					 </a>
+					 
                       @endforeach
                     </tbody>
                    </table>
