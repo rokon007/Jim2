@@ -423,7 +423,7 @@
                    @foreach ($cabmemonth_order as $order)
                       <tr>
 					  <td>{{date('M-y',strtotime($order->month))}}</td>
-                      <td> {{ $order->amount }} </td>
+                      <td> {{ $order->total_amount }} </td>
                      </tr>
                       @endforeach
                     </tbody>
