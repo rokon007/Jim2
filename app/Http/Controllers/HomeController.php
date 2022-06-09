@@ -35,15 +35,15 @@ class HomeController extends Controller
     }
 	public function cablemonth_search($amount,$month)
 	{
-		$amount=$camount;
-		$month=$cmonth;
+		$camount=$amount;
+		$cmonth=$month;
           return redirect()->back()          
           ->with(['view_cablemonth' => 'view_cablemonth','camount'=>$camount,'cmonth'=>$cmonth]);			
 	}
 	public function othermonth_search($amount,$month)
 	{
-		$amount=$oamount;
-		$month=$omonth;	 
+		$oamount=$amount;
+		$omonth=$month;	 
 	return redirect()->back()          
           ->with(['view_othermonth' => 'view_othermonth','oamount'=>$oamount,'omonth'=>$omonth]);		
 	}
