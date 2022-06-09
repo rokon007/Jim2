@@ -1,9 +1,11 @@
-
-   @unless (Auth::user()==NULL)
+ 
+   @unless (Auth::check())
            <script>
            window.location.href = "{{route('season_over')}}"
            </script>
    @endunless
+   
+   
 <!DOCTYPE html>
 <html lang="en">
   <head>

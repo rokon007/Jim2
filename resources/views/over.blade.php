@@ -64,7 +64,7 @@
     </h3>
     <h4>Your Season is over!</h4>
     <p>Jim Electric & Hardware Office automation system</p>
-    <p>Developed by <a href="https://www.facebook.com/rezaulkarim.rokon/" class="link_404">Rokon</a></p>
+    <p>Developed by Rokon # +8801717524792</p>
     
     
     <a href="{{route('login')}}" class="link_404">Go to Login</a>
