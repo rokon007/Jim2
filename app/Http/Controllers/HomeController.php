@@ -95,7 +95,7 @@ class HomeController extends Controller
 	 public function admin_index()
     {
 		 $cabmemonth_order = DB::table('sales_orders')
-		      ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+		      ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw('YEAR(created_at) as year, MONTH(created_at) as month'))
            ->groupby('year','month')
 		   
 		     
@@ -115,7 +115,7 @@ class HomeController extends Controller
             ->sum('amount'); 
 			
 		$othermonth_order = DB::table('sales_orders')
-		       ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+		       ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw('YEAR(created_at) as year, MONTH(created_at) as month'))
            ->groupby('year','month')
            // ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('month',created_at)) as my_month1"))
             //->groupBy(DB::raw("(DATE_TRUNC('month',created_at))"))
