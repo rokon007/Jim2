@@ -115,6 +115,8 @@
           </div>
 
              <br><button onclick="div_todayFunction()" class="btn btn-indigo btn-block mg-b-10">Todays Order</button>
+			 <button onclick="cable_all_monthFunction()" class="btn btn-danger btn-block mg-b-10">Cable All month</button>
+			 <button onclick="other_all_monthFunction()" class="btn btn-dark btn-block mg-b-10">Other All month</button>
 
         </div><!-- col-3 -->
 
@@ -360,6 +362,76 @@
         </div><!--div_lowqty-->
 		
 		<!-------------->
+	<!-------------->
+     <div id="other_all_month" style="display: none;">
+        <script type="text/javascript">
+           $(document).ready(function() {
+    $('#other_tb').DataTable( {
+        keys: true
+    } );
+} );
+       </script>
+	                         
+
+              <div class="card pd-20 pd-sm-40">
+            <h6 class="card-body-title">All Months Other Order<br>Total Amount = {{$othermonth_amount}}</h6>
+				   
+                <div class="table-wrapper">
+                 <table id="other_tb" class="table table-bordered display" style="width:100%">
+                    <thead>
+                      <tr>
+					    <th class="wd-15p">Month</th>                       
+                        <th class="wd-15p">Amount</th>                                   
+                      </tr>
+                    </thead>
+                    <tbody>
+                   @foreach ($othermonth_order as $order)
+                      <tr>
+					  <td>{{date('M-y',strtotime($cullection->my_month))}}</td>
+                      <td>{{ $order->total_amount }} </td>
+                     </tr>
+                      @endforeach
+                    </tbody>
+                   </table>
+                </div><!-- table-wrapper -->
+              </div><!-- card -->
+             </div><!--other_all_month-->           
+    <!-------------->    	
+		<!-------------->
+     <div id="cable_all_month" style="display: none;">
+        <script type="text/javascript">
+           $(document).ready(function() {
+    $('#other_tb').DataTable( {
+        keys: true
+    } );
+} );
+       </script>
+	                         
+
+              <div class="card pd-20 pd-sm-40">
+            <h6 class="card-body-title">All Months Cable Order<br>Total Amount = {{$cabmemonth_amount}}</h6>
+				   
+                <div class="table-wrapper">
+                 <table id="other_tb" class="table table-bordered display" style="width:100%">
+                    <thead>
+                      <tr>
+					    <th class="wd-15p">Month</th>                       
+                        <th class="wd-15p">Amount</th>                                   
+                      </tr>
+                    </thead>
+                    <tbody>
+                   @foreach ($cabmemonth_order as $order)
+                      <tr>
+					  <td>{{date('M-y',strtotime($cullection->my_date))}}</td>
+                      <td> {{ $order->amount }} </td>
+                     </tr>
+                      @endforeach
+                    </tbody>
+                   </table>
+                </div><!-- table-wrapper -->
+              </div><!-- card -->
+             </div><!--cable_all_month-->           
+    <!-------------->    
      <div id="div_other" style="display: none;">
         <script type="text/javascript">
            $(document).ready(function() {

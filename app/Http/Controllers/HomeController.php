@@ -33,6 +33,18 @@ class HomeController extends Controller
     {
         return view('home');
     }
+	public function cablemonth_search($month)
+	{
+		
+          return redirect()->back()          
+          ->with(['view_cablemonth' => 'view_cablemonth']);			
+	}
+	public function othermonth_search($month)
+	{
+		 		 
+	return redirect()->back()          
+          ->with(['view_othermonth' => 'view_othermonth']);			
+	}
     //sr_detels
     public function sr_detels($sr,$image)
     {
@@ -79,8 +91,42 @@ class HomeController extends Controller
           return redirect()->back()          
           ->with(['view_div' => 'view_div','todays_srcullection_count' => $todays_srcullection_count,'usersr'=>$usersr,'img'=>$img,'monthly_sr_cullection'=>$monthly_sr_cullection,'sr_quary'=>$sr_quary,'sr_order'=>$sr_order,'sr_monthlyamount_sum'=>$sr_monthlyamount_sum]);
     }
+	
 	 public function admin_index()
     {
+		 $cabmemonth_order = DB::table('sales_orders')
+            ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('month',created_at)) as my_month"))
+            ->groupBy('invoice','shop_name',DB::raw("(DATE_TRUNC('month',created_at))"),'customer_phone','created_by')
+            ->where('status',1)
+            ->where('is_cable',1)
+			// ->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=',$month)
+            // ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))
+             ->orderBy(DB::raw("(DATE_TRUNC('day',created_at))"),'DESC')
+             ->get(); 
+         $cabmemonth_amount = DB::table('sales_orders')
+            ->where('status',1)
+            ->where('is_cable',1)
+			//->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=',$month)
+            ->sum('amount'); 
+			
+		$othermonth_order = DB::table('sales_orders')
+            ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('month',created_at)) as my_month"))
+            ->groupBy(DB::raw("(DATE_TRUNC('month',created_at))"))
+            ->where('status',1)
+            ->where('is_cable',0)
+			 //->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=',$month)
+            // ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))
+             ->orderBy(DB::raw("(DATE_TRUNC('day',created_at))"),'DESC')
+             ->get(); 
+         $othermonth_amount = DB::table('sales_orders')
+            ->where('status',1)
+            ->where('is_cable',0)
+			//->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=',$month)
+            ->sum('amount'); 	
+			
+		$month_option=DB::table('sales_orders')
+		                ->groupBy(DB::raw("(DATE_TRUNC('month',created_at))"))
+						->get();
          $all_order = DB::table('sales_orders')           
             
             ->select('product_code',DB::raw('SUM(qty) as total_qty'),'product')
@@ -238,6 +284,6 @@ class HomeController extends Controller
              ->get();
             //SR button
             $srbutton=DB::table('users')->where('roll',2)->get();
-		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','low_products','sales_order_today_count','sales_order_today','low_qty_count','confermorder_today_count','confermorder_today','todays_cullection','todays_cullection_count','cullection_Bydate','srbutton','all_order','cable_order_month','cable_totalamount_month','other_order_month','other_totalamount_month'));
+		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','low_products','sales_order_today_count','sales_order_today','low_qty_count','confermorder_today_count','confermorder_today','todays_cullection','todays_cullection_count','cullection_Bydate','srbutton','all_order','cable_order_month','cable_totalamount_month','other_order_month','other_totalamount_month','month_option','cabmemonth_order','cabmemonth_amount','othermonth_order','othermonth_amount'));
     }
 }
