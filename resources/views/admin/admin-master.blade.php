@@ -1,5 +1,5 @@
 
-   @unless (auth()->user()->roll == NULL)
+   @unless (auth() == NULL)
            <script>
            window.location.href = "{{route('season_over')}}"
            </script>
