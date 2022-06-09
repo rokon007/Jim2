@@ -61,6 +61,10 @@ class LoginController extends Controller
 					//its a Delevery man
                     return redirect()->route('DM.home');
 				}
+                elseif(auth()->user()->roll==4){
+                    //its a Delevery man
+                    return redirect()->route('DM.home');
+                }
                 else{
                    // its normal user
                     return redirect()->route('home');

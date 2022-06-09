@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\CustomerInfo;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -85,6 +86,8 @@ class RegisterController extends Controller
     }
 	protected function create(Request $request, array $data )
     {
+       if (CustomerInfo::where('customer_phone', '=', Input::get('mobile'))->exists()) {
+   // user found
 
          $user = User::create([
             'name' => $data['name'],
@@ -109,5 +112,8 @@ class RegisterController extends Controller
 
       $user->update(['image' => $file_name]);
       return $user;
+  }else{
+     return redirect()->back()->with('message','Mobile is not registerd');
+  }
     }
 }
