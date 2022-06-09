@@ -101,7 +101,7 @@ class HomeController extends Controller
             ->where('is_cable',1)
 			// ->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=',$month)
             // ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))
-             ->orderBy(DB::raw("(DATE_TRUNC('day',created_at))"),'DESC')
+            // ->orderBy(DB::raw("(DATE_TRUNC('day',created_at))"),'DESC')
              ->get(); 
          $cabmemonth_amount = DB::table('sales_orders')
             ->where('status',1)
@@ -116,7 +116,7 @@ class HomeController extends Controller
             ->where('is_cable',0)
 			 //->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=',$month)
             // ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))
-             ->orderBy(DB::raw("(DATE_TRUNC('day',created_at))"),'DESC')
+            // ->orderBy(DB::raw("(DATE_TRUNC('day',created_at))"),'DESC')
              ->get(); 
          $othermonth_amount = DB::table('sales_orders')
             ->where('status',1)
