@@ -95,14 +95,19 @@ class HomeController extends Controller
 	 public function admin_index()
     {
 		 $cabmemonth_order = DB::table('sales_orders')
-            ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('month',created_at)) as my_month"))
-            ->groupBy('invoice','shop_name',DB::raw("(DATE_TRUNC('month',created_at))"),'customer_phone','created_by')
+		      ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+           ->groupby('year','month')
+		   
+		     
+           // ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('month',created_at)) as my_month"))
+           // ->groupBy(DB::raw("(DATE_TRUNC('month',created_at))"))
             ->where('status',1)
             ->where('is_cable',1)
 			// ->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=',$month)
             // ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))
             // ->orderBy(DB::raw("(DATE_TRUNC('day',created_at))"),'DESC')
-             ->get(); 
+            ->orderBy('year', 'desc')
+           ->get(); 
          $cabmemonth_amount = DB::table('sales_orders')
             ->where('status',1)
             ->where('is_cable',1)
@@ -110,14 +115,17 @@ class HomeController extends Controller
             ->sum('amount'); 
 			
 		$othermonth_order = DB::table('sales_orders')
-            ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('month',created_at)) as my_month1"))
-            ->groupBy(DB::raw("(DATE_TRUNC('month',created_at))"))
+		       ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+           ->groupby('year','month')
+           // ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('month',created_at)) as my_month1"))
+            //->groupBy(DB::raw("(DATE_TRUNC('month',created_at))"))
             ->where('status',1)
             ->where('is_cable',0)
 			 //->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=',$month)
             // ->whereDate(DB::raw("(DATE_TRUNC('day',created_at))"), '=', date('Y-m-d'))
             // ->orderBy(DB::raw("(DATE_TRUNC('day',created_at))"),'DESC')
-             ->get(); 
+              ->orderBy('year', 'desc')
+           ->get(); 
          $othermonth_amount = DB::table('sales_orders')
             ->where('status',1)
             ->where('is_cable',0)
