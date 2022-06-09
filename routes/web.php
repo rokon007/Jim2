@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('welcome');
   
 });
+Route::get('/season-over', function () {
+     return view('over');
+  
+})->name('season_over');
 
 Route::get('/counter', function () {
     return view('counter');
@@ -143,4 +147,4 @@ Route::get('view-otherpersent/{amount}/{month}',[App\Http\Controllers\HomeContro
 //view all cable persent
 Route::get('view-cablepersent/{amount}/{month}',[App\Http\Controllers\HomeController::class, 'cablemonth_search'])->name('cablemonth_search');
 //Season over
-Route::get('season-over',[App\Http\Controllers\HomeController::class, 'season_over'])->name('season_over');
+//Route::get('season-over',[App\Http\Controllers\HomeController::class, 'season_over'])->name('season_over');
