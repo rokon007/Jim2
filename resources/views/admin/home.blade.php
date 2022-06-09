@@ -257,7 +257,24 @@
      <body>
      <?php 
      }
-     ?>        
+     ?>    
+    <?php $view_cablemonth = Session::get('view_cablemonth');if($view_cablemonth){ ?>
+	<body onload="cable_all_mpFunction();"> 
+	<?php }else{ ?>  <body>  <?php } ?>
+    <?php $view_othermonth = Session::get('view_othermonth');if($view_othermonth){ ?>
+    <body onload="other_all_mpFunction();">
+   <?php }else{ ?>  <body>  <?php } ?> 	
+       
+       
+            
+   
+   
+     
+   
+    
+    
+     
+      	 
         
             
 
@@ -362,6 +379,86 @@
         </div><!--div_lowqty-->
 		
 		<!-------------->
+		<!-------------->
+		<script>
+                      function cable_percentageFunction() {
+                            var CableTotal = document.getElementById('cable_amount').value;
+                            var Cablepercentage = document.getElementById('cable_percentage').value;
+                            var CableCommission = parseFloat((CableTotal*Cablepercentage)/ 100).toFixed(2);
+                            if (!isNaN(CableCommission)) {
+                               document.getElementById('cable_commission').value = CableCommission; 						
+                                      }                      
+                               }
+					function other_percentageFunction(){
+                           var Totalother = document.getElementById('other_amount').value;
+                           var percentageother = document.getElementById('other_percentage').value;						  
+						   var Commissionother = parseFloat((Totalother*percentageother)/ 100).toFixed(2)
+                           if (!isNaN(Commissionother)) {
+                               document.getElementById('other_commission').value = Commissionother; 						
+                                      }		  
+                              }   
+                      </script>
+     <div id="divcable_all_mp" style="display: none;">
+	 <div class="card pd-20 pd-sm-40">
+            <h6 class="card-body-title">Percentage Calculation<br>Total Amount ={{Session::get('camount')}}</h6>
+			<div class="col-md-12">
+           <div class="row">
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Total Amount: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" id="cable_amount" value="{{Session::get('camount')}}" readonly>                    
+                    </div>
+                  </div>
+		   
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Percentage: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number"  onkeyup="cable_percentageFunction();" value="0" id="cable_percentage">                    
+                    </div>
+                  </div>
+		  
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Commission: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" value="0"id="cable_commission" readonly>                    
+                    </div>
+                  </div>
+		  </div>
+            </div>		
+	</div>		
+	 </div><!--divcable_all_mp-->
+	 <!-------------->
+	 <!-------------->
+     <div id="divother_all_mp" style="display: none;">
+	     <div class="card pd-20 pd-sm-40">
+            <h6 class="card-body-title">Percentage Calculation<br>Total Amount = {{Session::get('oamount')}}</h6>
+			<div class="col-md-12">
+           <div class="row">
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Total Amount: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" id="other_amount" value="{{Session::get('oamount')}}" readonly>                    
+                    </div>
+                  </div>
+		   
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Percentage: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number"  onkeyup="other_percentageFunction();" value="0" id="other_percentage">                    
+                    </div>
+                  </div>
+		  
+		   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Commission: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" value="0"id="other_commission" readonly>                    
+                    </div>
+                  </div>
+		  </div>
+            </div>		
+	</div>	
+	 </div><!--divother_all_mp-->
+	 <!-------------->
 	<!-------------->
      <div id="other_all_month" style="display: none;">
         <script type="text/javascript">
@@ -386,10 +483,12 @@
                     </thead>
                     <tbody>
                    @foreach ($othermonth_order as $order)
+				    <a href="{{url('view-cablepersent/'.$order->total_amount.'/'.date('M-y',strtotime($order->month)))}}">
                       <tr>
 					  <td>{{date('M-y',strtotime($order->month))}}</td>
                       <td>{{ $order->total_amount }} </td>
                      </tr>
+					 </a>
                       @endforeach
                     </tbody>
                    </table>
@@ -421,10 +520,12 @@
                     </thead>
                     <tbody>
                    @foreach ($cabmemonth_order as $order)
+                      <a href="{{url('view-otherpersent/'.$order->total_amount.'/'.date('M-y',strtotime($order->month)))}}">
                       <tr>
 					  <td>{{date('M-y',strtotime($order->month))}}</td>
-                      <td> {{ $order->total_amount }} </td>
+                      <td>{{ $order->total_amount }} </td>
                      </tr>
+					 </a>
                       @endforeach
                     </tbody>
                    </table>

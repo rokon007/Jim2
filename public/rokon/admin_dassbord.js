@@ -1,3 +1,49 @@
+  function other_all_mpFunction() {
+  var x = document.getElementById("divother_all_mp");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    div_today.style.display="none";
+    div_year.style.display="none";
+    div_currentmonth.style.display="none";
+    div_dassboard.style.display="none";
+    div_total.style.display="none";
+    div_todayConfermorder.style.display="none"; 
+    div_todaysCullection.style.display="none";
+    div_sr.style.display="none";
+	div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
+	cable_all_month.style.display="none";
+	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+  } else {
+    x.style.display = "none";
+    div_dassboard.style.display="block";
+  }
+} 
+  function cable_all_mpFunction() {
+  var x = document.getElementById("divcable_all_mp");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    div_today.style.display="none";
+    div_year.style.display="none";
+    div_currentmonth.style.display="none";
+    div_dassboard.style.display="none";
+    div_total.style.display="none";
+    div_todayConfermorder.style.display="none"; 
+    div_todaysCullection.style.display="none";
+    div_sr.style.display="none";
+	div_order.style.display="none";
+	div_other.style.display="none";
+	div_cable.style.display="none";
+	cable_all_month.style.display="none";
+	other_all_month.style.display="none";
+	divother_all_mp.style.display="none";
+  } else {
+    x.style.display = "none";
+    div_dassboard.style.display="block";
+  }
+} 
   function other_all_monthFunction() {
   var x = document.getElementById("other_all_month");
   if (x.style.display === "none") {
@@ -14,6 +60,8 @@
 	div_other.style.display="none";
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
     div_dassboard.style.display="block";
@@ -35,6 +83,8 @@
 	div_other.style.display="none";
 	div_cable.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
     div_dassboard.style.display="block";
@@ -56,6 +106,8 @@
 	div_other.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
     div_dassboard.style.display="block";
@@ -77,6 +129,8 @@
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
 	
   } else {
     x.style.display = "none";
@@ -99,6 +153,8 @@
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
     div_dassboard.style.display="block";
@@ -122,6 +178,8 @@
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
     div_dassboard.style.display="block";
@@ -146,6 +204,8 @@
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -167,6 +227,8 @@ function div_currentmonthFunction() {
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -187,6 +249,8 @@ function div_yearFunction() {
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -207,6 +271,8 @@ function div_totalFunction() {
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -227,7 +293,9 @@ function Profile() {
      div_other.style.display="none";
      div_cable.style.display="none";
      cable_all_month.style.display="none";
-     other_all_month.style.display="none";	 
+     other_all_month.style.display="none";
+     divcable_all_mp.style.display="none";	
+     divother_all_mp.style.display="none";	 
 	
   } else {
     x.style.display = "none";
@@ -253,6 +321,8 @@ function div_todayConfermorderFunction() {
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -276,6 +346,8 @@ function todaysCullectionFunction() {
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -299,6 +371,8 @@ function div_srFunction() {
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
      div_dassboard.style.display="block";
@@ -326,6 +400,8 @@ function sr_monthFunction() {
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
      sr_today.style.display="block";
@@ -351,6 +427,8 @@ function sr_todayFunction() {
 	div_cable.style.display="none";
 	cable_all_month.style.display="none";
 	other_all_month.style.display="none";
+	divcable_all_mp.style.display="none";
+	divother_all_mp.style.display="none";
   } else {
     x.style.display = "none";
      sr_today.style.display="block";

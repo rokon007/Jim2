@@ -33,17 +33,19 @@ class HomeController extends Controller
     {
         return view('home');
     }
-	public function cablemonth_search($month)
+	public function cablemonth_search($amount,$month)
 	{
-		
+		$amount=$camount;
+		$month=$cmonth;
           return redirect()->back()          
-          ->with(['view_cablemonth' => 'view_cablemonth']);			
+          ->with(['view_cablemonth' => 'view_cablemonth','camount'=>$camount,'cmonth'=>$cmonth]);			
 	}
-	public function othermonth_search($month)
+	public function othermonth_search($amount,$month)
 	{
-		 		 
+		$amount=$oamount;
+		$month=$omonth;	 
 	return redirect()->back()          
-          ->with(['view_othermonth' => 'view_othermonth']);			
+          ->with(['view_othermonth' => 'view_othermonth','oamount'=>$oamount,'omonth'=>$omonth]);		
 	}
     //sr_detels
     public function sr_detels($sr,$image)
