@@ -1,6 +1,6 @@
 
 <style type="text/css">
-    form-container{
+ .form-container{
     background-color: #fff;
     font-family: 'Titillium Web', sans-serif;
     font-size: 0;
@@ -138,6 +138,7 @@
         margin: 0 10px 15px;
     }
 }
+License Terms 
 
 </style>
 <div class="form-bg">
