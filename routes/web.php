@@ -142,3 +142,5 @@ Route::get('sr-set/{id}',[App\Http\Controllers\ProductController::class, 'sr_set
 Route::get('view-otherpersent/{amount}/{month}',[App\Http\Controllers\HomeController::class, 'othermonth_search'])->name('othermonth_search');
 //view all cable persent
 Route::get('view-cablepersent/{amount}/{month}',[App\Http\Controllers\HomeController::class, 'cablemonth_search'])->name('cablemonth_search');
+//Season over
+Route::get('season-over',[App\Http\Controllers\HomeController::class, 'season_over'])->name('season_over');

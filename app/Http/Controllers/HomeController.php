@@ -33,6 +33,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+	public function season_over()
+	{
+		 return view('admin.sessonover.over');
+	}
 	public function cablemonth_search($amount,$month)
 	{
 		$camount=$amount;

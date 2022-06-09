@@ -96,7 +96,12 @@
   </head>
   <?php
   if(Auth::user()==null){
-	 return redirect()->route('login')->with('error','Session Expired.Please Login'); 
+	
+	 ?>
+	 <script>
+window.location.href = "{{ route('season_over') }}"
+</script>
+	 <?php
   }
   ?>
   
