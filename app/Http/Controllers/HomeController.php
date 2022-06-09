@@ -110,7 +110,7 @@ class HomeController extends Controller
             ->sum('amount'); 
 			
 		$othermonth_order = DB::table('sales_orders')
-            ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('month',created_at)) as my_month"))
+            ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),DB::raw("(DATE_TRUNC('month',created_at)) as my_month1"))
             ->groupBy(DB::raw("(DATE_TRUNC('month',created_at))"))
             ->where('status',1)
             ->where('is_cable',0)

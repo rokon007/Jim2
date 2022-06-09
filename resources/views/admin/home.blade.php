@@ -387,7 +387,7 @@
                     <tbody>
                    @foreach ($othermonth_order as $order)
                       <tr>
-					  <td>{{date('M-y',strtotime($cullection->my_month))}}</td>
+					  <td>{{date('M-y',strtotime($cullection->my_month1))}}</td>
                       <td>{{ $order->total_amount }} </td>
                      </tr>
                       @endforeach
