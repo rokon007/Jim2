@@ -1,13 +1,9 @@
- <?php
-  if(Auth::user()==NULL){
-	
-	 ?>
-	 <script>
-window.location.href = "{{ route('season_over') }}"
-</script>
-	 <?php
-  }
-  ?>
+
+   @unless (Auth::check())
+           <script>
+           window.location.href = "{{route('season_over')}}"
+           </script>
+   @endunless
 <!DOCTYPE html>
 <html lang="en">
   <head>
