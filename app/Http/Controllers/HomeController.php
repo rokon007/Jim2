@@ -124,9 +124,7 @@ class HomeController extends Controller
 			//->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=',$month)
             ->sum('amount'); 	
 			
-		$month_option=DB::table('sales_orders')
-		                ->groupBy(DB::raw("(DATE_TRUNC('month',created_at))"))
-						->get();
+		
          $all_order = DB::table('sales_orders')           
             
             ->select('product_code',DB::raw('SUM(qty) as total_qty'),'product')
@@ -284,6 +282,6 @@ class HomeController extends Controller
              ->get();
             //SR button
             $srbutton=DB::table('users')->where('roll',2)->get();
-		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','low_products','sales_order_today_count','sales_order_today','low_qty_count','confermorder_today_count','confermorder_today','todays_cullection','todays_cullection_count','cullection_Bydate','srbutton','all_order','cable_order_month','cable_totalamount_month','other_order_month','other_totalamount_month','month_option','cabmemonth_order','cabmemonth_amount','othermonth_order','othermonth_amount'));
+		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','low_products','sales_order_today_count','sales_order_today','low_qty_count','confermorder_today_count','confermorder_today','todays_cullection','todays_cullection_count','cullection_Bydate','srbutton','all_order','cable_order_month','cable_totalamount_month','other_order_month','other_totalamount_month','cabmemonth_order','cabmemonth_amount','othermonth_order','othermonth_amount'));
     }
 }
