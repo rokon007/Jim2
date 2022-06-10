@@ -29,7 +29,7 @@
 					<p style="background:#FF7A59;opacity: .5;"><span></span>Developed By ROKON</p>
 				</div>
 			</div>
-			<form class="form-detail" method="POST" action="{{route('register')}}" enctype="multipart/form-data" >
+			<form class="form-detail" method="POST" action="{{ route('register_userc') }}" enctype="multipart/form-data" >
 			@csrf
 			<div id="myform"> 
 				<h2>Registration Form</h2>
@@ -45,6 +45,7 @@
 					<label for="your_email">Your Mobaile:</label>
 					 <input type="number" class="input-text" id="mobile" name="mobile" required placeholder="Enter mobile number">
 				</div>
+                <input type="hidden" name="roll" value="4">
 				<div class="form-row">
 					<label for="password">Password:</label>
 					<input type="password" name="password" id="password" class="input-text" required>

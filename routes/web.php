@@ -115,6 +115,7 @@ Route::get('ordered/products',[App\Http\Controllers\ProductController::class, 'o
 Route::get('add/user',[App\Http\Controllers\ProductController::class, 'add_user'])->name('add-user');
 //register_user
 Route::post('register/user',[App\Http\Controllers\ProductController::class, 'register_user'])->name('register_user');
+Route::post('register/userc',[App\Http\Controllers\ProductController::class, 'register_userc'])->name('register_userc');
 //SR.home
 Route::get('sr/home',[App\Http\Controllers\ProductController::class, 'sr_home'])->name('SR.home');
 //DM.home

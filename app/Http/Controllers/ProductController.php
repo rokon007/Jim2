@@ -819,6 +819,29 @@ class ProductController extends Controller
 		$user=User::All();
 		 return view('admin.user.add_user',compact('user'));
 	}
+	//register_user customer
+	 public function register_userc(Request $request)
+    {       
+        $user = new User();
+        $user->name = $request->name;
+        $user->email =$request->email;        
+        $user->password = Hash::make($request->password);
+        $user->roll = $request->roll;
+		$user->mobile = $request->mobile;
+       
+        if($request->hasfile('image')){
+            $file = $request->file('image');
+           // $filename = time().'.'. $file->getClientOriginalExtension();
+             $filename = $request->email.'.'. $file->getClientOriginalExtension();
+            $file->move('upload/admin/', $filename);
+            $user->image = $filename;
+        }       
+        $user->save();
+		
+    
+           return $user;
+
+    }
 	//register_user
 	 public function register_user(Request $request)
     {       
