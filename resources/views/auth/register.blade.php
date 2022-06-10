@@ -26,7 +26,7 @@
 					<p style="color:black">Registration <br>For Shop Owner <span>Jim Electric & Hardware</span></p>
 				</div>
 				<div class="text-2">
-					<p style="color:black"><span></span>Developed By ROKON</p>
+					<p style="background-color:grey;"><span></span>Developed By ROKON</p>
 				</div>
 			</div>
 			<form class="form-detail" method="POST" action="{{ route('register_user') }}" enctype="multipart/form-data" id="myform">
