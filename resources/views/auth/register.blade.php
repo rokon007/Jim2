@@ -23,7 +23,7 @@
 			<div class="form-left">
 				<img src="rokon/images/form-v3.jpg" alt="form">
 				<div class="text-1">
-					<p style="color:black">Registration For shop Owner <span>Jim Electric & Hardware</span></p>
+					<p style="color:black">Registration <br>For Shop Owner <span>Jim Electric & Hardware</span></p>
 				</div>
 				<div class="text-2">
 					<p style="color:black"><span></span>Developed By ROKON</p>
@@ -55,7 +55,12 @@
 					<label for="comfirm-password">Image:</label>
 					 <input class="input-text" type="file" name="image" >
 				</div>
-				
+				<div class="form-checkbox">
+					<label class="container"><p>By signing up, you agree to the <a href="#" class="text">Play Term of Service</a></p>
+					  	<input type="checkbox" name="agree" id="agree">
+					  	<span class="checkmark"></span>
+					</label>
+				</div>
 				<div class="form-row-last">
 					<input type="submit" name="register" class="register" value="Register">
 				</div>
