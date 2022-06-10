@@ -15,7 +15,21 @@
 	
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
-<?php $message = Session::get('message');if($message){ ?>
+       
+    
+</head>    
+        
+   
+           
+<body class="form-v2">
+	<div class="page-content">
+        <?php $message = Session::get('message');if($message){ ?>
+		 <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><?php  echo $message; ?></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
     <script type="text/javascript">
      Swal.fire({
   icon: 'error',
@@ -24,14 +38,7 @@
   footer: '<a href="">Why do I have this issue?</a>'
 })   
     </script>
-    
-    
-</head>    
-        
-<?php  Session::put('message',null); } ?>        
-           
-<body class="form-v2">
-	<div class="page-content">
+<?php  Session::put('message',null); } ?>  
 		<div class="form-v2-content">
 			<div class="form-left">
 				<img src="rokon/images/form-v3.jpg" alt="form">
