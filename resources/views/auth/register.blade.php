@@ -29,7 +29,8 @@
 					<p style="background:#FF7A59;opacity: .5;"><span></span>Developed By ROKON</p>
 				</div>
 			</div>
-			<form class="form-detail" method="POST" action="{{ route('register_user') }}" enctype="multipart/form-data" id="myform">
+			<form class="form-detail" method="POST" action="{{ route('register_user') }}" enctype="multipart/form-data" >
+			<div id="myform"> 
 				<h2>Registration Form</h2>
 				<div class="form-row">
 					<label for="full-name">Name:</label>					
@@ -63,6 +64,7 @@
 				</div>
 				<div class="form-row-last">
 					<input type="submit" name="register" class="register" value="Register">
+				</div>
 				</div>
 			</form>
 		</div>
