@@ -821,7 +821,8 @@ class ProductController extends Controller
 	}
 	//register_user customer
 	 public function register_userc(Request $request)
-    {       
+    {   
+        if (CustomerInfo::where('customer_phone', '=', Input::get('mobile'))->exists()) {    
         $user = new User();
         $user->name = $request->name;
         $user->email =$request->email;        
@@ -841,7 +842,9 @@ class ProductController extends Controller
     
            return $user;
 
-    }
+    }else{
+     return redirect()->back()->with('message','Mobile is not registerd');
+  }
 	//register_user
 	 public function register_user(Request $request)
     {       
