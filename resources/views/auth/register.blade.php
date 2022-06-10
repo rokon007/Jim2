@@ -23,10 +23,10 @@
 			<div class="form-left">
 				<img src="rokon/images/form-v3.jpg" alt="form">
 				<div class="text-1">
-					<p style="color:black">Registration <br>For Shop Owner <span>Jim Electric & Hardware</span></p>
+					<p style="background:#FF7A59;opacity: .5;">Registration <br>For Shop Owner <span>Jim Electric & Hardware</span></p>
 				</div>
 				<div class="text-2">
-					<p style="background-color:grey;"><span></span>Developed By ROKON</p>
+					<p style="background:#FF7A59;opacity: .5;"><span></span>Developed By ROKON</p>
 				</div>
 			</div>
 			<form class="form-detail" method="POST" action="{{ route('register_user') }}" enctype="multipart/form-data" id="myform">
