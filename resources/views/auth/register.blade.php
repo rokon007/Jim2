@@ -23,14 +23,14 @@
 			<div class="form-left">
 				<img src="rokon/images/form-v3.jpg" alt="form">
 				<div class="text-1">
-					<p>Registration For shop Owner <span>Jim Electric & Hardware</span></p>
+					<p style="color:black">Registration For shop Owner <span>Jim Electric & Hardware</span></p>
 				</div>
 				<div class="text-2">
-					<p><span>*</span>Developed ROKON</p>
+					<p style="color:black"><span></span>Developed By ROKON</p>
 				</div>
 			</div>
 			<form class="form-detail" method="POST" action="{{ route('register_user') }}" enctype="multipart/form-data" id="myform">
-				
+				<h2>Registration Form</h2>
 				<div class="form-row">
 					<label for="full-name">Name:</label>					
 					<input type="text" name="name" id="full_name" class="input-text" placeholder="Name">
