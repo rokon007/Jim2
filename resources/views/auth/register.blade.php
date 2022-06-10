@@ -30,7 +30,7 @@
 				</div>
 			</div>
 			<form class="form-detail" method="POST" action="{{ route('register_user') }}" enctype="multipart/form-data" id="myform">
-				<h2>Registration Form</h2>
+				
 				<div class="form-row">
 					<label for="full-name">Name:</label>					
 					<input type="text" name="name" id="full_name" class="input-text" placeholder="Name">
@@ -55,12 +55,7 @@
 					<label for="comfirm-password">Image:</label>
 					 <input class="input-text" type="file" name="image" >
 				</div>
-				<div class="form-checkbox">
-					<label class="container"><p>By signing up, you agree to the <a href="#" class="text">Play Term of Service</a></p>
-					  	<input type="checkbox" name="agree" id="agree">
-					  	<span class="checkmark"></span>
-					</label>
-				</div>
+				
 				<div class="form-row-last">
 					<input type="submit" name="register" class="register" value="Register">
 				</div>
