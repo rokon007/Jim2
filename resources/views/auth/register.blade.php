@@ -13,10 +13,23 @@
 	<!-- Main Style Css -->
    <link rel="stylesheet" href="rokon/css/style.css"/ >
 	
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
-	
-	
-</head>
+<?php $message = Session::get('message');if($message){ ?>
+    <script type="text/javascript">
+     Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '<?php  echo $message; ?>',
+  footer: '<a href="">Why do I have this issue?</a>'
+})   
+    </script>
+    
+    
+</head>    
+        
+<?php  Session::put('message',null); } ?>        
+           
 <body class="form-v2">
 	<div class="page-content">
 		<div class="form-v2-content">

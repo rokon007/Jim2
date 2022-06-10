@@ -843,7 +843,7 @@ class ProductController extends Controller
            return $user;
 
     }else{
-     return redirect()->back()->with('message','Mobile is not registerd');
+     return redirect()->back()->with('message','Mobile number is not registerd');
   }
 	}
 	//register_user
