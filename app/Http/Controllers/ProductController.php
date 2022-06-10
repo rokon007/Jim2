@@ -822,7 +822,7 @@ class ProductController extends Controller
 	//register_user customer
 	 public function register_userc(Request $request)
     {   
-        if (CustomerInfo::where('customer_phone', '=', Input::get('mobile'))->exists()) {    
+        if (CustomerInfo::where('customer_phone', '=', $request->mobile)->exists()) {    
         $user = new User();
         $user->name = $request->name;
         $user->email =$request->email;        
