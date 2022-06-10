@@ -845,6 +845,7 @@ class ProductController extends Controller
     }else{
      return redirect()->back()->with('message','Mobile is not registerd');
   }
+	}
 	//register_user
 	 public function register_user(Request $request)
     {       
