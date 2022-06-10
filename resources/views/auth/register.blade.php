@@ -6,12 +6,12 @@
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- Font-->
-	<link rel="stylesheet" type="text/css" href="/rokon/css/roboto-font.css" >
-	<link rel="stylesheet" type="text/css" href="/rokon/fonts/line-awesome/css/line-awesome.min.css" >
+	<link rel="stylesheet" type="text/css" href="rokon/css/roboto-font.css" >
+	<link rel="stylesheet" type="text/css" href="rokon/fonts/line-awesome/css/line-awesome.min.css" >
 	<!-- Jquery -->
 	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
 	<!-- Main Style Css -->
-   <link rel="stylesheet" href="/rokon/css/style.css"/ >
+   <link rel="stylesheet" href="rokon/css/style.css"/ >
 	
 	
 	
@@ -21,7 +21,7 @@
 	<div class="page-content">
 		<div class="form-v2-content">
 			<div class="form-left">
-				<img src="images/form-v2.jpg" alt="form">
+				<img src="rokon/images/form-v2.jpg" alt="form">
 				<div class="text-1">
 					<p>Registration For shop Owner <span>Jim Electric & Hardware</span></p>
 				</div>
