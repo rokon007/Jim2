@@ -21,7 +21,7 @@
 	<div class="page-content">
 		<div class="form-v2-content">
 			<div class="form-left">
-				<img src="rokon/images/form-v2.jpg" alt="form">
+				<img src="rokon/images/form-v1.jpg" alt="form">
 				<div class="text-1">
 					<p>Registration For shop Owner <span>Jim Electric & Hardware</span></p>
 				</div>
