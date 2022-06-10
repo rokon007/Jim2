@@ -29,7 +29,8 @@
 					<p style="background:#FF7A59;opacity: .5;"><span></span>Developed By ROKON</p>
 				</div>
 			</div>
-			<form class="form-detail" method="POST" action="{{ route('register_user') }}" enctype="multipart/form-data" >
+			<form class="form-detail" method="POST" action="{{route('register')}}" enctype="multipart/form-data" >
+			@csrf
 			<div id="myform"> 
 				<h2>Registration Form</h2>
 				<div class="form-row">
