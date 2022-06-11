@@ -165,9 +165,16 @@ $(function() {
                
               </div><!-- -->
             </div><!-- card -->
-          </div>  
-			  
-			  
+          </div> 
+    <div class="col-sm-4 col-xl-7 mg-t-20 mg-sm-t-0">		  
+		<?php $cart_order = Session::get('cart_order');if($cart_order){ ?>
+			 <a href="" class="btn btn-info" data-toggle="modal" data-target="#myModal" ><i class="fa fa-shopping-cart"></i>
+			Invoice # {{$invoice}}</a>
+			   <?php } else { ?> 
+			<a href="{{url('getcart/wholeseal/'.$invoice) }}"class="btn btn-info"><i class="fa fa-shopping-cart"></i>
+			Invoice # {{$invoice}} </a>  
+           <?php } ?>	  
+	</div>  		  
 			</div>  
 		 </div>	  
 			</div>  
@@ -183,13 +190,7 @@ $(function() {
                      <thead>
                                 <tr>								
                                   <tr >
-								  <?php $cart_order = Session::get('cart_order');if($cart_order){ ?>
-			 <a href="" class="btn btn-info" data-toggle="modal" data-target="#myModal" ><i class="fa fa-shopping-cart"></i>
-			Invoice # {{$invoice}}</a>
-			   <?php } else { ?> 
-			<a href="{{url('getcart/wholeseal/'.$invoice) }}"class="btn btn-info"><i class="fa fa-shopping-cart"></i>
-			Invoice # {{$invoice}} </a>  
-           <?php } ?>
+								  
                                     <th style="text-align: center; width: 1%;">কোড নং</th>
                                     <th style="text-align: center; width: 3%;">সামগ্রীর নাম</th>
                                     <th style="text-align: center; width: 3%;"> মূল্য</th>
