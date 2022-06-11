@@ -69,6 +69,8 @@
 						
 						@elseif($newuser->roll==3)
 						<span class="tx-warning"><i class="fa fa-user mg-r-5"></i>Delevery Man</span>
+						@elseif($newuser->roll==4)
+						<span class="tx-info"><i class="fa fa-user mg-r-5"></i>Customer</span>
 						
 						@endif
 						</td>

@@ -120,6 +120,8 @@ Route::post('register/userc',[App\Http\Controllers\ProductController::class, 're
 Route::get('sr/home',[App\Http\Controllers\ProductController::class, 'sr_home'])->name('SR.home');
 //DM.home
 Route::get('dm/home',[App\Http\Controllers\ProductController::class, 'dm_home'])->name('DM.home');
+//customer.home
+Route::get('customer/home',[App\Http\Controllers\ProductController::class, 'customer_home'])->name('customer.home');
 //time timeshow
 Route::get('/time',[App\Http\Controllers\ProductController::class, 'timeshow'])->name('timeshow');
 //delete_comment   update-coment

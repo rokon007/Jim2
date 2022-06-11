@@ -1132,6 +1132,19 @@ class ProductController extends Controller
         $sr=DB::table('users')->where('id',$id)->first();             	
 		return view('admin.user.sr_replace_view',compact('all_sr','sr'));
 	}
-	
+	//customer_home
+	public function customer_home()
+	{
+	    $phone=auth()->user()->mobile;	    	
+		
+	    $date = Carbon::now();
+		$monthName = $date->format('F');
+		$customer=CustomerInfo::where('customer_phone',$phone)->first();
+		$id=$customer->id;
+		$payment=Payment::where('cid',$id)->get();
+		$Total_payment_m=Payment::where('cid',$id)->whereMonth('created_at', date('m'))->sum('payment');
+		$sales_order=sales_order::where('cid',$id)->get();
+		 return view('admin.customer.home',compact('customer','payment','sales_order','Total_payment_m','monthName'));
+	}
 	
 }
