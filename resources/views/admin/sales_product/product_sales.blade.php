@@ -178,30 +178,18 @@ $(function() {
 				
             <div class="sl-pagebody">
               <div class="card pd-20 pd-sm-40">
-                <div class="table-wrapper">
-			  <?php $cart_order = Session::get('cart_order');
-        if($cart_order)
-        {
-			?>
-			 <a href="" class="btn btn-info pd-x-20" data-toggle="modal" data-target="#myModal" style="width:20%;"><i class="fa fa-shopping-cart"></i>
-			Invoice # {{$invoice}}
-			  
-			  </a>
-            <?php
-		}else{		
-			?> 
-			<a href="{{url('getcart/wholeseal/'.$invoice) }}"class="btn btn-info pd-x-20" style="width:20%;"><i class="fa fa-shopping-cart"></i>
-			Invoice # {{$invoice}}
-			  
-			  </a>
-             
-			<?php
-		}
-            ?>
-           
-                
+                <div class="table-wrapper">         
                   <table id="datatable1" class="table display responsive nowrap">
                      <thead>
+					 <tr>
+					 <?php $cart_order = Session::get('cart_order');if($cart_order){?>
+			 <a href="" class="btn btn-info pd-x-20" data-toggle="modal" data-target="#myModal" style="width:20%;"><i class="fa fa-shopping-cart"></i>
+			Invoice # {{$invoice}}</a>
+			   <?php}else{?> 
+			<a href="{{url('getcart/wholeseal/'.$invoice) }}"class="btn btn-info pd-x-20" style="width:20%;"><i class="fa fa-shopping-cart"></i>
+			Invoice # {{$invoice}} </a>  
+           <?php}?>
+					 </tr>
                                 <tr>
                                   <tr >
                                     <th style="text-align: center; width: 1%;">কোড নং</th>
