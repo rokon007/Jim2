@@ -129,7 +129,7 @@
             </div><!-- card-header -->
             <div class="d-flex align-items-center justify-content-between">
             <!-- <span><h3 class="mg-b-0 tx-white tx-lato tx-bold">All</h3></span> -->
-              <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{$psv}}</h3>
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{$psv->total}}</h3>
             </div><!-- card-body -->
             <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
               <div>
