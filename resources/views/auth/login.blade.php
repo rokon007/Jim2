@@ -40,7 +40,7 @@
     <header class="header header_style_01">
         <nav class="navbar header-nav navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><img src="images/logos/logo-app.png" alt="image"></a>
+                <a class="navbar-brand" href="index.html"><img src="front/images/logos/logo-app.png" alt="image"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarApp" aria-controls="navbarApp" aria-expanded="false" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
@@ -201,7 +201,7 @@
                     <div class="contact_form">
                         <div id="message"></div>
                         
-                        <form id="contactform" class="row" method="POST" action="{{ route('login') }}" name="contactform" >
+                        <form  class="row" method="POST" action="{{ route('login') }}" name="contactform" >
                         @csrf
                             <div class="row">
                                 
