@@ -1,120 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<style>
-/* Importing fonts from Google */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+     <!-- Site Metas -->
+    <title>Jim Electrical</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-/* Reseting */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="front/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="front/images/apple-touch-icon.png">
 
-body {
-    background: #ecf0f3;
-}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="front/css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="front/style.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="front/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="front/css/custom.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-.wrapper {
-    max-width: 350px;
-    min-height: 500px;
-    margin: 80px auto;
-    padding: 40px 30px 30px 30px;
-    background-color: #ecf0f3;
-    border-radius: 15px;
-    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
-}
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-.logo {
-    width: 80px;
-    margin: auto;
-}
+</head>
+<body class="app_version" data-spy="scroll" data-target="#navbarApp" data-offset="98">
 
-.logo img {
-    width: 100%;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0px 0px 3px #5f5f5f,
-        0px 0px 0px 5px #ecf0f3,
-        8px 8px 15px #a7aaa7,
-        -8px -8px 15px #fff;
-}
+    
+    <header class="header header_style_01">
+        <nav class="navbar header-nav navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="images/logos/logo-app.png" alt="image"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarApp" aria-controls="navbarApp" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarApp">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link active" href="#home">Home</a></li>                
+                        <li><a class="nav-link" href="#contact">Login</a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}">Registration</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>   
+    
+    <section id="home" class="cd-hero js-cd-hero">
+        <ul class="cd-hero__slider">
+            <li class="cd-hero__slide cd-hero__slide--selected js-cd-slide">
+                <div class="cd-hero__content cd-hero__content--half-width">
+                    <h2>Jim Electric & Hardware</h2>
+                    <p>Mirbag, Kaunia, Rangpur.</p>
+                    <a href="#contact" class="hvr-bounce-to-right cd-hero__btn">Login</a>
+                    <a href="{{ route('register') }}" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">Registration</a>
+                </div> <!-- .cd-hero__content -->
 
-.wrapper .name {
-    font-weight: 600;
-    font-size: 1.4rem;
-    letter-spacing: 1.3px;
-    padding-left: 10px;
-    color: #555;
-}
-
-.wrapper .form-field input {
-    width: 100%;
-    display: block;
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 1.2rem;
-    color: #666;
-    padding: 10px 15px 10px 10px;
-    /* border: 1px solid red; */
-}
-
-.wrapper .form-field {
-    padding-left: 10px;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
-}
-
-.wrapper .form-field .fas {
-    color: #555;
-}
-
-.wrapper .btn {
-    box-shadow: none;
-    width: 100%;
-    height: 40px;
-    background-color: #03A9F4;
-    color: #fff;
-    border-radius: 25px;
-    box-shadow: 3px 3px 3px #b1b1b1,
-        -3px -3px 3px #fff;
-    letter-spacing: 1.3px;
-}
-
-.wrapper .btn:hover {
-    background-color: #039BE5;
-}
-
-.wrapper a {
-    text-decoration: none;
-    font-size: 0.8rem;
-    color: #03A9F4;
-}
-
-.wrapper a:hover {
-    color: #039BE5;
-}
-
-@media(max-width: 380px) {
-    .wrapper {
-        margin: 30px 20px;
-        padding: 40px 15px 15px 15px;
-    }
-}
-</style>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<div class="wrapper">
-        <div class="logo">
-		
-            <!--<img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> -->
-			 <img src="{{asset('backend')}}/img/jim_logo.png" alt="">
-        </div>
-        <div class="text-center mt-4 name">
-            Jim Electric
-            <?php $success = Session::get('success');if($success){ ?>
+                <div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
+                    <img src="uploads/app_iphone_01.png" class="img-fluid" alt="tech 1">
+                </div> <!-- .cd-hero__content -->
+            </li>
+             <?php $success = Session::get('success');if($success){ ?>
          
     <script type="text/javascript">
      Swal.fire({
@@ -136,101 +94,206 @@ body {
 })   
     </script>
 <?php  Session::put('error',null); } ?> 
-        </div>
-		<form method="POST" action="{{ route('login') }}"class="p-3 mt-3">
+<!--
+            <li class="cd-hero__slide js-cd-slide">
+                <div class="cd-hero__content cd-hero__content--half-width">
+                    <h2>Familiarize Your Creative Apps</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <a href="#0" class="hvr-bounce-to-right cd-hero__btn">App Store</a>
+                    <a href="#0" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">GooglePlay</a>
+                </div> <!-- .cd-hero__content -->
+<!--
+                <div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
+                    <img src="uploads/app_iphone_02.png" class="img-fluid" alt="tech 1">
+                </div> <!-- .cd-hero__content -->
+<!--            </li>
+
+            <li class="cd-hero__slide js-cd-slide">
+                <div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
+                    <img src="uploads/app_iphone_01.png" class="img-fluid" alt="tech 2">
+                </div> <!-- .cd-hero__content -->
+
+    <!--            <div class="cd-hero__content cd-hero__content--half-width">
+                    <h2>Familiarize Your Creative Apps</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <a href="#0" class="hvr-bounce-to-right cd-hero__btn">App Store</a>
+                    <a href="#0" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">GooglePlay</a>
+                </div> <!-- .cd-hero__content -->
+                
+    <!--        </li>
+
+            <li class="cd-hero__slide js-cd-slide">
+                <div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
+                    <img src="uploads/app_iphone_02.png" class="img-fluid" alt="tech 2">
+                </div> <!-- .cd-hero__content -->
+
+        <!--        <div class="cd-hero__content cd-hero__content--half-width">
+                    <h2>Familiarize Your Creative Apps</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <a href="#0" class="hvr-bounce-to-right cd-hero__btn">App Store</a>
+                    <a href="#0" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">GooglePlay</a>
+                </div> <!-- .cd-hero__content -->
+                
+        <!--    </li>
+
+            <li class="cd-hero__slide js-cd-slide">
+                <div class="cd-hero__content cd-hero__content--half-width">
+                    <h2>Familiarize Your Creative Apps</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <a href="#0" class="hvr-bounce-to-right cd-hero__btn">App Store</a>
+                    <a href="#0" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">GooglePlay</a>
+                </div> <!-- .cd-hero__content -->
+
+            <!--    <div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
+                    <img src="uploads/app_iphone_01.png" class="img-fluid" alt="tech 1">
+                </div> <!-- .cd-hero__content -->
+            <!--</li>-->
+        </ul> <!-- .cd-hero__slider -->
+
+        <div class="cd-hero__nav js-cd-nav">
+            <nav>
+                <span class="cd-hero__marker cd-hero__marker--item-1 js-cd-marker"></span>
+                
+                <ul>
+                    <li class="cd-selected"><a href="#">01</a></li>
+                    
+                    
+                </ul>
+            </nav> 
+        </div> <!-- .cd-hero__nav -->
+    </section> <!-- .cd-hero -->
+
+    
+    
+    
+    
+
+   
+
+   
+    
+    
+    
+
+   
+
+   
+
+    
+
+    
+    
+    
+    
+
+    <div id="contact" class="section lb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Login</h3>
+                <div class="info-box" data-toggle="tooltip" data-placement="bottom" title="Login For Jim Electric Office Automation System.">
+                    <i class="fa fa-lock" style="font-size:48px;color:red" aria-hidden="true"></i>
+                    
+                </div>
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contact_form">
+                        <div id="message"></div>
+                        
+                        <form id="contactform" class="row" method="POST" action="{{ route('login') }}" name="contactform" >
                         @csrf
-       <!-- <form class="p-3 mt-3"> -->
-            <div class="form-field d-flex align-items-center">
-                <span class="far fa-user"></span>
-                <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
-				                @error('email')
+                            <div class="row">
+                                
+                                
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Your Email">
+                                    @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-            </div>
-            <div class="form-field d-flex align-items-center">
-                <span class="fas fa-key"></span>
-                <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
-				                @error('password')
+                                    @enderror
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" required autocomplete="current-password" placeholder="Password">
+                                    @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-            </div>
-            <button type="submit" class="btn mt-3">Login</button>
-        </form>
-        <div class="text-center fs-6">
-            <a href="#">Forget password?</a> or <a href="{{ route('register') }}">Register</a>
-        </div>
-    </div>
-<!--<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                                  @enderror
+                                </div>
+                                
+                                <div class="text-center pdi">
+                                    <button type="submit"  id="submit" class="hvr-bounce-to-right get-btn">Login</button>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
--->
+    </div><!-- end section -->
+
+   
+
+    <div class="copyrights">
+        <div class="container">
+            <div class="footer-distributed">
+                <div class="footer-left">                    
+                    <p class="footer-company-name">All Rights Reserved. &copy; 2022 <a href="#">Jim Electric</a> Design By : 
+                    <a href="https://www.facebook.com/rezaulkarim.rokon/">ROKON</a></p>
+                </div>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end copyrights -->
+
+    <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+
+    <!-- ALL JS FILES -->
+    <script src="front/js/all.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="front/js/main.js"></script>
+    <script src="front/js/custom.js"></script>
+    <script src="front/js/swiper.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+            effect: 'coverflow',
+            centeredSlides: true,
+            loopFillGroupWithBlank: true,
+            slidesPerView: 3,
+            initialSlide: 3,
+            keyboardControl: true,
+            mousewheelControl: false,
+            lazyLoading: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                1199: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                991: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                },
+                767: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                575: {
+                    slidesPerView: 1,
+                    spaceBetween: 3,
+                }
+            }
+        });
+      </script>
+
+</body>
+</html>
