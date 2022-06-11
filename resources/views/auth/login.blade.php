@@ -224,7 +224,7 @@
                                 </div>
                                 
                                 <div class="text-center pdi">
-                                    <button type="submit"  id="submit" class="hvr-bounce-to-right get-btn">Login</button>
+                                    <button type="submit"  class="hvr-bounce-to-right get-btn">Login</button>
                                 </div>
                             </div>
                         </form>
