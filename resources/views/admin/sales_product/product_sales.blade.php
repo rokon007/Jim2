@@ -166,6 +166,7 @@ $(function() {
               </div><!-- -->
             </div><!-- card -->
           </div> 
+		  <br>
     <div class="col-sm-4 col-xl-7 mg-t-20 mg-sm-t-0">		  
 		<?php $cart_order = Session::get('cart_order');if($cart_order){ ?>
 			 <a href="" class="btn btn-info" data-toggle="modal" data-target="#myModal" ><i class="fa fa-shopping-cart"></i>
@@ -184,7 +185,7 @@ $(function() {
 						
 				
             <div class="sl-pagebody">
-              <div class="card pd-20 pd-sm-40">
+              <div class="card pd-15 pd-sm-40">
                 <div class="table-wrapper">         
                   <table id="datatable1" class="table display responsive nowrap">
                      <thead>
