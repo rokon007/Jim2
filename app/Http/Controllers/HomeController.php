@@ -101,8 +101,7 @@ class HomeController extends Controller
 	 public function admin_index()
     {
 		$psv=DB::table('products')
-		      ->select(DB::raw('SUM(products.product_quantity * products.price)'))
-			  ->get();
+			 ->sum('products.product_quantity * products.price'); 
 		 $cabmemonth_order = DB::table('sales_orders')
 		      ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),
 			  DB::raw("(DATE_TRUNC('year',created_at)) as year"),DB::raw("(DATE_TRUNC('month',created_at)) as month"))
