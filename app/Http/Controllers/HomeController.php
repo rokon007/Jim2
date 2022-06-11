@@ -100,6 +100,9 @@ class HomeController extends Controller
 	
 	 public function admin_index()
     {
+		$psv=DB::table('products')
+		      ->select(DB::raw('SUM(products.product_quantity * products.price) as total_value'),
+			  ->get();
 		 $cabmemonth_order = DB::table('sales_orders')
 		      ->select(DB::raw('SUM(sales_orders.amount) as total_amount'),
 			  DB::raw("(DATE_TRUNC('year',created_at)) as year"),DB::raw("(DATE_TRUNC('month',created_at)) as month"))
@@ -138,9 +141,24 @@ class HomeController extends Controller
             ->where('status',1)
             ->where('is_cable',0)
 			//->whereMonth(DB::raw("(DATE_TRUNC('day',created_at))"), '=',$month)
-            ->sum('amount'); 	
+            ->sum('amount'); 
+         $confermorder_Total=DB::table('sales_orders')
+               ->groupBy('invoice')
+              ->where('status',1)			   
+             ->count('invoice');
 			
-		
+         $all_confermorder = DB::table('sales_orders')           
+            
+            ->select('product_code',DB::raw('SUM(qty) as total_qty'),'product')
+            ->groupBy('product_code','product')
+            ->where('status',1)
+           // ->orderBy('id','DESC')
+             ->get();			
+			
+		 $order_Total=DB::table('sales_orders')
+               ->groupBy('invoice')
+              ->where('status',NULL)			   
+             ->count('invoice');
          $all_order = DB::table('sales_orders')           
             
             ->select('product_code',DB::raw('SUM(qty) as total_qty'),'product')
@@ -215,8 +233,7 @@ class HomeController extends Controller
             ->whereYear('created_at', date('Y'))            
              ->count('invoice');
 
-         $order_Total=DB::table('sales_orders')                    
-             ->count('invoice');     
+             
 
         $Totalamount_today = DB::table('sales_orders')
              ->whereDate('created_at', '=', date('Y-m-d'))
@@ -298,6 +315,6 @@ class HomeController extends Controller
              ->get();
             //SR button
             $srbutton=DB::table('users')->where('roll',2)->get();
-		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','low_products','sales_order_today_count','sales_order_today','low_qty_count','confermorder_today_count','confermorder_today','todays_cullection','todays_cullection_count','cullection_Bydate','srbutton','all_order','cable_order_month','cable_totalamount_month','other_order_month','other_totalamount_month','cabmemonth_order','cabmemonth_amount','othermonth_order','othermonth_amount'));
+		return view('admin.home',compact('order_today','order_currentMonth','order_currentYear','order_Total','Totalamount_today','Totalamount_currentMonth','Totalamount_currentYear','Totalamount','collection_today','due_today','collection_currentMonth','due_currentMonth','collection_currentYear','due_currentYear','collection_Total','due_Total','monthName','year','low_products','sales_order_today_count','sales_order_today','low_qty_count','confermorder_today_count','confermorder_today','todays_cullection','todays_cullection_count','cullection_Bydate','srbutton','all_order','cable_order_month','cable_totalamount_month','other_order_month','other_totalamount_month','cabmemonth_order','cabmemonth_amount','othermonth_order','othermonth_amount','psv' ,'confermorder_Total','all_confermorder'));
     }
 }

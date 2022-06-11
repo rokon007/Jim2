@@ -124,12 +124,12 @@
           <div class="card pd-20 bg-sl-primary">
 
              <div class="d-flex justify-content-between align-items-center mg-b-10">
-              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Order</h6>
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Present Stock Value</h6>
               <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
             </div><!-- card-header -->
             <div class="d-flex align-items-center justify-content-between">
-             <span><h3 class="mg-b-0 tx-white tx-lato tx-bold">All</h3></span>
-              <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{$order_Total}}</h3>
+            <!-- <span><h3 class="mg-b-0 tx-white tx-lato tx-bold">All</h3></span> -->
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{$psv->total_value}}</h3>
             </div><!-- card-body -->
             <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
               <div>
@@ -149,6 +149,7 @@
         </div><!-- col-3 -->
 
         <br>
+		
       @foreach ($srbutton as $button)
         <a href="{{ url('sr-detels/'.$button->name.'/'.$button->image) }}" class="btn btn-dark btn-block mg-b-10">
           <img src="{{ asset('upload/admin/'.$button->image) }}" class="wd-20 rounded-circle" alt="Image">
@@ -885,7 +886,7 @@
 </script>
 
               <div class="card pd-20 pd-sm-40">
-            <h6 class="card-body-title">All order</h6>    
+            <h6 class="card-body-title">All Painding Order</h6>    
                 <div class="table-wrapper">
                  <table id="todaycullection_tb11" class="table table-bordered display" style="width:100%">
                     
