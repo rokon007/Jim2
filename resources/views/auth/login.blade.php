@@ -105,6 +105,7 @@ body {
     }
 }
 </style>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="wrapper">
         <div class="logo">
 		
@@ -113,6 +114,28 @@ body {
         </div>
         <div class="text-center mt-4 name">
             Jim Electric
+            <?php $success = Session::get('success');if($success){ ?>
+         
+    <script type="text/javascript">
+     Swal.fire({
+  icon: 'success',
+  title: '<?php  echo $success; ?>',
+  text: 'Jim Electric',
+  footer: 'Jim Electric office automation system'
+})   
+    </script>
+<?php  Session::put('success',null); } ?> 
+<?php $error = Session::get('error');if($error){ ?>
+         
+    <script type="text/javascript">
+     Swal.fire({
+  icon: 'error',
+  title: '<?php  echo $error; ?>',
+  text: 'Please contact with Admin',
+  footer: 'Jim Electric office automation system'
+})   
+    </script>
+<?php  Session::put('error',null); } ?> 
         </div>
 		<form method="POST" action="{{ route('login') }}"class="p-3 mt-3">
                         @csrf

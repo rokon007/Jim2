@@ -840,10 +840,11 @@ class ProductController extends Controller
         $user->save();
 		
     
-           return $user;
+           return redirect()->route('login')->with('success','Registerd sucsessfull');
 
     }else{
      return redirect()->back()->with('message','Mobile number is not registerd');
+	
   }
 	}
 	//register_user

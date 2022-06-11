@@ -24,17 +24,12 @@
 <body class="form-v2">
 	<div class="page-content">
         <?php $message = Session::get('message');if($message){ ?>
-		 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong><?php  echo $message; ?></strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
+		 
     <script type="text/javascript">
      Swal.fire({
   icon: 'error',
-  title: 'Oops...',
-  text: '<?php  echo $message; ?>',
+  title: '<?php  echo $message; ?>',
+  text: 'Please contact with Admin',
   footer: '<a href="">Why do I have this issue?</a>'
 })   
     </script>
