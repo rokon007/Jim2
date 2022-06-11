@@ -147,7 +147,42 @@ $(function() {
           <button class="btn"><i class="fa fa-search"></i></button>
         </span><!-- input-group-btn -->
       </div><!-- input-group -->
-
+	  @if(Auth::user()->roll==4)
+		 <div id="navDIV" class="sl-sideleft-menu">
+	  
+		 
+         <a href="javascript:void(0)" id="" class="sl-menu-link active"  onclick="Profile()">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Profile</span>
+          </div>
+        </a> <!-- sl-menu-link -->
+		
+		<a href="javascript:void(0)" id="Transactions" class="sl-menu-link "  onclick="AllcustomarFunction()">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Transactions</span>
+          </div>
+        </a> <!-- sl-menu-link -->
+		
+		<a href="javascript:void(0)" id="Purchased" class="sl-menu-link "  onclick="ActivcustomarFunction()">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Purchased List</span>
+          </div>
+        </a> <!-- sl-menu-link -->
+		
+		<a href="javascript:void(0)" id="Returned" class="sl-menu-link "  onclick="DiactivcustomarFunction()">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Returned product</span>
+          </div>
+        </a> <!-- sl-menu-link -->
+      
+        </ul>
+      </div><!-- sl-sideleft-menu --> 
+	  <!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX sl-sideleft-menuXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --> 
+      @else
       <div class="sl-sideleft-menu">
 	  @if(Auth::user()->roll==1)
         <a href="{{route('admin.home')}}" class="sl-menu-link @yield('dashboard')">
@@ -256,7 +291,7 @@ $(function() {
       
         </ul>
       </div><!-- sl-sideleft-menu -->
-
+     @endif
       <br>
     </div><!-- sl-sideleft -->
     <!-- ########## END: LEFT PANEL ########## -->

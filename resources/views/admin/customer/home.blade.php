@@ -3,19 +3,10 @@
 
 @section('customer_profile') active @endsection
 @section('admin_content')
-
-<!-- ########## START: MAIN PANEL ########## -->
-    <div class="sl-mainpanel">
-      <div class="mailbox-sideleft">
-       <center>
-			   <div class="" >
-                            <img  src="{{ asset('upload/customer/'.$customer->image) }}" width="156px" height="156px" alt="img">
-                          </div>
-				 </center>
-            <script>
+ <script>
                 // Add active class to the current button (highlight it)
-                var header = document.getElementById("myDIV");
-                var btns = header.getElementsByClassName("nav-link");
+                var header = document.getElementById("navDIV");
+                var btns = header.getElementsByClassName("sl-menu-link");
                 for (var i = 0; i < btns.length; i++) {
                 btns[i].addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
@@ -24,6 +15,15 @@
                   });
                     }
             </script>
+<!-- ########## START: MAIN PANEL ########## -->
+    <div class="sl-mainpanel">
+    <!--  <div class="mailbox-sideleft">
+       <center>
+			   <div class="" >
+                            <img  src="{{ asset('upload/customer/'.$customer->image) }}" width="156px" height="156px" alt="img">
+                          </div>
+				 </center>
+           
 		<div id="myDIV">	
         <nav class="nav nav-mailbox flex-column mg-y-20">
 		   <a href="javascript:void(0)" id="" class="nav-link active"  onclick="Profile()">
@@ -114,6 +114,18 @@
                   <p class="tx-uppercase tx-11 tx-spacing-1 tx-medium tx-white-5 mg-b-8">Total deu</p>
                   <h6 class="tx-bold tx-lato tx-white mg-b-0">&#2547; {{$customer->total_deu}}</h6>
                 </div>
+              </div>
+            </div><!-- card -->
+          </div><!-- col-3 -->
+		  
+		  
+		   <div class="col-sm-6 col-xl-3">
+            <div class="card pd-20 pd-sm-25">
+              <div class="d-flex align-items-center">
+               
+                <div class="" >
+                            <img  src="{{ asset('upload/customer/'.$customer->image) }}" width="156px" height="156px" alt="img">
+                          </div>
               </div>
             </div><!-- card -->
           </div><!-- col-3 -->
