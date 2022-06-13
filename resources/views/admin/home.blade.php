@@ -887,7 +887,16 @@
 </script>
 
               <div class="card pd-20 pd-sm-40">
-            <h6 class="card-body-title">All Painding Order</h6>    
+            <h6 class="card-body-title">All Painding Order</h6><br>
+             <center>
+
+<a href="{{ url('order/todayorder-prnpriview') }}" class="btnprn btn">Print Preview</a>
+<script type="text/javascript">
+$(document).ready(function(){
+$('.btnprn').printPage();
+});
+</script>
+			
                 <div class="table-wrapper">
                  <table id="todaycullection_tb11" class="table table-bordered display" style="width:100%">
                     
