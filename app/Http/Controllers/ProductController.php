@@ -292,8 +292,16 @@ class ProductController extends Controller
 
     public function index()
     {
+		if(Auth::user()->roll==2)
+		{
+			$SR=Auth::user()->name;
+			$customers= CustomerInfo::all();
+			CustomerInfo::where('sr',$SR)->get();
+		}else{
+			$customers= CustomerInfo::all();
+		}
        
-        $customers= CustomerInfo::all();
+        
         return view('admin.customer.index',compact('customers'));
     }
 

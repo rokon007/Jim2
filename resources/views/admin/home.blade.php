@@ -1,3 +1,4 @@
+<?php $dontshow=1; ?>
 @extends('admin.admin-master')
 @section('rokonlink')
 <script src="{{ asset('rokon/admin_dassbord.js') }}"></script> 

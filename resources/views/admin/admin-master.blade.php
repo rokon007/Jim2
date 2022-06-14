@@ -606,7 +606,7 @@ $(function() {
 			  <input type="hidden" value="<?php $sales_order = Session::get('sales_order');if($sales_order){echo $sales_order->shop_name;}?>" name="shop_name">
 			  <input type="hidden" value="<?php $sales_order = Session::get('sales_order');if($sales_order){echo $sales_order->cid;}?>" name="cid">
 			   <input type="hidden" value="<?php $sales_order = Session::get('sales_order');if($sales_order){echo $sales_order->customer_phone;}?>" name="customer_phone">
-			   @if(isset($rokon))
+			   @if(isset($dontshow))
                   <button  class="btn btn-info pd-x-20 " data-toggle="modal" data-target="#modaldemo2" href="#">Conferm</button>
 		       @else
 		 

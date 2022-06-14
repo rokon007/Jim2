@@ -1,4 +1,9 @@
 @extends('admin.admin-master')
+@section('rokonlink')
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script> 
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> 
+<script src="https://cdn.datatables.net/keytable/2.7.0/js/dataTables.keyTable.min.js"></script> 
+@endsection
 @section('products') active show-sub @endsection
 @section('manage-products') active @endsection
 @section('admin_content')
@@ -172,22 +177,26 @@ $(function() {
 		 </div>	  
 			</div>  
 			 
-			 <div class="sl-pagebody">
-				 <div class="card pd-20 pd-sm-40"> <center>
-				<?php $cart_order = Session::get('cart_order');if($cart_order){ ?>
+			 	 
+				
+            <div class="sl-pagebody">
+              <div class="card pd-20 pd-sm-40">
+			  <?php $cart_order = Session::get('cart_order');if($cart_order){ ?>
 			 <a href="" class="btn btn-info pd-x-20" data-toggle="modal" data-target="#myModal" style="width:35%;"><i class="fa fa-shopping-cart"></i>
 			Invoice # {{$invoice}}</a>
 			   <?php } else { ?> 
 			<a href="{{url('getcart/wholeseal/'.$invoice) }}"class="btn btn-info pd-x-20" style="width:35%;"><i class="fa fa-shopping-cart"></i>
 			Invoice # {{$invoice}} </a>  
-           <?php } ?></center>
-         </div>
-       </div>		 
-				
-            <div class="sl-pagebody">
-              <div class="card pd-20 pd-sm-40">
-                <div class="table-wrapper">         
-                  <table id="datatable1" class="table display responsive nowrap">
+           <?php } ?>
+                <div class="table-wrapper">  
+           <script type="text/javascript">
+           $(document).ready(function() {
+           $('#selastb').DataTable( {
+           keys: true
+            } );
+            } );
+         </script>			
+                  <table id="selastb" class="table display responsive nowrap">
                      <thead>
                                 <tr>
 								

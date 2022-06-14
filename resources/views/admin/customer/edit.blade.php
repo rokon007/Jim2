@@ -118,6 +118,12 @@
                     </div>
                   </div>
 				    <div class="col-lg-4">
+					<?php if(Auth::user()->roll==2){ ?>
+				      <div class="form-group">
+                      <label class="form-control-label">SR: <span class="tx-danger">*</span></label>
+					  <input class="form-control" type="text" name="sr" value="{{Auth::user()->name}}" readonly>     
+                    </div>
+				   <?php }else {?>
                     <div class="form-group">
                       <label class="form-control-label">SR: <span class="tx-danger">*</span></label>
                      <select class="form-control" name="sr" required>
@@ -130,6 +136,7 @@
                       <strong class="text-danger">{{ $message }}</strong> 
                       @enderror
                     </div>
+					 <?php } ?>
                   </div>
 
 

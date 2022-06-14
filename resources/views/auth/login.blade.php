@@ -69,7 +69,7 @@
                 </div> <!-- .cd-hero__content -->
 
                 <div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
-                    <img src="uploads/app_iphone_01.png" class="img-fluid" alt="tech 1">
+                    <img src="front/uploads/app_iphone_01.png" class="img-fluid" alt="tech 1">
                 </div> <!-- .cd-hero__content -->
             </li>
              <?php $success = Session::get('success');if($success){ ?>
