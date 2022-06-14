@@ -77,7 +77,7 @@
 					   <td>{{ $newuser->mobile}}</td> 
 					    <td>{{ $newuser->email}}</td> 
 					  <td>
-					<img src="{{ asset('upload/admin/'.$newuser->image) }}" onerror="this.onerror=null;this.src='rokon/images/user.jpg';" class="wd-36 rounded-circle" alt="Image">
+					<img src="{{ asset('upload/admin/'.$newuser->image) }}" onerror="this.onerror=null;this.src='{{ asset('rokon') }}/images/user.jpg';" class="wd-36 rounded-circle" alt="Image">
                     </td>
 					<td>
 					@if($newuser->roll==2)

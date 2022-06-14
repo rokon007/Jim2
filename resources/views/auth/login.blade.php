@@ -15,17 +15,17 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="front/images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="front/images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="{{asset('front')}}/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{{asset('front')}}/images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="front/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('front')}}/css/bootstrap.min.css">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="front/style.css">    
+    <link rel="stylesheet" href="{{asset('front')}}/style.css">    
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="front/css/responsive.css">
+    <link rel="stylesheet" href="{{asset('front')}}/css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="front/css/custom.css">
+    <link rel="stylesheet" href="{{asset('front')}}/css/custom.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!--[if lt IE 9]>
@@ -40,7 +40,7 @@
     <header class="header header_style_01">
         <nav class="navbar header-nav navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><img src="front/images/logos/logo-app.png" alt="image"></a>
+                <a class="navbar-brand" href="index.html"><img src="{{asset('front')}}/images/logos/logo-app.png" alt="image"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarApp" aria-controls="navbarApp" aria-expanded="false" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
@@ -69,7 +69,7 @@
                 </div> <!-- .cd-hero__content -->
 
                 <div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
-                    <img src="front/uploads/app_iphone_01.png" class="img-fluid" alt="tech 1">
+                    <img src="{{asset('front')}}/uploads/app_iphone_01.png" class="img-fluid" alt="tech 1">
                 </div> <!-- .cd-hero__content -->
             </li>
              <?php $success = Session::get('success');if($success){ ?>
@@ -250,11 +250,11 @@
     <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
     <!-- ALL JS FILES -->
-    <script src="front/js/all.js"></script>
+    <script src="{{asset('front')}}/js/all.js"></script>
     <!-- ALL PLUGINS -->
-    <script src="front/js/main.js"></script>
-    <script src="front/js/custom.js"></script>
-    <script src="front/js/swiper.min.js"></script>
+    <script src="{{asset('front')}}/js/main.js"></script>
+    <script src="{{asset('front')}}/js/custom.js"></script>
+    <script src="{{asset('front')}}/js/swiper.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
             loop: true,
