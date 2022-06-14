@@ -520,7 +520,7 @@ $(function() {
                  <th>Price</th>                   
                  <th>Quantity</th>
                  <th>Total</th>                  
-                 <th>Update</th>                                                         
+                 <th>Status</th>                                                         
                 </tr>
               </thead>
               <tbody>
@@ -536,7 +536,7 @@ $(function() {
                   <td>{{ $item->product }}</td>
                   <td>{{ $item->price }}</td>
 				  
-                  <td><input style="text-align: center;width:50px;"  type="number" name="qty12" id="qty12" value="{{ $item->qty  }}"></td>
+                  <td>{{ $item->qty  }}</td>
 				  <td>{{ $item->amount }}</td>
 				  <td>				  				 
 				<button  class="btn btn-sm btn-success">
