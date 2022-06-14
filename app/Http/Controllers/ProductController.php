@@ -295,8 +295,8 @@ class ProductController extends Controller
 		if(Auth::user()->roll==2)
 		{
 			$SR=Auth::user()->name;
-			$customers= CustomerInfo::all();
-			CustomerInfo::where('sr',$SR)->get();
+			$customers= CustomerInfo::where('sr',$SR)->get();
+			
 		}else{
 			$customers= CustomerInfo::all();
 		}

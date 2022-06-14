@@ -151,7 +151,7 @@ $(function() {
 		 <div id="navDIV" class="sl-sideleft-menu">
 	  
 		 
-         <a href="javascript:void(0)" id="" class="sl-menu-link active"  onclick="Profile()">
+         <a href="javascript:void(0)" id="Profile" class="sl-menu-link active"  onclick="Profile()">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Profile</span>
