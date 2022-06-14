@@ -154,7 +154,7 @@
 		
       @foreach ($srbutton as $button)
         <a href="{{ url('sr-detels/'.$button->name.'/'.$button->image) }}" class="btn btn-dark btn-block mg-b-10">
-          <img src="{{ asset('upload/admin/'.$button->image) }}" class="wd-20 rounded-circle" alt="Image">
+          <img src="{{ asset('upload/admin/'.$button->image) }}" onerror="this.onerror=null;this.src='rokon/images/user.jpg';" class="wd-20 rounded-circle" alt="Image">
           {{$button->name}}
         </a>
       @endforeach 

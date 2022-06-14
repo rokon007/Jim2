@@ -124,7 +124,7 @@
               <div class="d-flex align-items-center">
                
                 <div class="" >
-                            <img  src="{{ asset('upload/customer/'.$customer->image) }}" width="156px" height="156px" alt="img">
+                            <img  src="{{ asset('upload/customer/'.$customer->image) }}" onerror="this.onerror=null;this.src='rokon/images/user.jpg';" width="156px" height="156px" alt="img">
                           </div>
               </div>
             </div><!-- card -->
