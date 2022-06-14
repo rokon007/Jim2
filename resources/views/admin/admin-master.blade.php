@@ -148,39 +148,41 @@ $(function() {
         </span><!-- input-group-btn -->
       </div><!-- input-group -->
 	  @if(Auth::user()->roll==4)
-		 <div id="navDIV" class="sl-sideleft-menu">
+		  <div id="navDIV">
+		 <div class="sl-sideleft-menu">
 	  
 		 
          <a href="javascript:void(0)" id="Profile" class="sl-menu-link active"  onclick="Profile()">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-            <span class="menu-item-label">Profile</span>
+             <span class="menu-item-label">Profile</span>  
           </div>
         </a> <!-- sl-menu-link -->
 		
 		<a href="javascript:void(0)" id="Transactions" class="sl-menu-link "  onclick="AllcustomarFunction()">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-            <span class="menu-item-label">Transactions</span>
+           <span class="menu-item-label">Transactions</span>  
           </div>
         </a> <!-- sl-menu-link -->
 		
 		<a href="javascript:void(0)" id="Purchased" class="sl-menu-link "  onclick="ActivcustomarFunction()">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-            <span class="menu-item-label">Purchased List</span>
+             <span class="menu-item-label">Purchased List</span> 
           </div>
         </a> <!-- sl-menu-link -->
 		
 		<a href="javascript:void(0)" id="Returned" class="sl-menu-link "  onclick="DiactivcustomarFunction()">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-            <span class="menu-item-label">Returned product</span>
+         <span class="menu-item-label">Returned product</span>   
           </div>
         </a> <!-- sl-menu-link -->
       
         </ul>
       </div><!-- sl-sideleft-menu --> 
+	  </div>
 	  <!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX sl-sideleft-menuXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --> 
       @else
       <div class="sl-sideleft-menu">
@@ -307,7 +309,7 @@ $(function() {
           <div class="dropdown">
             <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
               <span class="logged-name">{{ Auth::user()->name }}<span class="hidden-md-down"></span></span>
-			   <img src="{{ asset('upload') }}/admin/{{ Auth::user()->image }}" class="wd-32 rounded-circle" alt="">
+			   <img src="{{ asset('upload') }}/admin/{{ Auth::user()->image }}" onerror="this.onerror=null;this.src='rokon/images/user.jpg';" class="wd-32 rounded-circle" alt="">
              
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-200">
@@ -411,7 +413,7 @@ $(function() {
             <!-- loop starts here -->
             <a href="#" class="media-list-link">
               <div class="media">
-                <img src="{{asset('upload')}}/admin/{{ $key->image }}" class="wd-40 rounded-circle" alt="">
+                <img src="{{asset('upload')}}/admin/{{ $key->image }}" onerror="this.onerror=null;this.src='rokon/images/user.jpg';" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="mg-b-0 tx-medium tx-gray-800 tx-13">{{$key->subject1}}</p>
                   <span class="d-block tx-11 tx-gray-500"><?php  printf('%d days, %d hours, %d minutes', $diff->d, $diff->h, $diff->i);?> ago</span>
