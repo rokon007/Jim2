@@ -535,17 +535,15 @@ $(function() {
                   <td>{{ $item->product_code }}</td>
                   <td>{{ $item->product }}</td>
                   <td>{{ $item->price }}</td>
-				  <form action="{{url('cart/qty_update/'.$item->id.'/'.Session::get('invoice').'/'.$item->product_code)}}" method="POST">
-		        @csrf               
-                @method('PUT')
+				  
                   <td><input style="text-align: center;width:50px;"  type="number" name="qty12" id="qty12" value="{{ $item->qty  }}"></td>
 				  <td>{{ $item->amount }}</td>
 				  <td>				  				 
-				<button type="submit" class="btn btn-sm btn-success">
-                  <i class="fa fa-pencil"></i>
+				<button  class="btn btn-sm btn-success">
+                  <i class="fa fa-check"></i>
 				  
                 </button>
-				</form>
+				
 				  </td>
 				   </tr>
 			 @endforeach
@@ -585,6 +583,11 @@ $(function() {
 		}?>	
 		</tr>
 		<tr>
+		</tbody>
+            </table>
+          </div>
+		</div><!-- modal-body -->
+              <div class="modal-footer">
 		
                 <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Close</button>
               </div>
